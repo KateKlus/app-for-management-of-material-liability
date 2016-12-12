@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <div>
+        <h1><a href="/">Столы</a></h1>
+    </div>
+
+        <div>
+
+
+            {% for tables in my_tables %}
+                <p> Стол</p>
+                <p>Аудитория:  {{tables.auditoria|escape }}</p>
+                <p>Серия: {{tables.inv_num|escape }}</p>
+                <p>Тип: {{tables.type|escape }}</p>
+                <p>Ответственное лицо: {{tables.Contact|escape }}</p>
+                <br>
+            {% endfor%}
+
+
+        </div>
+        
+</body>
+</html> 
