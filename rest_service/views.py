@@ -2,6 +2,8 @@ from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.renderers import JSONRenderer
+from django.http import HttpResponse
+from itertools import chain
 
 from .models import *
 from rest_service.serializers import *
@@ -9,9 +11,6 @@ from rest_service.serializers import *
 
 @api_view(['GET', 'POST'])
 def tables_list(request):
-    """
-    List all tables, or create a new task.
-    """
     if request.method == 'GET':
         my_tables = Tables.objects.all()
         serializer = TablesSerializer(my_tables, many=True)
@@ -31,9 +30,6 @@ def tables_list(request):
 
 @api_view(['GET', 'POST'])
 def computers_list(request):
-    """
-    List all tables, or create a new task.
-    """
     if request.method == 'GET':
         my_computers = Computer.objects.all()
         serializer = ComputerSerializer(my_computers, many=True)
@@ -51,16 +47,30 @@ def computers_list(request):
 @api_view(['GET', 'POST'])
 
 def tables_computers_list(request):
-    """
-    List all tables, or create a new task.
-    """
     if request.method == 'GET':
         my_computers = Computer.objects.all()
         my_tables = Tables.objects.all()
 
-        serializer = CompTablSerializer(my_tables, my_computers, many=True)
-        content = serializer.data
+        serializer = ComputerSerializer(my_computers, many=True)
+        serializer1 = TablesSerializer(my_tables, many=True)
+
+        content = serializer.data + serializer1.data
+
+
         json = JSONRenderer().render(content)
         return Response(content)
 
-    
+@api_view(['GET'])
+
+def comp_detail(request, pk):
+
+    try:
+        comp = Computer.objects.get(name=pk)
+    except Computer.DoesNotExist:
+        return HttpResponse(status=404)
+
+    if request.method == 'GET':
+        serializer = ComputerSerializer(comp)
+        content = serializer.data
+        json = JSONRenderer().render(content)
+        return Response(content)

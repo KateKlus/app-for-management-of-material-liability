@@ -9,7 +9,7 @@ class TablesSerializer(serializers.ModelSerializer):
         fields = ( 'inv_num', 'type', 'auditoria', 'Contact')
 
 class ComputerSerializer(serializers.ModelSerializer):
-
+    label = 'comp'
     class Meta:
         model = Computer
         fields = ( 'name', 'serial')

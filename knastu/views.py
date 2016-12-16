@@ -47,5 +47,14 @@ def table_comp(request):
     content = tabl_comp.data
 
     #decoded_content = json.loads(content)
-    return render(request, 'knastu/tables.html', {'tabl_comp':content})
+    return render(request, 'knastu/table_comp.html', {'tabl_comp':content})
 
+def comp_detail(request):
+
+    request.path = '/rest_service/comp_detail/'
+    request.method = 'GET'
+    tabl_comp = tables_computers_list(request)
+    content = tabl_comp.data
+
+    #decoded_content = json.loads(content)
+    return render(request, 'knastu/comp_detail.html', {'comp_detail':content})

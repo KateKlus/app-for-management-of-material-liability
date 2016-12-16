@@ -12,12 +12,20 @@
         <div>
 
 
-            {% for tables in my_tables %}
-                <p> Стол</p>
-                <p>Аудитория:  {{tables.auditoria|escape }}</p>
-                <p>Серия: {{tables.inv_num|escape }}</p>
-                <p>Тип: {{tables.type|escape }}</p>
-                <p>Ответственное лицо: {{tables.Contact|escape }}</p>
+                {% for tables in tabl_comp %}
+                    <p> Стол</p>
+                    <p>Аудитория:  {{table.auditoria|escape }}</p>
+                    <p>Серия: {{table.inv_num|escape }}</p>
+                    <p>Тип: {{table.type|escape }}</p>
+                    <p>Ответственное лицо: {{table.Contact|escape }}</p>
+                    <br>
+                {% endfor%}
+
+
+
+            {% for comps in tabl_comp %}
+                <p> Комп</p>
+                <p>Имя:  {{comp.name|escape }}</p>
                 <br>
             {% endfor%}
 

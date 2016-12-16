@@ -5,6 +5,7 @@ urlpatterns = [
     url(r'^tables/$', views.tables_list, name='tables_list'),
     url(r'^computers/$', views.computers_list, name='computers_list'),
     url(r'^tables_computers/$', views.tables_computers_list, name='tables_computers_list'),
+    url(r'^computers/(?P<pk>.+)/$', views.comp_detail, name='comp_detail'),
     #url(r'', include('knastu.urls')),
     
 ]
