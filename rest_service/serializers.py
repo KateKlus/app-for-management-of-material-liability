@@ -3,28 +3,29 @@ from .models import *
 
 attr = ['name', 'serial', 'contact']
 
-class MOSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = MO
-        fields = '__all__'
-        #abstract = True
 
 class TablesSerializer(serializers.ModelSerializer):
     label = 'table'
     class Meta:
         model = Tables
-        fields = attr
-        #fields.append('auditoria')
+        fields = []
+        fields.extend(attr)
+        fields.append('auditoria')
+        fields.append('location')
+
 
 
 class ComputerSerializer(serializers.ModelSerializer):
     label = 'comp'
     class Meta:
         model = Computer
-        fields = attr
+        fields = []
+        fields.extend(attr)
+        fields.append('locations_id')
 
-class CompTablSerializer(serializers.ModelSerializer):
-
-    table = TablesSerializer(many=True)
-    computer = ComputerSerializer(many=True)
+class LocationSerializer(serializers.ModelSerializer):
+    label = 'location'
+    class Meta:
+        model = Location
+        fields = ('name',)
 

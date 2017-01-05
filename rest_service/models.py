@@ -13,16 +13,23 @@ class MO(models.Model):
 
 class Tables(MO):
     auditoria = models.TextField()
-
+    location = models.IntegerField()
     class Meta:
         db_table = 'Tables'
         app_label = 'rest_service'
 
+class Location(models.Model):
+    name = models.TextField()
+    class Meta:
+        db_table = 'glpi_locations'
+        app_label = 'glpi'
 
 class Computer(MO):
-
+    locations = models.ForeignKey(
+         Location,
+         on_delete = models.CASCADE,
+    )
     class Meta:
         db_table = 'glpi_computers'
         app_label = 'glpi'
-
 

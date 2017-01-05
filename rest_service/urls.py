@@ -11,6 +11,9 @@ urlpatterns = [
 
     url(r'^comp/$', views.CompList.as_view()),
     url(r'^comp/(?P<pk>[0-9]+)/$', views.CompDetail.as_view()),
+    url(r'^auditoria/$', views.Auditoria.as_view()),
+
+    url(r'^auditoria/(?P<pk>[0-9]+)/$', views.Auditorias_base.as_view()),
     #url(r'', include('knastu.urls')),
     
 ]

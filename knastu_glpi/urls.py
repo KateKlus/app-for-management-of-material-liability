@@ -16,16 +16,16 @@ Including another URLconf
 from django.conf.urls import  url, include
 from django.contrib import admin
 #from rest_service import views
-from knastu import views
+#from knastu import views
 admin.autodiscover()
 
 urlpatterns = [
 	url(r'^rest_service/', include('rest_service.urls')),
-    url(r'^admin/', admin.site.urls),
-    url(r'^$', views.main, name='main'),
-    url(r'^tables/$', views.tables, name='tables'),
-    url(r'^table_comp/$', views.table_comp, name='table_comp'),
-    url(r'^comp_detail/$', views.comp_detail, name='comp_detail'),
+    #url(r'^admin/', admin.site.urls),
+    #url(r'^$', views.main, name='main'),
+    #url(r'^tables/$', views.tables, name='tables'),
+    #url(r'^table_comp/$', views.table_comp, name='table_comp'),
+    #url(r'^comp_detail/$', views.comp_detail, name='comp_detail'),
     #url(r'^tables/$', views.tables_list, name='tables_list'),
     #url(r'', include('knastu.urls')),
     

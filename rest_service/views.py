@@ -14,32 +14,25 @@ from .models import *
 from rest_service.serializers import *
 
 
-class MOList(mixins.ListModelMixin,
-                    mixins.CreateModelMixin,
-                    generics.GenericAPIView):
+class MOList(mixins.ListModelMixin,mixins.CreateModelMixin,generics.GenericAPIView):
 
     queryset = Tables.objects.all()
     serializer_class = TablesSerializer
 
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
-
     def post(self, request, *args, **kwargs):
         return self.create(request, *args, **kwargs)
 
-class MODetail(mixins.RetrieveModelMixin,
-                    mixins.UpdateModelMixin,
-                    mixins.DestroyModelMixin,
-                    generics.GenericAPIView):
+class MODetail(mixins.RetrieveModelMixin, mixins.UpdateModelMixin,
+                mixins.DestroyModelMixin,generics.GenericAPIView):
 
     queryset = Tables.objects.all()
     serializer_class = TablesSerializer
     def get(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)
-
     def put(self, request, *args, **kwargs):
         return self.update(request, *args, **kwargs)
-
     def delete(self, request, *args, **kwargs):
         return self.destroy(request, *args, **kwargs)
 
@@ -73,6 +66,55 @@ class CompDetail(mixins.RetrieveModelMixin,
 
     def delete(self, request, *args, **kwargs):
         return self.destroy(request, *args, **kwargs)
+
+#auditorias
+class Auditoria(mixins.ListModelMixin,
+                    mixins.CreateModelMixin,
+                    generics.GenericAPIView):
+
+    queryset = Location.objects.all()
+    serializer_class = LocationSerializer
+
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
+
+class Auditorias_base(APIView):
+    """
+    Retrieve, update or delete a snippet instance.
+    """
+    def get_object(self, pk):
+        try:
+            return Computer.objects.all()
+        except Location.DoesNotExist:
+            raise Http404
+
+    def get(self, request, pk, format=None):
+        comps = Computer.objects.filter(locations__name = pk)
+        serializer = ComputerSerializer(comps, many=True)
+
+        my_tables = Tables.objects.filter(location = pk)
+        serializer1 = TablesSerializer(my_tables, many=True)
+        content = serializer.data + serializer1.data
+
+        return Response(content)
+'''
+    def put(self, request, pk, format=None):
+        snippet = self.get_object(pk)
+        serializer = SnippetSerializer(snippet, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk, format=None):
+        snippet = self.get_object(pk)
+        snippet.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+'''
+
 
 '''
 
