@@ -1,0 +1,46 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Управление МО</title>
+</head>
+<body>
+
+    <div class="header">
+        <h1><a href="/">Управление материально-технической базой университета</a></h1>
+    </div>
+
+    <nav>
+    <ul class="menu">
+        <li><a href="" class="active">Материальная база</a>
+            <ul class="submenu">
+                <li><a href="">Факультеты</a></li>
+                <li><a href="">Кафедры</a></li>
+                <li><a href="">Аудитории</a></li>
+            </ul>
+        </li>
+        <li><a class="active" href="{% url 'responsible_person'%}" >Ответственные лица</a>
+            <ul class="submenu">
+                <li><a href="">Список ответственных лиц</a></li>
+                <li><a href="">Редактирование информации</a></li>
+                <li><a href="">Смена ответственного</a></li>
+
+            </ul>
+        </li>
+        <li><a href="">Перенос оборудования</a></li>
+        <li><a href="" class="active">Редактирование базы</a>
+            <ul class="submenu">
+                <li><a href="">Компьютерное</a></li>
+                <li><a href="">Не компьютерное</a></li>
+            </ul>
+        </li>
+    </ul>
+    </nav>
+
+     {% block content %}
+     {% endblock %}
+
+</body>
+</html>

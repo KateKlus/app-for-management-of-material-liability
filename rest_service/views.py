@@ -1,14 +1,8 @@
-from rest_framework import status
-from rest_framework.decorators import api_view
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework.renderers import JSONRenderer
-from django.http import HttpResponse
 from django.http import Http404
 from rest_framework import mixins
 from rest_framework import generics
-
-from itertools import chain
 
 from .models import *
 from rest_service.serializers import *
@@ -95,9 +89,12 @@ class Auditorias_base(APIView):
         comps = Computer.objects.filter(locations__name = pk)
         serializer = ComputerSerializer(comps, many=True)
 
-        my_tables = Tables.objects.filter(location = pk)
-        serializer1 = TablesSerializer(my_tables, many=True)
-        content = serializer.data + serializer1.data
+        tables = Tables.objects.filter(location = pk)
+        serializer1 = TablesSerializer(tables, many=True)
+
+        monitors = Monitor.objects.filter(locations__name=pk)
+        serializer2 = MonitorSerializer(monitors, many=True)
+        content = serializer.data + serializer1.data + serializer2.data
 
         return Response(content)
 '''

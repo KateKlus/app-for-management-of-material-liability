@@ -1,0 +1,115 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600&subset=latin,cyrillic);
+*{box-sizing: border-box;}
+
+body {
+  margin: 0;
+  background: #f7f9fe;
+}
+/*----Шапка----*/
+.header {
+  background: white;
+  font-family: 'Open Sans', sans-serif;
+  text-align: center;
+}
+.header > h1 {
+    margin: 0;
+    padding: 20px;
+}
+.header > h1 > a {
+    text-decoration: none;
+    color: #1c1c1c;
+}
+
+.header > h1 > a:visited {
+    color: #1c1c1c;
+   }
+/*------------*/
+
+/*----Главное меню----*/
+nav {
+  background: white;
+  font-family: 'Open Sans', sans-serif;
+  box-shadow: 0 2px 0 0 #ECF1F2;
+  border-top: 1px solid #ECF1F2;
+  text-align: center;
+}
+nav:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+a {
+  text-decoration: none;
+  transition: .3s linear;
+}
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.menu > li {
+  display: inline-block;
+  position: relative;
+  margin-right: -4px;
+}
+.menu > li:last-child {
+  border-right: 1px solid #ECF1F2;
+}
+.menu > li > a {
+  display: block;
+  font-weight: bold;
+  padding: 20px 30px;
+  font-size: 12px;
+  text-transform: uppercase;
+  border-left: 1px solid #ECF1F2;
+  letter-spacing: 2px;
+  color: #1c1c1c;
+}
+.active:after, .submenu-link:after {
+  content: "\f107";
+  font-family: "FontAwesome";
+  color: inherit;
+  margin-left: 10px;
+}
+.menu .active, .menu li a:hover, .submenu li a:hover {
+  color: #ddbe86;
+}
+.submenu {
+  width: 240px;
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  left: 0;
+  z-index: 10;
+  transform: translateY(10px);
+  transition: .3s ease-in-out;
+  box-shadow: 0 2px 0 0 #ECF1F2;
+}
+.submenu li {
+  position: relative;
+}
+.submenu li a {
+  background: white;
+  border-top: 1px solid #ECF1F2;
+  border-right: 1px solid #ECF1F2;
+  border-left: 1px solid #ECF1F2;
+  display: block;
+  color: #1c1c1c;
+  text-align: left;
+  font-size: 14px;
+  letter-spacing: 1px;
+  padding: 10px 20px;
+  transition: .3s ease-in-out;
+}
+.submenu .submenu {
+  position: absolute;
+  top: 0;
+  left: calc(100% - 1px);
+  left: -webkit-calc(100% - 1px);
+}
+li:hover > .submenu {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0px);
+}
+/*----------------------------*/

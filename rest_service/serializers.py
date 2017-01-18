@@ -13,12 +13,18 @@ class TablesSerializer(serializers.ModelSerializer):
         fields.append('auditoria')
         fields.append('location')
 
-
-
 class ComputerSerializer(serializers.ModelSerializer):
     label = 'comp'
     class Meta:
         model = Computer
+        fields = []
+        fields.extend(attr)
+        fields.append('locations_id')
+
+class MonitorSerializer(serializers.ModelSerializer):
+    label = 'monitor'
+    class Meta:
+        model = Monitor
         fields = []
         fields.extend(attr)
         fields.append('locations_id')
