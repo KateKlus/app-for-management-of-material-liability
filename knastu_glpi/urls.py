@@ -15,16 +15,10 @@ Including another URLconf
 """
 from django.conf.urls import  url, include
 from django.contrib import admin
-#from rest_service import views
-from knastu import views
 admin.autodiscover()
 
 urlpatterns = [
 	url(r'^rest_service/', include('rest_service.urls')),
+    url(r'^accounts/', include('clientapp.urls', namespace="accounts")),
     url(r'^admin/', admin.site.urls),
-    url(r'^', include('knastu.urls')),
-
-
-    #url(r'', include('knastu.urls')),
-    
 ]

@@ -1,0 +1,43 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Управление МО</title>
+</head>
+<body>
+
+    <div class="header">
+        <h1><a href="/">Управление материально-технической базой университета</a></h1>
+    </div>
+
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+
+{% csrf_token %}
+    <div class="login">
+        <p>Введите логин и пароль</p>
+        <input type='text' name='username' id='username' value="Логин" />
+        <br><br>
+        <input type='password' name='password' id='password' value="Пароль" />
+        <br><br>
+        <input type='submit' value='Войти' id='login_form' />
+    </div>
+
+
+<script>
+  $("#login_form").on("click", function(e) {
+    var username = $("#username").val();
+    var password = $("#password").val();
+
+    $.post("/accounts/get_auth_token/", {"username": username, "password": password})
+      .success(function(data) {
+        var token = data["token"];
+        document.cookie = 'token='+token+";path=/";
+        window.location.href = "/rest_service/";
+      });
+  });
+</script>
+
+</body>
+</html>

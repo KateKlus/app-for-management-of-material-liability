@@ -1,19 +1,17 @@
 from django.conf.urls import  url
-from rest_service import views
+from django.conf import settings
+from django.conf.urls.static import static
+from . import views, api_views
 
 urlpatterns = [
-    #url(r'^tables/$', views.tables_list, name='tables_list'),
-    #url(r'^tables_computers/$', views.tables_computers_list, name='tables_computers_list'),
+    # Regular Django Views
+    url(r'^$', views.index, name='index'),
 
-    #class based
-    url(r'^mo/$', views.MOList.as_view()),
-    url(r'^mo/(?P<pk>[0-9]+)/$', views.MODetail.as_view()),
-
-    url(r'^comp/$', views.CompList.as_view()),
-    url(r'^comp/(?P<pk>[0-9]+)/$', views.CompDetail.as_view()),
-    url(r'^auditoria/$', views.Auditoria.as_view()),
-
-    url(r'^auditoria/(?P<pk>[0-9]+)/$', views.Auditorias_base.as_view()),
-    #url(r'', include('knastu.urls')),
-    
-]
+    # API views
+    url(r'^comp/$', api_views.CompList.as_view()),
+    url(r'^comp/(?P<pk>[0-9]+)/$', api_views.CompDetail.as_view()),
+    url(r'^mo/$', api_views.MOList.as_view()),
+    url(r'^mo/(?P<pk>[0-9]+)/$', api_views.MODetail.as_view()),
+    #url(r'^auditoria/$', api_views.Auditoria.as_view()),
+    #url(r'^auditoria/(?P<pk>[0-9]+)/$', api_views.Auditorias_base.as_view()),
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

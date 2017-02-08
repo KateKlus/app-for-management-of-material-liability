@@ -17,7 +17,10 @@ body {
 }
 .header > h1 > a {
     text-decoration: none;
-    color: #1c1c1c;
+    color: #003366;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-size: large;
 }
 
 .header > h1 > a:visited {
@@ -66,13 +69,13 @@ ul {
   color: #1c1c1c;
 }
 .active:after, .submenu-link:after {
-  content: "\f107";
+  /*content: "\f107";*/
   font-family: "FontAwesome";
   color: inherit;
   margin-left: 10px;
 }
 .menu .active, .menu li a:hover, .submenu li a:hover {
-  color: #ddbe86;
+  color: #003366;
 }
 .submenu {
   width: 240px;
@@ -113,3 +116,55 @@ li:hover > .submenu {
   transform: translateY(0px);
 }
 /*----------------------------*/
+
+/*----Ответственные лица----*/
+.content {
+    margin: 50px 50px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.content p{
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.person_list {
+    display: inline-block;
+    width: 30%;
+    height: 50%;
+
+}
+
+.person_list div{
+    height: 700px;
+    width: 90%;
+    background-color: white;
+    border: dashed;
+    border-color: #1c1c1c;
+}
+
+.mo_list {
+    display: inline-block;
+    width: 69%;
+}
+
+.mo_list div {
+    height: 700px;
+    width: 100%;
+    background-color: white;
+    border: dashed;
+    border-color: #8c8c8c;
+}
+
+/*--------Форма входа--------------*/
+.login{
+    margin: 50px auto;
+    border: solid gray 2px;
+    width: 420px;
+    background-color: white;
+    padding: 40px;
+    border-radius: 10px;
+    font-family: 'Open Sans', sans-serif;
+    text-align: center;
+
+}

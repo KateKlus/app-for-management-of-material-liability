@@ -38,19 +38,28 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'knastu',
-    'rest_framework',
     'rest_service',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'clientapp',
+    #'rest_auth',
+    #'django.contrib.sites',
+    #'allauth',
+    #'allauth.account',
+    #'rest_auth.registration',
 ]
 
 MIDDLEWARE = [
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    #'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    #'django.contrib.auth.middleware.RemoteUserMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+
 ]
 
 ROOT_URLCONF = 'knastu_glpi.urls'
@@ -73,6 +82,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'knastu_glpi.wsgi.application'
 
+#AUTHENTICATION_BACKENDS = (
+#  'django.contrib.auth.backends.RemoteUserBackend',
+#)
 
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
@@ -104,11 +116,17 @@ DATABASE_APPS_MAPPING = {'rest_service':'my_base',
 DATABASE_ROUTERS = ['rest_service.MyBaseRouter.MyBaseRouter']
 
 REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAdminUser',),
-    
-
-
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
     'PAGE_SIZE': 10,
+    #'DEFAULT_AUTHENTICATION_CLASSES': (
+    #    'rest_framework.authentication.BasicAuthentication',
+    #    'rest_framework.authentication.SessionAuthentication',
+    #)
 }
 
 # Password validation
@@ -149,3 +167,4 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+SITE_ID = 1
