@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from django.shortcuts import get_object_or_404, render
 from django.views import generic
 from .models import Attribute as AttributeModel
@@ -11,7 +13,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout
 from django.http import HttpResponseRedirect
 from django.views.generic.base import View
-
+from django.urls import reverse_lazy
 
 def index(request):
     if not request.user.is_authenticated():
@@ -23,6 +25,7 @@ def index(request):
 class auditorias(generic.ListView):
     model = Location
     template_name = 'knastu/auditorias.html'
+
 
 #для вывода списка оборудования из обеих баз
 def auditorias_base(request, pk):
@@ -46,6 +49,39 @@ def auditorias_base(request, pk):
         'mo_list':mo_list,
         'mo_attr_dict': mo_attr_dict,
     })
+
+
+#для удаления объектов
+class computersDelete(generic.DeleteView):
+    model = Computer
+    success_url = reverse_lazy('auditorias')
+
+class monitorsDelete(generic.DeleteView):
+    model = Monitor
+    success_url = reverse_lazy('auditorias')
+
+class moDelete(generic.DeleteView):
+    model = MO
+    success_url = reverse_lazy('auditorias')
+
+#для редактирования объектов
+class computersUpdate(generic.UpdateView):
+    model = Computer
+    fields = ['name', 'serial', 'contact', 'locations']
+    template_name_suffix = '_update_form'
+    success_url = reverse_lazy('auditorias')
+
+class monitorsUpdate(generic.UpdateView):
+    model = Monitor
+    fields = ['name', 'serial', 'contact', 'locations', 'type']
+    template_name_suffix = '_update_form'
+    success_url = reverse_lazy('auditorias')
+
+class moUpdate(generic.UpdateView):
+    model = MO
+    fields = ['name', 'serial', 'contact', 'location']
+    template_name_suffix = '_update_form'
+    success_url = reverse_lazy('auditorias')
 
 #вход
 class LoginFormView(FormView):

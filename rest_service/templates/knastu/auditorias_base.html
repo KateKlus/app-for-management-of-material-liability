@@ -11,8 +11,8 @@
                                 <p>
                                     Ответственный: {{ comp.contact }}
                                 </p>
-                                <p class="mo_action">Редактировать</p>
-                                <p class="mo_action">Удалить объект</p>
+                                <a class="mo_action" href="{% url 'update_comp' pk=comp.pk %}">Редактировать</a>
+                                <a class="mo_action" href="{% url 'del_comp' pk=comp.pk %}">Удалить объект</a>
                             </div>
                         </div>
                     {% endfor %}
@@ -27,8 +27,8 @@
                                 <p>
                                     Ответственный: {{ monitor.contact }}
                                 </p>
-                                <p class="mo_action">Редактировать</p>
-                                <p class="mo_action">Удалить объект</p>
+                                <a class="mo_action" href="{% url 'update_monitor' pk=monitor.pk %}">Редактировать</a>
+                                <a class="mo_action" href="{% url 'del_monitor' pk=monitor.pk %}">Удалить объект</a>
                             </div>
                         </div>
                     {% endfor %}
@@ -56,8 +56,8 @@
                               {% endfor %}
                          {% endfor %}
                         </div>
-                           <p class="mo_action">Редактировать</p>
-                            <p class="mo_action">Удалить объект</p>
+                            <a class="mo_action" href="{% url 'update_mo' pk=mo.pk %}">Редактировать</a>
+                            <a class="mo_action" href="{% url 'del_mo' pk=mo.pk %}">Удалить объект</a>
                         </div>
                         </div>
 

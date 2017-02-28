@@ -5,7 +5,7 @@ from django.db import models
 #абстрактный родитель МО
 class MO_abstract(models.Model):
     name = models.CharField("Название", max_length=45)
-    serial = models.CharField("Инвентарный номер", max_length=20)
+    serial = models.CharField("Инвентарный номер", max_length=30)
     contact = models.CharField("Ответственное лицо", max_length=45)
 
     class Meta:
