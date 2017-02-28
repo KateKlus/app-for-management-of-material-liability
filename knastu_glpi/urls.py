@@ -18,7 +18,7 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = [
-	url(r'^rest_service/', include('rest_service.urls')),
+	url(r'^', include('rest_service.urls')),
     url(r'^accounts/', include('clientapp.urls', namespace="accounts")),
     url(r'^admin/', admin.site.urls),
 ]

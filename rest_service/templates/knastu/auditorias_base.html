@@ -1,0 +1,76 @@
+            <div class="mo_list_div">
+                 <ul class="list">
+                 <p>Компьютеры</p>
+                    {% for comp in comps %}
+                        <div>
+                            <li class="mo_name"><a> {{ comp.name }} </a></li>
+                            <div class="mo_detail" style="display: none;">
+                                <p>
+                                    ИН: {{ comp.serial }}
+                                </p>
+                                <p>
+                                    Ответственный: {{ comp.contact }}
+                                </p>
+                                <p class="mo_action">Редактировать</p>
+                                <p class="mo_action">Удалить объект</p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    <p>Мониторы</p>
+                    {% for monitor in monitors %}
+                        <div>
+                            <li class="mo_name"><a> {{ monitor.name }} </a></li>
+                            <div class="mo_detail" style="display: none;">
+                                <p>
+                                    ИН: {{ monitor.serial }}
+                                </p>
+                                <p>
+                                    Ответственный: {{ monitor.contact }}
+                                </p>
+                                <p class="mo_action">Редактировать</p>
+                                <p class="mo_action">Удалить объект</p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    <p>Прочее</p>
+                    {% for mo in mo_list %}
+                        <div>
+                            <li class="mo_name"><a> {{ mo.name }} </a></li>
+                        <div class="mo_detail" style="display: none;">
+                            <p>
+                                ИН: {{ mo.serial }}
+                            </p>
+                            <p>
+                                Ответственный: {{ mo.contact }}
+                            </p>
+                            <p>
+                                Тип объекта: {{ mo.type }}
+                            </p>
+
+                        <div>
+                         {% for mo_attr in mo_attr_dict %}
+                              {% for attr in mo_attr %}
+                                  {% if attr.mo_id == mo.mo_id %}
+                                      <p>{{ attr.attr_name }} : {{ attr.attr_value }} </p>
+                                  {% endif %}
+                              {% endfor %}
+                         {% endfor %}
+                        </div>
+                           <p class="mo_action">Редактировать</p>
+                            <p class="mo_action">Удалить объект</p>
+                        </div>
+                        </div>
+
+                    {% endfor %}
+
+                </ul>
+            </div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.mo_name').click(function () {
+            $(this).parent().children('div.mo_detail').toggle('normal');
+            return false;
+        });
+    });
+</script>

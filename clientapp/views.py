@@ -19,13 +19,5 @@ def get_auth_token(request):
         if user.is_active:
             token, created = Token.objects.get_or_create(user=user)
             request.session['auth'] = token.key
-            return redirect('/rest_service/', request)
+            return redirect('/', request)
     return redirect(settings.LOGIN_URL, request)
-
-def main(request):
-    return render(request, 'knastu/index.html')
-
-def responsible_person(request):
-
-    return render(request, 'knastu/responsible_person.html')
-

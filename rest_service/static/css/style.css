@@ -42,6 +42,7 @@ nav:after {
   clear: both;
 }
 a {
+  color: black;
   text-decoration: none;
   transition: .3s linear;
 }
@@ -136,11 +137,12 @@ li:hover > .submenu {
 }
 
 .person_list div{
-    height: 700px;
-    width: 90%;
+    /*height: 700px;*/
+    width: 27%;
     background-color: white;
     border: dashed;
     border-color: #1c1c1c;
+    position: absolute;
 }
 
 .mo_list {
@@ -148,12 +150,47 @@ li:hover > .submenu {
     width: 69%;
 }
 
-.mo_list div {
-    height: 700px;
-    width: 100%;
+.mo_name{
+    cursor: pointer;
+}
+
+.mo_list_div {
+    width: 66%;
     background-color: white;
     border: dashed;
     border-color: #8c8c8c;
+    position: absolute;
+}
+
+.mo_detail{
+    border:none;
+}
+
+.mo_action{
+    display: inline-block;
+    font-size: small;
+    margin-top: 0px;
+    cursor: pointer;
+}
+
+.mo_detail p{
+    margin-left: 20px;
+    text-transform: none;
+    letter-spacing: normal;
+    color: darkslategrey;
+}
+
+.list{
+    margin: 10px;
+}
+
+.list li{
+    padding: 5px;
+}
+
+.children_loc{
+    display: none;
+    cursor: pointer;
 }
 
 /*--------Форма входа--------------*/

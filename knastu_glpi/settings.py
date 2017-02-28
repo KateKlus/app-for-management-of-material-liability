@@ -39,9 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_service',
+    'clientapp',
     'rest_framework',
     'rest_framework.authtoken',
-    'clientapp',
     #'rest_auth',
     #'django.contrib.sites',
     #'allauth',
@@ -50,16 +50,15 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    #'django.contrib.auth.middleware.RemoteUserMiddleware',
+    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-
-
+    'django.middleware.security.SecurityMiddleware',
+    #'django.contrib.auth.middleware.RemoteUserMiddleware',
 ]
 
 ROOT_URLCONF = 'knastu_glpi.urls'
@@ -91,27 +90,27 @@ WSGI_APPLICATION = 'knastu_glpi.wsgi.application'
 
 DATABASES = {
     'default': {'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'glpi',#os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': 'glpi1',#os.path.join(BASE_DIR, 'db.sqlite3'),
         'USER': 'root',
         'PASSWORD': 'chibi1995',},
         
-    'my_base': {
+    'MO_base': {
        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'my_base',#os.path.join(BASE_DIR, 'db.sqlite3'),
-       'USER': 'root',
+        'NAME': 'MO_base',#os.path.join(BASE_DIR, 'db.sqlite3'),
+        'USER': 'root',
         'PASSWORD': 'chibi1995',
     },
 
-    'glpi': {
+    'glpi1': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'glpi',#os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': 'glpi1',#os.path.join(BASE_DIR, 'db.sqlite3'),
         'USER': 'root',
         'PASSWORD': 'chibi1995',
     },
 }
 
-DATABASE_APPS_MAPPING = {'rest_service':'my_base',
-                         'glpi': 'glpi',}
+DATABASE_APPS_MAPPING = {'rest_service':'MO_base',
+                         'glpi': 'glpi1',}
 
 DATABASE_ROUTERS = ['rest_service.MyBaseRouter.MyBaseRouter']
 
@@ -132,20 +131,20 @@ REST_FRAMEWORK = {
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
 
-AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
-]
+#AUTH_PASSWORD_VALIDATORS = [
+#    {
+#        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+#    },
+#    {
+#        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+#    },
+#    {
+#        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+#    },
+#    {
+#        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+#    },
+#]
 
 
 # Internationalization
@@ -161,10 +160,9 @@ USE_L10N = True
 
 USE_TZ = True
 
-
+LOGIN_URL = '/login/'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-SITE_ID = 1

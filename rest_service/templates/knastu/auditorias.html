@@ -1,0 +1,62 @@
+{% extends 'knastu/base.html' %}
+
+{% block content %}
+    <div class="content">
+        <div class="person_list">
+            <p>
+                Список аудиторий
+            </p>
+            <div>
+                <ul class="list">
+                {% for loc in location_list %}
+                    {% if loc.locations_id == 0 and loc.entities_id == 0%}
+                        <ul>
+                        <li class="parent_loc"><a href=""> {{ loc.name }} </a></li>
+                        {% for loc1 in location_list  %}
+                            {% if loc1.locations_id == loc.id %}
+                                <li class="children_loc" name="{{ loc1.pk }}" onclick="get_mo_list(this)"><a > {{ loc1.name }} </a></li>
+                            {% endif %}
+                        {% endfor %}
+                        </ul>
+                    {% endif %}
+
+
+                {% endfor %}
+                </ul>
+
+            </div>
+        </div>
+
+        <div class="mo_list">
+            <p>
+                Подотчетное оборудование
+            </p>
+            <div id="mo_list_res">
+
+            </div>
+        </div>
+    </div>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.parent_loc').click(function(){
+            $(this).parent().children('li.children_loc').toggle('normal');
+            return false;
+        });
+    });
+
+
+    function get_mo_list(location) {
+        var loc_id = location.getAttribute("name");
+
+        $.ajax({
+            url: 'get_mo_list/'+loc_id,
+            dataType: 'html',
+            success: function (data) {
+              $('#mo_list_res').html(data);
+            }
+          });
+    }
+</script>
+
+{% endblock content %}

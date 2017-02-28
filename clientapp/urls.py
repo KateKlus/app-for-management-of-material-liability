@@ -11,14 +11,3 @@ urlpatterns = [
     url(r'^auth/$', views.login_form, name='login_form'),
     url(r'^get_auth_token/$', rest_framework_views.obtain_auth_token, name='get_auth_token'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-
-
-
-#urlpatterns = [
-
-    #url(r'^main/$', views.main, name='main'),
-    #url(r'^auditorias_base/$', views.auditorias_base, name='auditorias_base'),
-    #url(r'^responsible_person/$', views.responsible_person, name='responsible_person'),
-
-
-#]

@@ -1,0 +1,38 @@
+{% extends 'knastu/base.html' %}
+{% block content %}
+    <div class="content">
+        <div class="person_list">
+            <p>
+                Список материальных объектов
+            </p>
+            <div>
+                <ul class="list">
+                {% for comp in comps %}
+                    <li><a href=""> {{ comp.name }} </a></li>
+                {% endfor %}
+
+                {% for monitor in monitors %}
+                    <li><a href=""> {{ monitor.name }} </a></li>
+                {% endfor %}
+
+                {% for object in mo_list %}
+                    <li><a href=""> {{ object.name }} </a></li>
+                {% endfor %}
+
+                </ul>
+
+            </div>
+        </div>
+
+        <div class="mo_list">
+            <p>
+                Детально
+            </p>
+
+            <div>
+                 {{ mo.name }}
+                 {{ mo.serial }}
+            </div>
+        </div>
+    </div>
+{% endblock content %}

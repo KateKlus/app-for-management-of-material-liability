@@ -10,8 +10,8 @@ from rest_service.serializers import *
 
 class MOList(mixins.ListModelMixin,mixins.CreateModelMixin,generics.GenericAPIView):
 
-    queryset = Tables.objects.all()
-    serializer_class = TablesSerializer
+    queryset = MO.objects.all()
+    serializer_class = MOSerializer
 
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
@@ -21,8 +21,8 @@ class MOList(mixins.ListModelMixin,mixins.CreateModelMixin,generics.GenericAPIVi
 class MODetail(mixins.RetrieveModelMixin, mixins.UpdateModelMixin,
                 mixins.DestroyModelMixin,generics.GenericAPIView):
 
-    queryset = Tables.objects.all()
-    serializer_class = TablesSerializer
+    queryset = MO.objects.all()
+    serializer_class = MOSerializer
     def get(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)
     def put(self, request, *args, **kwargs):
@@ -89,8 +89,8 @@ class Auditorias_base(APIView):
         comps = Computer.objects.filter(locations__name = pk)
         serializer = ComputerSerializer(comps, many=True)
 
-        tables = Tables.objects.filter(location = pk)
-        serializer1 = TablesSerializer(tables, many=True)
+        tables = MO.objects.filter(location = pk)
+        serializer1 = MOSerializer(tables, many=True)
 
         monitors = Monitor.objects.filter(locations__name=pk)
         serializer2 = MonitorSerializer(monitors, many=True)

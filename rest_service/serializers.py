@@ -3,15 +3,17 @@ from .models import *
 
 attr = ['name', 'serial', 'contact']
 
-
-class TablesSerializer(serializers.ModelSerializer):
-    label = 'table'
+class MOSerializer(serializers.ModelSerializer):
+    label = 'MO'
     class Meta:
-        model = Tables
-        fields = []
-        fields.extend(attr)
-        fields.append('auditoria')
-        fields.append('location')
+        model = MO
+        fields = ('name',  'serial', 'contact', 'location', 'type')
+
+class Attribute(serializers.ModelSerializer):
+    label = 'Attribute'
+    class Meta:
+        model = Attribute
+        fields = ('attr_name',  'attr_value', 'mo')
 
 class ComputerSerializer(serializers.ModelSerializer):
     label = 'comp'
@@ -33,5 +35,5 @@ class LocationSerializer(serializers.ModelSerializer):
     label = 'location'
     class Meta:
         model = Location
-        fields = ('name',)
+        fields = ('name','entities_id', 'locations_id',)
 

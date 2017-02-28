@@ -1,0 +1,26 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Управление МО</title>
+</head>
+<body>
+
+    <div class="header">
+        <h1><a href="/">Управление материально-технической базой университета</a></h1>
+    </div>
+
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+
+<form action="" method="post">
+      {% csrf_token %}
+      <!-- as_p для того, чтобы каждый элемент формы был с новой строки -->
+      {{ form.as_p }}
+      <button type="submit">Войти</button>
+    </form>
+
+
+</body>
+</html>
