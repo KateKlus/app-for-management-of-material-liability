@@ -3,9 +3,7 @@
 {% block content %}
     <div class="content">
         <div class="person_list">
-            <p>
-                Список аудиторий
-            </p>
+            <p>Список аудиторий</p>
             <div>
                 <ul class="list">
                 {% for loc in location_list %}
@@ -14,13 +12,11 @@
                         <li class="parent_loc"><a href=""> {{ loc.name }} </a></li>
                         {% for loc1 in location_list  %}
                             {% if loc1.locations_id == loc.id %}
-                                <li class="children_loc" name="{{ loc1.pk }}" onclick="get_mo_list(this)"><a > {{ loc1.name }} </a></li>
+                                <li class="children_loc" name="{{ loc1.pk }}" onclick="get_mo_list(this)"><a href="#"> {{ loc1.name }} </a></li>
                             {% endif %}
                         {% endfor %}
                         </ul>
                     {% endif %}
-
-
                 {% endfor %}
                 </ul>
 
@@ -28,9 +24,7 @@
         </div>
 
         <div class="mo_list">
-            <p>
-                Подотчетное оборудование
-            </p>
+            <p>Подотчетное оборудование</p>
             <div id="mo_list_res">
 
             </div>

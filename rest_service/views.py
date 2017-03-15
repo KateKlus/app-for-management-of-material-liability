@@ -40,7 +40,7 @@ def auditorias_base(request, pk):
     mo_attr_dict = []
 
     for mo in mo_list:
-        attr = AttributeModel.objects.filter(mo=mo.mo_id)
+        attr = AttributeModel.objects.filter(MO=mo.MO_id)
         mo_attr_dict.append(attr)
 
     return render(request, 'knastu/auditorias_base.html', {
@@ -49,7 +49,6 @@ def auditorias_base(request, pk):
         'mo_list':mo_list,
         'mo_attr_dict': mo_attr_dict,
     })
-
 
 #для удаления объектов
 class computersDelete(generic.DeleteView):
@@ -62,6 +61,10 @@ class monitorsDelete(generic.DeleteView):
 
 class moDelete(generic.DeleteView):
     model = MO
+    success_url = reverse_lazy('auditorias')
+
+class attrDelete(generic.DeleteView):
+    model = AttributeModel
     success_url = reverse_lazy('auditorias')
 
 #для редактирования объектов
@@ -79,9 +82,40 @@ class monitorsUpdate(generic.UpdateView):
 
 class moUpdate(generic.UpdateView):
     model = MO
-    fields = ['name', 'serial', 'contact', 'location']
+    fields = ['name', 'serial', 'contact', 'location', 'mo_type']
     template_name_suffix = '_update_form'
     success_url = reverse_lazy('auditorias')
+
+class attrUpdate(generic.UpdateView):
+    model = AttributeModel
+    fields = ['attr_name', 'attr_value']
+    template_name_suffix = '_update_form'
+    success_url = reverse_lazy('auditorias')
+
+#для добавления объектов
+class computersCreate(generic.CreateView):
+    model = Computer
+    fields = ['name', 'serial', 'contact', 'locations']
+    template_name_suffix = '_create_form'
+    success_url = "/"
+
+class monitorsCreate(generic.CreateView):
+    model = Monitor
+    fields = ['name', 'serial', 'contact', 'locations']
+    template_name_suffix = '_create_form'
+    success_url = "/"
+
+class mobjCreate(generic.CreateView):
+    model = MO
+    fields = ['name',  'serial', 'contact', 'location', 'mo_type']
+    template_name_suffix = '_create_form'
+    success_url = "create_attribute"
+
+class attrCreate(generic.CreateView):
+    model = AttributeModel
+    fields = ['attr_name',  'attr_value', 'MO']
+    template_name_suffix = '_create_form'
+    success_url = "/"
 
 #вход
 class LoginFormView(FormView):

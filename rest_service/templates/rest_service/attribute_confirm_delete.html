@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Удалить атрибут?</title>
+</head>
+<body>
+    <form action="" method="post">{% csrf_token %}
+    <p>Вы действительно хотите удалить атрибут "{{ object.attr_name }}"?</p>
+    <input type="submit" value="Да" />
+</form>
+</body>
+</html>

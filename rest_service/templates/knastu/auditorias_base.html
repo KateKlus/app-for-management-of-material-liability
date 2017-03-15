@@ -44,14 +44,17 @@
                                 Ответственный: {{ mo.contact }}
                             </p>
                             <p>
-                                Тип объекта: {{ mo.type }}
+                                Тип объекта: {{ mo.mo_type }}
                             </p>
 
                         <div>
                          {% for mo_attr in mo_attr_dict %}
                               {% for attr in mo_attr %}
-                                  {% if attr.mo_id == mo.mo_id %}
-                                      <p>{{ attr.attr_name }} : {{ attr.attr_value }} </p>
+                                  {% if attr.MO_id == mo.MO_id %}
+                                      <p class="attribute">{{ attr.attr_name }} : {{ attr.attr_value }}
+                                        <a href="{% url 'update_attr' pk=attr.pk %}"> <img class="attr_del_but" src="../../static/images/edit.png"> </a>
+                                        <a href="{% url 'del_attr' pk=attr.pk %}"> <img class="attr_del_but" src="../../static/images/del.png"> </a>
+                                      </p>
                                   {% endif %}
                               {% endfor %}
                          {% endfor %}

@@ -31,10 +31,11 @@
             </ul>
         </li>
         <li><a href="">Перенос оборудования</a></li>
-        <li><a href="" class="active">Редактирование базы</a>
+        <li><a href="" class="active">Добавление оборудования</a>
             <ul class="submenu">
-                <li><a href="">Компьютерное</a></li>
-                <li><a href="">Не компьютерное</a></li>
+                <li><a href="{% url 'create_comp' %}">Компьютеры</a></li>
+                <li><a href="{% url 'create_monitor' %}">Мониторы</a></li>
+                <li><a href="{% url 'create_mo' %}">Не компьютерное оборудование</a></li>
             </ul>
         </li>
     </ul>

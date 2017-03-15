@@ -85,25 +85,24 @@ WSGI_APPLICATION = 'knastu_glpi.wsgi.application'
 #  'django.contrib.auth.backends.RemoteUserBackend',
 #)
 
-# Database
-# https://docs.djangoproject.com/en/1.10/ref/settings/#databases
-
 DATABASES = {
-    'default': {'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'glpi1',#os.path.join(BASE_DIR, 'db.sqlite3'),
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'MO_base',
         'USER': 'root',
-        'PASSWORD': 'chibi1995',},
+        'PASSWORD': 'chibi1995',
+    },
         
     'MO_base': {
        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'MO_base',#os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': 'MO_base',
         'USER': 'root',
         'PASSWORD': 'chibi1995',
     },
 
     'glpi1': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'glpi1',#os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': 'glpi1',
         'USER': 'root',
         'PASSWORD': 'chibi1995',
     },

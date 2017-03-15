@@ -86,14 +86,17 @@ class Auditorias_base(APIView):
             raise Http404
 
     def get(self, request, pk, format=None):
-        comps = Computer.objects.filter(locations__name = pk)
+        comps = Computer.objects.filter(locations__id = pk)
         serializer = ComputerSerializer(comps, many=True)
 
-        tables = MO.objects.filter(location = pk)
-        serializer1 = MOSerializer(tables, many=True)
-
-        monitors = Monitor.objects.filter(locations__name=pk)
+        monitors = Monitor.objects.filter(locations__id=pk)
         serializer2 = MonitorSerializer(monitors, many=True)
+
+        location = Location.objects.get(pk=pk)
+
+        mo = MO.objects.filter(location=location.name)
+        serializer1 = MOSerializer(mo, many=True)
+
         content = serializer.data + serializer1.data + serializer2.data
 
         return Response(content)

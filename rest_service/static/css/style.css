@@ -205,3 +205,11 @@ li:hover > .submenu {
     text-align: center;
 
 }
+
+.attr_del_but{
+    width: 15px;
+    height: 15px;
+    margin-left: 10px;
+    background-image: url("../images/del.png");
+    cursor: pointer;
+}
