@@ -102,7 +102,7 @@ DATABASES = {
 
     'glpi1': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'glpi1',
+        'NAME': 'glpi2017',
         'USER': 'root',
         'PASSWORD': 'chibi1995',
     },

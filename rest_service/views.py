@@ -48,6 +48,8 @@ def auditorias_base(request, pk):
         'monitors': monitors,
         'mo_list':mo_list,
         'mo_attr_dict': mo_attr_dict,
+        'user': request.user,
+        'groups': request.user.groups.all()[0].name,
     })
 
 #для удаления объектов

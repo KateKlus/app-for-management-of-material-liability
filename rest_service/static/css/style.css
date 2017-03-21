@@ -213,3 +213,18 @@ li:hover > .submenu {
     background-image: url("../images/del.png");
     cursor: pointer;
 }
+
+.exit_icon{
+    width: 30px;
+    margin-top: 15px;
+    float: right;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.hello_user{
+    width: 100px;
+    font-size: small;
+    display: inline-block;
+    float: right;
+}

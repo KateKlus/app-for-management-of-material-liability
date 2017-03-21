@@ -10,7 +10,9 @@
 <body>
 
     <div class="header">
-        <h1><a href="/rest_service">Управление материально-технической базой университета</a></h1>
+        <h1 style="width: 90%;"><a href="/rest_service">Управление материально-технической базой университета</a></h1>
+        <a href="{% url 'logout' %}"><img src="../../static/images/exit.png"  class="exit_icon"></a>
+        <p class="hello_user"> Здравствуйте, {{ user.first_name }}</p>
     </div>
 
     <nav>
@@ -38,6 +40,8 @@
                 <li><a href="{% url 'create_mo' %}">Не компьютерное оборудование</a></li>
             </ul>
         </li>
+
+
     </ul>
     </nav>
 

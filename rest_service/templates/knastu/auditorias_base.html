@@ -11,8 +11,10 @@
                                 <p>
                                     Ответственный: {{ comp.contact }}
                                 </p>
-                                <a class="mo_action" href="{% url 'update_comp' pk=comp.pk %}">Редактировать</a>
-                                <a class="mo_action" href="{% url 'del_comp' pk=comp.pk %}">Удалить объект</a>
+                                {% if groups == 'Материально ответственные' %}
+                                    <a class="mo_action" href="{% url 'update_comp' pk=comp.pk %}">Редактировать</a>
+                                    <a class="mo_action" href="{% url 'del_comp' pk=comp.pk %}">Удалить объект</a>
+                                {% endif %}
                             </div>
                         </div>
                     {% endfor %}
@@ -27,8 +29,10 @@
                                 <p>
                                     Ответственный: {{ monitor.contact }}
                                 </p>
-                                <a class="mo_action" href="{% url 'update_monitor' pk=monitor.pk %}">Редактировать</a>
-                                <a class="mo_action" href="{% url 'del_monitor' pk=monitor.pk %}">Удалить объект</a>
+                                {% if groups == 'Материально ответственные' %}
+                                    <a class="mo_action" href="{% url 'update_monitor' pk=monitor.pk %}">Редактировать</a>
+                                    <a class="mo_action" href="{% url 'del_monitor' pk=monitor.pk %}">Удалить объект</a>
+                                {% endif %}
                             </div>
                         </div>
                     {% endfor %}
@@ -52,15 +56,20 @@
                               {% for attr in mo_attr %}
                                   {% if attr.MO_id == mo.MO_id %}
                                       <p class="attribute">{{ attr.attr_name }} : {{ attr.attr_value }}
-                                        <a href="{% url 'update_attr' pk=attr.pk %}"> <img class="attr_del_but" src="../../static/images/edit.png"> </a>
-                                        <a href="{% url 'del_attr' pk=attr.pk %}"> <img class="attr_del_but" src="../../static/images/del.png"> </a>
+                                        {% if groups == 'Материально ответственные' %}
+                                            <a href="{% url 'update_attr' pk=attr.pk %}"> <img class="attr_del_but" src="../../static/images/edit.png"> </a>
+                                            <a href="{% url 'del_attr' pk=attr.pk %}"> <img class="attr_del_but" src="../../static/images/del.png"> </a>
+                                        {% endif %}
                                       </p>
                                   {% endif %}
                               {% endfor %}
                          {% endfor %}
                         </div>
+                        {% if groups == 'Материально ответственные' %}
                             <a class="mo_action" href="{% url 'update_mo' pk=mo.pk %}">Редактировать</a>
                             <a class="mo_action" href="{% url 'del_mo' pk=mo.pk %}">Удалить объект</a>
+                        {% endif %}
+
                         </div>
                         </div>
 

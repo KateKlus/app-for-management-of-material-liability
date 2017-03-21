@@ -8,7 +8,7 @@ from rest_framework.authtoken import views as rest_framework_views
 urlpatterns = [
     # Session Login
     url(r'^login/$', views.LoginFormView.as_view()),
-    url(r'^logout/$', views.LogoutView.as_view()),
+    url(r'^logout/$', views.LogoutView.as_view(), name='logout'),
 
     # Regular Django Views
     url(r'^$', views.index, name='index'),

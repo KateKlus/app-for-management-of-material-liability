@@ -5,4 +5,7 @@ class MyBaseRouter(object):
 
         if model._meta.app_label == 'glpi':
             return 'glpi1'
+
+        if model._meta.app_label == 'clientapp':
+            return 'glpi1'
         return None
