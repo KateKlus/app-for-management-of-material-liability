@@ -43,5 +43,6 @@ urlpatterns = [
     url(r'^api/mo/(?P<pk>[0-9]+)/$', api_views.MODetail.as_view()),
     url(r'^api/auditoria/$', api_views.Auditoria.as_view()),
     url(r'^api/auditoria/(?P<pk>[0-9]+)/$', api_views.Auditorias_base.as_view()),
+    url(r'^api/specialist_moList/(?P<pk>[0-9]+)/$', api_views.Specialist_moList.as_view()),
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

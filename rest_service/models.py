@@ -82,6 +82,7 @@ class MO_abstract(models.Model):
     name = models.CharField("Название", max_length=255)
     serial = models.CharField("Серия", max_length=255, default='Не назначено')
     otherserial = models.CharField("Инвентарный номер", max_length=255, default='Не назначено')
+
     users_id_tech = models.ForeignKey(
         GLPI_user,
         verbose_name="Ответственное лицо",
@@ -113,5 +114,5 @@ class Monitor(MO_abstract):
 
     class Meta:
         db_table = 'glpi_monitors'
-        app_label = 'glpi'
+        app_label = 'clientapp'
 
