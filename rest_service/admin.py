@@ -4,3 +4,5 @@ from models import *
 admin.site.register(MO)
 admin.site.register(Attribute)
 admin.site.register(GLPI_user)
+
+admin.site.register(Computer)

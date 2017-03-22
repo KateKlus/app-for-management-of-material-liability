@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from .models import *
 
-attr = ['name', 'serial', 'contact']
+attr = ['name', 'serial', 'otherserial','contact_name']
 
 class MOSerializer(serializers.ModelSerializer):
     label = 'MO'
@@ -37,3 +37,8 @@ class LocationSerializer(serializers.ModelSerializer):
         model = Location
         fields = ('id', 'name','entities_id', 'locations_id',)
 
+class GLPI_userSerializer(serializers.ModelSerializer):
+    label = 'GLPI_user'
+    class Meta:
+        model = GLPI_user
+        fields = ('id', 'name','realname', 'firstname', 'user_dn')

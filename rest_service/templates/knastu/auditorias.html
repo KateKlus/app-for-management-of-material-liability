@@ -10,11 +10,18 @@
                     {% if loc.locations_id == 0 and loc.entities_id == 0%}
                         <ul>
                         <li class="parent_loc"><a href=""> {{ loc.name }} </a></li>
-                        {% for loc1 in location_list  %}
-                            {% if loc1.locations_id == loc.id %}
-                                <li class="children_loc" name="{{ loc1.pk }}" onclick="get_mo_list(this)"><a href="#"> {{ loc1.name }} </a></li>
-                            {% endif %}
+
+                        {% for loc1 in location_list %}
+                             {% if loc1.locations_id == 0 and loc.name == loc1.name%}
+                                {% for loc2 in location_list  %}
+                                    {% if loc2.locations_id == loc1.id and loc2.entities_id != 0%}
+                                        <li class="children_loc" name="{{ loc2.pk }}" onclick="get_mo_list(this)"><a href="#"> {{ loc2.name }} </a></li>
+                                    {% endif %}
+                                {% endfor %}
+                             {% endif %}
+
                         {% endfor %}
+                        
                         </ul>
                     {% endif %}
                 {% endfor %}

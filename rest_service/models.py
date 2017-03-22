@@ -34,6 +34,8 @@ class Attribute(models.Model):
     class Meta:
         db_table = 'Attribute'
         app_label = 'rest_service'
+        verbose_name = 'Аттрибут'
+        verbose_name_plural = 'Аттрибуты'
 
     def __unicode__(self):
         return self.attr_name
@@ -60,51 +62,54 @@ class GLPI_user(models.Model):
         else:
             return user_data[3:]
 
+# описание моделей БД GLPI
+class Location(models.Model):
+    name = models.CharField("Аудитория", max_length=200)
+    entities_id = models.IntegerField()
+    locations_id = models.IntegerField()
+
+    class Meta:
+        db_table = 'glpi_locations'
+        app_label = 'clientapp'
+        ordering = ['name']
+
+    def __unicode__(self):
+        return self.name
+
 #абстрактный родитель МО
 class MO_abstract(models.Model):
-    name = models.CharField("Название", max_length=45)
-    serial = models.CharField("Инвентарный номер", max_length=30)
-    contact = models.ForeignKey(
+    name = models.CharField("Название", max_length=255)
+    serial = models.CharField("Серия", max_length=255, default='Не назначено')
+    otherserial = models.CharField("Инвентарный номер", max_length=255, default='Не назначено')
+    users_id_tech = models.ForeignKey(
         GLPI_user,
         verbose_name="Ответственное лицо",
+        db_column = 'users_id_tech'
+    )
+
+    locations = models.ForeignKey(
+        Location,
+        verbose_name="Аудитория",
+        on_delete=models.CASCADE,
     )
 
     class Meta:
        abstract = True
 
 
-#описание моделей БД GLPI
-class Location(models.Model):
-    name = models.CharField("Аудитория", max_length=200)
-    entities_id = models.IntegerField()
-    locations_id = models.IntegerField()
-    
+#модель компьютера
+class Computer(MO_abstract):
     class Meta:
-        db_table = 'glpi_locations'
-        app_label = 'glpi'
-        ordering = ['name']
+        db_table = 'glpi_computers'
+        app_label = 'clientapp'
+        ordering = ['id']
 
     def __unicode__(self):
         return self.name
 
-#модель компьютера
-class Computer(MO_abstract):
-    locations = models.ForeignKey(
-         Location,
-         verbose_name="Аудитория",
-         on_delete = models.CASCADE,
-    )
-    class Meta:
-        db_table = 'glpi_computers'
-        app_label = 'glpi'
-
 #модель монитора
 class Monitor(MO_abstract):
-    locations = models.ForeignKey(
-         Location,
-         verbose_name="Аудитория",
-         on_delete = models.CASCADE,
-    )
+
     class Meta:
         db_table = 'glpi_monitors'
         app_label = 'glpi'

@@ -6,10 +6,15 @@
                             <li class="mo_name"><a> {{ comp.name }} </a></li>
                             <div class="mo_detail" style="display: none;">
                                 <p>
-                                    ИН: {{ comp.serial }}
+                                    Серия: {{ comp.serial }}
                                 </p>
+
                                 <p>
-                                    Ответственный: {{ comp.contact }}
+                                    Инвентарный номер: {{ comp.otherserial }}
+                                </p>
+
+                                <p>
+                                    Ответственный: {{ comp.users_id_tech }}
                                 </p>
                                 {% if groups == 'Материально ответственные' %}
                                     <a class="mo_action" href="{% url 'update_comp' pk=comp.pk %}">Редактировать</a>
@@ -24,10 +29,18 @@
                             <li class="mo_name"><a> {{ monitor.name }} </a></li>
                             <div class="mo_detail" style="display: none;">
                                 <p>
-                                    ИН: {{ monitor.serial }}
+                                    {{ monitor.users_id_tech }}
                                 </p>
                                 <p>
-                                    Ответственный: {{ monitor.contact }}
+                                    Серия: {{ monitor.serial }}
+                                </p>
+
+                                <p>
+                                    Инвентарный номер: {{ monitor.otherserial }}
+                                </p>
+
+                                <p>
+                                    Ответственный: {{ monitor.contact_name }}
                                 </p>
                                 {% if groups == 'Материально ответственные' %}
                                     <a class="mo_action" href="{% url 'update_monitor' pk=monitor.pk %}">Редактировать</a>
