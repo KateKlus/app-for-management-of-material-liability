@@ -26,6 +26,11 @@ class auditorias(generic.ListView):
     model = Location
     template_name = 'knastu/auditorias.html'
 
+#для вывода списка ответственных из базы glpi
+class responsible_specialist(generic.ListView):
+    model = GLPI_user
+    template_name = 'knastu/responsible_person.html'
+
 
 #для вывода списка оборудования из обеих баз
 def auditorias_base(request, pk):
@@ -44,6 +49,33 @@ def auditorias_base(request, pk):
         mo_attr_dict.append(attr)
 
     return render(request, 'knastu/auditorias_base.html', {
+        'comps': comps,
+        'monitors': monitors,
+        'mo_list':mo_list,
+        'mo_attr_dict': mo_attr_dict,
+        'user': request.user,
+        'groups': request.user.groups.all()[0].name,
+    })
+
+#для вывода списка оборудования из обеих баз
+def specialist_mo_list(request, pk):
+    if not request.user.is_authenticated():
+       return redirect('%s?next=%s' % (settings.LOGIN_URL, request.path))
+
+    specialist = GLPI_user.objects.get(pk=pk)
+    specialist_fullname = specialist.user_dn.split(',')[0]
+    comps = Computer.objects.filter(users_id_tech_id=pk)
+    monitors = Monitor.objects.filter(users_id_tech_id=pk)
+    mo_list = MO.objects.filter(contact=specialist.name)
+
+    mo_attr_dict = []
+
+    for mo in mo_list:
+        attr = AttributeModel.objects.filter(MO=mo.MO_id)
+        mo_attr_dict.append(attr)
+
+    return render(request, 'knastu/responsible_spec_moList.html', {
+        'spec_name': specialist_fullname[3:],
         'comps': comps,
         'monitors': monitors,
         'mo_list':mo_list,

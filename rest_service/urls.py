@@ -15,6 +15,9 @@ urlpatterns = [
     url(r'^auditorias/$', views.auditorias.as_view(), name='auditorias'),
     url(r'^auditorias/get_mo_list/(?P<pk>[0-9]+)/$', views.auditorias_base, name='auditorias_base'),
 
+    url(r'^responsible_specialist/$', views.responsible_specialist.as_view(), name='responsible_specialist'),
+    url(r'^responsible_specialist/get_mo_list/(?P<pk>[0-9]+)/$', views.specialist_mo_list, name='specialist_mo_list'),
+
     url(r'^del_comp/(?P<pk>[0-9]+)$', views.computersDelete.as_view(), name='del_comp'),
     url(r'^del_monitor/(?P<pk>[0-9]+)$', views.monitorsDelete.as_view(), name='del_monitor'),
     url(r'^del_mo/(?P<pk>[0-9]+)$', views.moDelete.as_view(), name='del_mo'),

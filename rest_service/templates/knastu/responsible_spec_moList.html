@@ -1,0 +1,102 @@
+            <div class="mo_list_div">
+                <p>{{ spec_name }}</p>
+                 <ul class="list">
+                 <p>Компьютеры</p>
+                    {% for comp in comps %}
+                        <div>
+                            <li class="mo_name"><a> {{ comp.name }} </a></li>
+                            <div class="mo_detail" style="display: none;">
+                                <p>
+                                    Серия: {{ comp.serial }}
+                                </p>
+
+                                <p>
+                                    Инвентарный номер: {{ comp.otherserial }}
+                                </p>
+
+                                <p>
+                                    Аудитория: {{ comp.locations }}
+                                </p>
+                                {% if groups == 'Материально ответственные' %}
+                                    <a class="mo_action" href="{% url 'update_comp' pk=comp.pk %}">Редактировать</a>
+                                    <a class="mo_action" href="{% url 'del_comp' pk=comp.pk %}">Удалить объект</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                    <p>Мониторы</p>
+                    {% for monitor in monitors %}
+                        <div>
+                            <li class="mo_name"><a> {{ monitor.name }} </a></li>
+                            <div class="mo_detail" style="display: none;">
+                                <p>
+                                    {{ monitor.users_id_tech }}
+                                </p>
+                                <p>
+                                    Серия: {{ monitor.serial }}
+                                </p>
+
+                                <p>
+                                    Инвентарный номер: {{ monitor.otherserial }}
+                                </p>
+
+                                <p>
+                                    Аудитория: {{ monitor.locations }}
+                                </p>
+                                {% if groups == 'Материально ответственные' %}
+                                    <a class="mo_action" href="{% url 'update_monitor' pk=monitor.pk %}">Редактировать</a>
+                                    <a class="mo_action" href="{% url 'del_monitor' pk=monitor.pk %}">Удалить объект</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                    <p>Прочее</p>
+                    {% for mo in mo_list %}
+                        <div>
+                            <li class="mo_name"><a> {{ mo.name }} </a></li>
+                        <div class="mo_detail" style="display: none;">
+                            <p>
+                                ИН: {{ mo.serial }}
+                            </p>
+                            <p>
+                                Аудитория: {{ mo.location }}
+                            </p>
+                            <p>
+                                Тип объекта: {{ mo.mo_type }}
+                            </p>
+
+                        <div>
+                         {% for mo_attr in mo_attr_dict %}
+                              {% for attr in mo_attr %}
+                                  {% if attr.MO_id == mo.MO_id %}
+                                      <p class="attribute">{{ attr.attr_name }} : {{ attr.attr_value }}
+                                        {% if groups == 'Материально ответственные' %}
+                                            <a href="{% url 'update_attr' pk=attr.pk %}"> <img class="attr_del_but" src="../../static/images/edit.png"> </a>
+                                            <a href="{% url 'del_attr' pk=attr.pk %}"> <img class="attr_del_but" src="../../static/images/del.png"> </a>
+                                        {% endif %}
+                                      </p>
+                                  {% endif %}
+                              {% endfor %}
+                         {% endfor %}
+                        </div>
+                        {% if groups == 'Материально ответственные' %}
+                            <a class="mo_action" href="{% url 'update_mo' pk=mo.pk %}">Редактировать</a>
+                            <a class="mo_action" href="{% url 'del_mo' pk=mo.pk %}">Удалить объект</a>
+                        {% endif %}
+
+                        </div>
+                        </div>
+
+                    {% endfor %}
+
+                </ul>
+            </div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.mo_name').click(function () {
+            $(this).parent().children('div.mo_detail').toggle('normal');
+            return false;
+        });
+    });
+</script>

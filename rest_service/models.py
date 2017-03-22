@@ -47,6 +47,7 @@ class GLPI_user(models.Model):
     realname = models.CharField("Фамилия", max_length=255)
     firstname = models.CharField("Имя", max_length=255)
     user_dn = models.TextField("Информация о пользователе")
+    auths_id = models.IntegerField( default=0)
 
     class Meta:
         db_table = 'glpi_users'
