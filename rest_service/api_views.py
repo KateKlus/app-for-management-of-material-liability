@@ -5,7 +5,10 @@ from rest_framework import mixins, generics
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from rest_service.models import Attribute as AttributeModel
 from rest_service.serializers import *
+
+import json
 
 
 class MOList(mixins.ListModelMixin,mixins.CreateModelMixin,generics.GenericAPIView):
@@ -118,18 +121,19 @@ class Specialist_moList(APIView):
         mo_list = MO.objects.filter(contact=specialist.name)
         mo_ser = MOSerializer(mo_list, many=True)
 
-        #mo_attr_dict = []
+        mo_attr_dict =[]
 
-        #for mo in mo_list:
-        #    attr = Attribute.objects.filter(MO=mo.MO_id)
-        #    mo_attr_dict.append(attr)
+        for mo in mo_list:
+            attr = AttributeModel.objects.filter(MO=mo.MO_id)
+            attr_ser = AttributeSerializer(attr, many=True)
+            mo_attr_dict.append({mo.MO_id : attr_ser.data})
 
         return Response({
             'specialist': specialist_ser.data,
             'comps': comps_ser.data,
             'monitors': monitors_ser.data,
             'mo_list': mo_ser.data,
-            #'mo_attr_dict': mo_attr_dict,
+            'mo_attr_dict': mo_attr_dict,
         })
 
 
