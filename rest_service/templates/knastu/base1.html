@@ -1,0 +1,52 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <title>Управление МО</title>
+</head>
+<body>
+
+    <div class="header">
+        <h1 style="width: 90%;"><a href="/rest_service">KnASTU Inventory Service</a></h1>
+        <nav>
+            <ul class="menu">
+                <li><a href="" class="active">Материальная база</a>
+                    <ul class="submenu">
+                        <li><a href="">Факультеты</a></li>
+                        <li><a href="">Кафедры</a></li>
+                        <li><a href="{% url 'auditorias' %}">Аудитории</a></li>
+                    </ul>
+                </li>
+                <li><a class="active" href="" >Ответственные лица</a>
+                    <ul class="submenu">
+                        <li><a href="{% url 'responsible_specialist' %}">Список ответственных лиц</a></li>
+                        <li><a href="">Редактирование информации</a></li>
+                        <li><a href="">Смена ответственного</a></li>
+
+                    </ul>
+                </li>
+                <li><a href="">Перенос оборудования</a></li>
+                <li><a href="" class="active">Добавление оборудования</a>
+                    <ul class="submenu">
+                        <li><a href="{% url 'create_comp' %}">Компьютеры</a></li>
+                        <li><a href="{% url 'create_monitor' %}">Мониторы</a></li>
+                        <li><a href="{% url 'create_mo' %}">Не компьютерное оборудование</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+
+        <a href="{% url 'logout' %}"><img src="../../static/images/exit.png"  class="exit_icon"></a>
+        <p class="hello_user"> Здравствуйте, {{ user.first_name }}</p>
+    </div>
+
+
+
+     {% block content %}
+     {% endblock %}
+
+</body>
+</html>

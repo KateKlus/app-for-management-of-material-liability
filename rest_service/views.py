@@ -104,13 +104,13 @@ class attrDelete(generic.DeleteView):
 #для редактирования объектов
 class computersUpdate(generic.UpdateView):
     model = Computer
-    fields = ['name', 'serial', 'contact', 'locations']
+    fields = ['name', 'serial', 'users_id_tech', 'locations']
     template_name_suffix = '_update_form'
     success_url = reverse_lazy('auditorias')
 
 class monitorsUpdate(generic.UpdateView):
     model = Monitor
-    fields = ['name', 'serial', 'contact', 'locations', 'type']
+    fields = ['name', 'serial', 'users_id_tech', 'locations']
     template_name_suffix = '_update_form'
     success_url = reverse_lazy('auditorias')
 

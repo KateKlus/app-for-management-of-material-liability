@@ -1,14 +1,67 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600&subset=latin,cyrillic);
+@import url('https://fonts.googleapis.com/css?family=Dosis|Fira+Sans+Condensed|Oswald|Poiret+One');
+
+
 *{box-sizing: border-box;}
 
 body {
   margin: 0;
-  background: #f7f9fe;
+  background: #f8f8f8;
+}
+
+.banner{
+    background: #2B8C67;
+    height: 70px;
+    padding-left: 50px;
+}
+
+.menu_box{
+    width: 100%;
+    background: #0C3C26;
+    color: white;
+}
+
+.menu{
+    display: inline-block;
+    float: right;
+}
+
+.menu ul{
+    text-align: right;
+    margin-right: 50px;
+}
+
+.menu ul li{
+    display: inline-block;
+    padding: 10px;
+}
+
+.menu ul li a{
+    font-family: 'Oswald', sans-serif;
+    font-size: 17px;
+    text-decoration: none;
+    color: #fff;
+    cursor: pointer;
+}
+
+.logo{
+    display: inline-block;
+    text-align: left;
+    margin-left: -35%;
+}
+
+.banner p{
+    font-family: 'Poiret One', cursive;
+    font-size: 30px;
+    color: #C9F0DD;
+    margin: 0;
+    float: left;
+    padding-top: 15px;
 }
 /*----Шапка----*/
 .header {
   background: white;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Dosis', sans-serif;
   text-align: center;
 }
 .header > h1 {
@@ -29,11 +82,8 @@ body {
 /*------------*/
 
 /*----Главное меню----*/
+
 nav {
-  background: white;
-  font-family: 'Open Sans', sans-serif;
-  box-shadow: 0 2px 0 0 #ECF1F2;
-  border-top: 1px solid #ECF1F2;
   text-align: center;
 }
 nav:after {
@@ -41,16 +91,9 @@ nav:after {
   display: table;
   clear: both;
 }
-a {
-  color: black;
-  text-decoration: none;
-  transition: .3s linear;
-}
-ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
+
+
+
 .menu > li {
   display: inline-block;
   position: relative;
@@ -67,7 +110,6 @@ ul {
   text-transform: uppercase;
   border-left: 1px solid #ECF1F2;
   letter-spacing: 2px;
-  color: #1c1c1c;
 }
 .active:after, .submenu-link:after {
   /*content: "\f107";*/
@@ -75,9 +117,7 @@ ul {
   color: inherit;
   margin-left: 10px;
 }
-.menu .active, .menu li a:hover, .submenu li a:hover {
-  color: #003366;
-}
+
 .submenu {
   width: 240px;
   visibility: hidden;
@@ -120,8 +160,8 @@ li:hover > .submenu {
 
 /*----Ответственные лица----*/
 .content {
-    margin: 50px 50px;
     font-family: 'Open Sans', sans-serif;
+    height:1000px;
 }
 
 .content p{
@@ -130,40 +170,55 @@ li:hover > .submenu {
 }
 
 .person_list {
+    margin: 50px 50px;
     display: inline-block;
-    width: 30%;
-    height: 50%;
+    width: 27%;
+
 
 }
 
 .person_list div{
     /*height: 700px;*/
     width: 27%;
-    background-color: white;
-    border: dashed;
-    border-color: #1c1c1c;
     position: absolute;
 }
 
-.mo_list {
+.mo_list_box{
+    margin: 0;
+    background: #fff;
+    width: 66%;
     display: inline-block;
-    width: 69%;
+    right: 0;
+    height: 100%;
+}
+
+.mo_list {
+    margin: 50px 0px;
+    display: inline-block;
+    width: 100%;
+    background: #fff;
+}
+
+.mo_list_header{
+    margin-left: 50px;
 }
 
 .mo_name{
     cursor: pointer;
+    list-style-type: none;
 }
 
 .mo_list_div {
     width: 66%;
     background-color: white;
-    border: dashed;
-    border-color: #8c8c8c;
     position: absolute;
 }
 
 .mo_detail{
     border:none;
+    list-style-type: none;
+    margin: 0 0 40px -10px;
+    line-height: 75%;
 }
 
 .mo_action{
@@ -171,6 +226,8 @@ li:hover > .submenu {
     font-size: small;
     margin-top: 0px;
     cursor: pointer;
+    text-decoration: none;
+    color: black;
 }
 
 .mo_detail p{
@@ -180,8 +237,30 @@ li:hover > .submenu {
     color: darkslategrey;
 }
 
+.mo_result_list{
+    margin-left: 10px;
+}
+
+.mo_group_name{
+    font-family: 'Open Sans ', sans-serif;
+    text-transform: none !important;
+    letter-spacing: normal !important;
+}
+
+.mo_group_result{
+    margin: 0 0 20px 20px;
+}
+
+.mo_block{
+    margin-bottom: 30px;
+}
+
 .list{
-    margin: 10px;
+    margin: 10px 0 0-80px;
+}
+
+.list ul{
+    list-style-type: none;
 }
 
 .list li{
@@ -193,6 +272,16 @@ li:hover > .submenu {
     cursor: pointer;
 }
 
+.children_loc a{
+    text-decoration: none;
+    color: black;
+}
+
+.parent_loc a{
+    text-decoration: none;
+    color: black;
+}
+/*------*/
 /*--------Форма входа--------------*/
 .login{
     margin: 50px auto;

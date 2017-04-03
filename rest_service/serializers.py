@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from .models import *
 
-attr = ['name', 'serial', 'otherserial']
+attr = ['name', 'serial', 'otherserial', 'user_id_tech',]
 
 class MOSerializer(serializers.ModelSerializer):
     label = 'MO'
