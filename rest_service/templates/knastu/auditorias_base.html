@@ -1,32 +1,26 @@
-            <div class="mo_list_div">
-                 <ul class="mo_result_list">
-                 <div class="mo_block">
-                     <p class="mo_group_name">Компьютеры</p>
-                    {% for comp in comps %}
-                        <div class="mo_group_result">
-                            <li class="mo_name"><a> {{ comp.name }} </a></li>
-                            <div class="mo_detail" style="display: none;">
+<div class="mo_list_div">
+    <p class="location_name"> Аудитория {{ location }}</p>
+        <ul class="mo_result_list">
+            <div class="mo_block">
+                <p class="mo_group_name">Компьютеры</p>
+                {% for comp in comps %}
+                    <div class="mo_group_result">
+                        <li class="mo_name"><a> {{ comp.name }} </a></li>
+                        <div class="mo_detail" style="display: none;">
+                            <p>Серия: {{ comp.serial }}</p>
+                            <p>Инвентарный номер: {{ comp.otherserial }}</p>
+                            <p>Ответственный: {{ comp.users_id_tech }}</p>
+
+                            {% if groups == 'Материально ответственные' %}
                                 <p>
-                                    Серия: {{ comp.serial }}
+                                    <a class="mo_action" href="{% url 'update_comp' pk=comp.pk %}">Редактировать</a>
+                                    <a class="mo_action" href="{% url 'del_comp' pk=comp.pk %}">Удалить объект</a>
                                 </p>
 
-                                <p>
-                                    Инвентарный номер: {{ comp.otherserial }}
-                                </p>
-
-                                <p>
-                                    Ответственный: {{ comp.users_id_tech }}
-                                </p>
-                                {% if groups == 'Материально ответственные' %}
-                                    <p>
-                                        <a class="mo_action" href="{% url 'update_comp' pk=comp.pk %}">Редактировать</a>
-                                        <a class="mo_action" href="{% url 'del_comp' pk=comp.pk %}">Удалить объект</a>
-                                    </p>
-
-                                {% endif %}
-                            </div>
+                            {% endif %}
                         </div>
-                    {% endfor %}
+                    </div>
+                {% endfor %}
                  </div>
 
                  <div class="mo_block">
@@ -35,9 +29,6 @@
                         <div class="mo_group_result">
                             <li class="mo_name"><a> {{ monitor.name }} </a></li>
                             <div class="mo_detail" style="display: none;">
-                                <p>
-                                    {{ monitor.users_id_tech }}
-                                </p>
                                 <p>
                                     Серия: {{ monitor.serial }}
                                 </p>

@@ -10,7 +10,7 @@
                 {% for spec in glpi_user_list %}
                     {% if spec.auths_id != 0 %}
                         <ul>
-                            <li class="perent_loc" name="{{ spec.pk }}" onclick="get_mo_list(this)"><a href="#"> {{ spec.realname }} {{ spec.firstname }} </a></li>
+                            <li class="parent_loc" name="{{ spec.pk }}" onclick="get_mo_list(this)"><a href="#"> {{ spec.realname }} {{ spec.firstname }} </a></li>
                         </ul>
                     {% endif %}
                 {% endfor %}
@@ -18,9 +18,10 @@
             </div>
         </div>
 
-        <div class="mo_list">
-             <p>Подотчетное оборудование</p>
-            <div id="mo_list_res">
+        <div class="mo_list_box">
+            <div class="mo_list">
+                <p class="mo_list_header">Подотчетное оборудование</p>
+                <div id="mo_list_res"></div>
             </div>
         </div>
     </div>

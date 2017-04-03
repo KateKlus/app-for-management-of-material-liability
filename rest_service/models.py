@@ -104,7 +104,7 @@ class Computer(MO_abstract):
     class Meta:
         db_table = 'glpi_computers'
         app_label = 'clientapp'
-        ordering = ['id']
+        ordering = ['name']
 
     def __unicode__(self):
         return self.name

@@ -1,14 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Редактиирование</title>
-</head>
-<body>
-    <form action="" method="post">{% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Обновить" />
-</form>
+{% extends 'knastu/base.html' %}
+{% block content %}
 
-</body>
-</html>
+    <div class="login-card">
+        <h1>Редактирование</h1>
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" name="login" class="login login-submit"> Обновить </button>
+        </form>
+    </div>
+
+{% endblock content %}

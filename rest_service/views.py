@@ -55,6 +55,7 @@ def auditorias_base(request, pk):
         'mo_attr_dict': mo_attr_dict,
         'user': request.user,
         'groups': request.user.groups.all()[0].name,
+        'location': location.name,
     })
 
 #для вывода списка оборудования из обеих баз

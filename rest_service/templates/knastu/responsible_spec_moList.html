@@ -1,96 +1,85 @@
-            <div class="mo_list_div">
-                <p>{{ spec_name }}</p>
-                 <ul class="list">
-                 <p>Компьютеры</p>
-                    {% for comp in comps %}
-                        <div>
-                            <li class="mo_name"><a> {{ comp.name }} </a></li>
-                            <div class="mo_detail" style="display: none;">
-                                <p>
-                                    Серия: {{ comp.serial }}
-                                </p>
+<div class="mo_list_div">
+    <p class="location_name">{{ spec_name }}</p>
+    <ul class="mo_result_list">
+        <div class="mo_block">
+            <p class="mo_group_name">Компьютеры</p>
+            {% for comp in comps %}
+                <div class="mo_group_result">
+                    <li class="mo_name"><a> {{ comp.name }} </a></li>
+                    <div class="mo_detail" style="display: none;">
+                        <p> Серия: {{ comp.serial }}</p>
+                        <p>Инвентарный номер: {{ comp.otherserial }}</p>
+                        <p>Аудитория: {{ comp.locations }}</p>
 
-                                <p>
-                                    Инвентарный номер: {{ comp.otherserial }}
-                                </p>
-
-                                <p>
-                                    Аудитория: {{ comp.locations }}
-                                </p>
-                                {% if groups == 'Материально ответственные' %}
-                                    <a class="mo_action" href="{% url 'update_comp' pk=comp.pk %}">Редактировать</a>
-                                    <a class="mo_action" href="{% url 'del_comp' pk=comp.pk %}">Удалить объект</a>
-                                {% endif %}
-                            </div>
-                        </div>
-                    {% endfor %}
-                    <p>Мониторы</p>
-                    {% for monitor in monitors %}
-                        <div>
-                            <li class="mo_name"><a> {{ monitor.name }} </a></li>
-                            <div class="mo_detail" style="display: none;">
-                                <p>
-                                    {{ monitor.users_id_tech }}
-                                </p>
-                                <p>
-                                    Серия: {{ monitor.serial }}
-                                </p>
-
-                                <p>
-                                    Инвентарный номер: {{ monitor.otherserial }}
-                                </p>
-
-                                <p>
-                                    Аудитория: {{ monitor.locations }}
-                                </p>
-                                {% if groups == 'Материально ответственные' %}
-                                    <a class="mo_action" href="{% url 'update_monitor' pk=monitor.pk %}">Редактировать</a>
-                                    <a class="mo_action" href="{% url 'del_monitor' pk=monitor.pk %}">Удалить объект</a>
-                                {% endif %}
-                            </div>
-                        </div>
-                    {% endfor %}
-                    <p>Прочее</p>
-                    {% for mo in mo_list %}
-                        <div>
-                            <li class="mo_name"><a> {{ mo.name }} </a></li>
-                        <div class="mo_detail" style="display: none;">
+                        {% if groups == 'Материально ответственные' %}
                             <p>
-                                ИН: {{ mo.serial }}
+                                <a class="mo_action" href="{% url 'update_comp' pk=comp.pk %}">Редактировать</a>
+                                <a class="mo_action" href="{% url 'del_comp' pk=comp.pk %}">Удалить объект</a>
                             </p>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+
+        <p class="mo_group_name">Мониторы</p>
+        <div class="mo_group_result">
+            {% for monitor in monitors %}
+                <div class="mo_block">
+                    <li class="mo_name"><a> {{ monitor.name }} </a></li>
+                    <div class="mo_detail" style="display: none;">
+                        <p>Серия: {{ monitor.serial }}</p>
+                        <p>Инвентарный номер: {{ monitor.otherserial }}</p>
+                        <p>Аудитория: {{ monitor.locations }}</p>
+
+                        {% if groups == 'Материально ответственные' %}
                             <p>
-                                Аудитория: {{ mo.location }}
+                                <a class="mo_action" href="{% url 'update_monitor' pk=monitor.pk %}">Редактировать</a>
+                                <a class="mo_action" href="{% url 'del_monitor' pk=monitor.pk %}">Удалить объект</a>
                             </p>
-                            <p>
-                                Тип объекта: {{ mo.mo_type }}
-                            </p>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <p class="mo_group_name">Прочее</p>
+        <div class="mo_block">
+            {% for mo in mo_list %}
+                <div class="mo_group_result">
+                    <li class="mo_name"><a> {{ mo.name }} </a></li>
+                    <div class="mo_detail" style="display: none;">
+                        <p>ИН: {{ mo.serial }}</p>
+                        <p>Аудитория: {{ mo.location }}</p>
+                        <p>Тип объекта: {{ mo.mo_type }}</p>
 
                         <div>
-                         {% for mo_attr in mo_attr_dict %}
-                              {% for attr in mo_attr %}
-                                  {% if attr.MO_id == mo.MO_id %}
-                                      <p class="attribute">{{ attr.attr_name }} : {{ attr.attr_value }}
-                                        {% if groups == 'Материально ответственные' %}
-                                            <a href="{% url 'update_attr' pk=attr.pk %}"> <img class="attr_del_but" src="../../static/images/edit.png"> </a>
-                                            <a href="{% url 'del_attr' pk=attr.pk %}"> <img class="attr_del_but" src="../../static/images/del.png"> </a>
-                                        {% endif %}
-                                      </p>
-                                  {% endif %}
-                              {% endfor %}
-                         {% endfor %}
+                            {% for mo_attr in mo_attr_dict %}
+                                {% for attr in mo_attr %}
+                                    {% if attr.MO_id == mo.MO_id %}
+                                        <p class="attribute">{{ attr.attr_name }} : {{ attr.attr_value }}
+                                            {% if groups == 'Материально ответственные' %}
+                                                <a href="{% url 'update_attr' pk=attr.pk %}"><img class="attr_del_but" src="../../static/images/edit.png"></a>
+                                                <a href="{% url 'del_attr' pk=attr.pk %}"><img class="attr_del_but" src="../../static/images/del.png"></a>
+                                            {% endif %}
+                                        </p>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endfor %}
                         </div>
                         {% if groups == 'Материально ответственные' %}
-                            <a class="mo_action" href="{% url 'update_mo' pk=mo.pk %}">Редактировать</a>
-                            <a class="mo_action" href="{% url 'del_mo' pk=mo.pk %}">Удалить объект</a>
+                            <p>
+                                <a class="mo_action" href="{% url 'update_mo' pk=mo.pk %}">Редактировать</a>
+                                <a class="mo_action" href="{% url 'del_mo' pk=mo.pk %}">Удалить объект</a>
+                            </p>
                         {% endif %}
-
-                        </div>
-                        </div>
-
-                    {% endfor %}
-
-                </ul>
-            </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </ul>
+</div>
 
 <script type="text/javascript">
     $(document).ready(function() {
