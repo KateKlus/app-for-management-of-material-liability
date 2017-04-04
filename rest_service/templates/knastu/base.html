@@ -16,7 +16,7 @@
                 <ul>
                     <li><a href="{% url 'auditorias' %}">Материальная база</a></li>
                     <li><a href="{% url 'responsible_specialist' %}">Список ответственных лиц</a></li>
-                    <li><a>Перенос оборудования</a></li>
+                    <li><a href="{% url 'specialist_mo_list' pk=user.id %}">Подотчетное оборудование</a></li>
                     <li><a>Добавление оборудования</a></li>
 
                 </ul>

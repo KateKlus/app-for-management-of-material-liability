@@ -193,6 +193,11 @@ li:hover > .submenu {
     height: 100%;
 }
 
+.user_mo_list_box{
+    background: #f8f8f8;
+    margin-top: 50px;
+}
+
 .mo_list {
     margin: 50px 0px;
     display: inline-block;

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.conf.urls import  url
 from django.conf import settings
 from django.conf.urls.static import static
@@ -15,8 +16,13 @@ urlpatterns = [
     url(r'^auditorias/$', views.auditorias.as_view(), name='auditorias'),
     url(r'^auditorias/get_mo_list/(?P<pk>[0-9]+)/$', views.auditorias_base, name='auditorias_base'),
 
+    #получить список ответственных специалистов
     url(r'^responsible_specialist/$', views.responsible_specialist.as_view(), name='responsible_specialist'),
+    #получить подотчетное оборудование по id специалиста
     url(r'^responsible_specialist/get_mo_list/(?P<pk>[0-9]+)/$', views.specialist_mo_list, name='specialist_mo_list'),
+    #получить подотчетное оборудование по id пользователя
+    url(r'^responsible_specialist_mo_list/(?P<pk>[0-9]+)/$', views.specialist_mo_list_userid, name='specialist_mo_list'),
+
 
     url(r'^del_comp/(?P<pk>[0-9]+)$', views.computersDelete.as_view(), name='del_comp'),
     url(r'^del_monitor/(?P<pk>[0-9]+)$', views.monitorsDelete.as_view(), name='del_monitor'),

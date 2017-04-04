@@ -58,7 +58,7 @@ def auditorias_base(request, pk):
         'location': location.name,
     })
 
-#для вывода списка оборудования из обеих баз
+#для вывода списка оборудования из обеих баз по id специалиста
 def specialist_mo_list(request, pk):
     if not request.user.is_authenticated():
        return redirect('%s?next=%s' % (settings.LOGIN_URL, request.path))
@@ -76,6 +76,37 @@ def specialist_mo_list(request, pk):
         mo_attr_dict.append(attr)
 
     return render(request, 'knastu/responsible_spec_moList.html', {
+        'spec_name': specialist_fullname[3:],
+        'comps': comps,
+        'monitors': monitors,
+        'mo_list':mo_list,
+        'mo_attr_dict': mo_attr_dict,
+        'user': request.user,
+        'groups': request.user.groups.all()[0].name,
+    })
+
+#для вывода списка оборудования из обеих баз по id пользователя
+def specialist_mo_list_userid(request, pk):
+    if not request.user.is_authenticated():
+       return redirect('%s?next=%s' % (settings.LOGIN_URL, request.path))
+
+    real_name = request.user.last_name
+    second_name = request.user.first_name
+
+    specialist = GLPI_user.objects.get(realname=real_name, firstname=second_name)
+    specialist_fullname = specialist.user_dn.split(',')[0]
+    spec_id = specialist.id
+    comps = Computer.objects.filter(users_id_tech_id=spec_id)
+    monitors = Monitor.objects.filter(users_id_tech_id=spec_id)
+    mo_list = MO.objects.filter(contact=specialist.name)
+
+    mo_attr_dict = []
+
+    for mo in mo_list:
+        attr = AttributeModel.objects.filter(MO=mo.MO_id)
+        mo_attr_dict.append(attr)
+
+    return render(request, 'knastu/responsible_user_moList.html', {
         'spec_name': specialist_fullname[3:],
         'comps': comps,
         'monitors': monitors,
