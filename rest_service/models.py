@@ -63,10 +63,19 @@ class GLPI_user(models.Model):
         else:
             return user_data[3:]
 
+# рекурсивная модель подразделений
+class Entities(models.Model):
+    name = models.CharField("Название", max_length=255)
+    entities_id = models.ForeignKey('self', verbose_name="Родитель", db_column = 'entities_id')
+
+
 # описание моделей БД GLPI
 class Location(models.Model):
     name = models.CharField("Аудитория", max_length=200)
-    entities_id = models.IntegerField()
+    entities = models.ForeignKey(
+        Entities,
+        verbose_name="Подразделение",
+    )
     locations_id = models.IntegerField()
 
     class Meta:
