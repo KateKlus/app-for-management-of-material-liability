@@ -54,7 +54,6 @@ def auditorias_base(request, pk):
         'mo_list':mo_list,
         'mo_attr_dict': mo_attr_dict,
         'user': request.user,
-        'groups': request.user.groups.all()[0].name,
         'location': location.name,
     })
 
@@ -82,7 +81,6 @@ def specialist_mo_list(request, pk):
         'mo_list':mo_list,
         'mo_attr_dict': mo_attr_dict,
         'user': request.user,
-        'groups': request.user.groups.all()[0].name,
     })
 
 #для вывода списка оборудования из обеих баз по id пользователя
@@ -113,7 +111,6 @@ def specialist_mo_list_userid(request, pk):
         'mo_list':mo_list,
         'mo_attr_dict': mo_attr_dict,
         'user': request.user,
-        'groups': request.user.groups.all()[0].name,
     })
 
 #для удаления объектов
@@ -161,13 +158,13 @@ class attrUpdate(generic.UpdateView):
 #для добавления объектов
 class computersCreate(generic.CreateView):
     model = Computer
-    fields = ['name', 'serial', 'contact', 'locations']
+    fields = ['name', 'serial', 'users_id_tech', 'locations']
     template_name_suffix = '_create_form'
     success_url = "/"
 
 class monitorsCreate(generic.CreateView):
     model = Monitor
-    fields = ['name', 'serial', 'contact', 'locations']
+    fields = ['name', 'serial', 'users_id_tech', 'locations']
     template_name_suffix = '_create_form'
     success_url = "/"
 
