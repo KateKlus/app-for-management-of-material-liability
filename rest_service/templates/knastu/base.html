@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="{% static 'js/script.js' %}"></script>
     <title>Управление МО</title>
 </head>
 <body>
@@ -13,13 +14,23 @@
         <div class="menu_box">
             <div class="logo"><p>KnASTU<br>Inventory Servise</p></div>
             <div class="menu">
-                <ul>
-                    <li><a href="{% url 'auditorias' %}">Материальная база</a></li>
-                    <li><a href="{% url 'responsible_specialist' %}">Список ответственных лиц</a></li>
-                    <li><a href="{% url 'specialist_mo_list' pk=user.id %}">Подотчетное оборудование</a></li>
-                    <li><a>Добавление оборудования</a></li>
+            {% if user.groups.all.0.name == 'Материально ответственные' %}
+                    <ul>
+                        <li><a href="{% url 'specialist_mo_list' pk=user.id %}">Подотчетное оборудование</a></li>
+                        <li><a href="{% url 'create_comp' %}">Добавление компьютера</a></li>
+                        <li><a href="{% url 'create_monitor' %}">Добавление монитора</a></li>
+                        <li><a href="{% url 'create_mo' %}">Добавление малоценного оборудования</a></li>
+                    </ul>
+                {% endif %}
 
-                </ul>
+                {% if user.groups.all.0.name == 'Заведующие кафедрами' %}
+                    <ul>
+                        <li><a href="{% url 'responsible_specialist' %}">Список ответственных лиц</a></li>
+                        <li><a href="{% url 'auditorias' %}">Материальная база</a></li>
+                    </ul>
+                {% endif %}
+
+
                 <a href="{% url 'logout' %}"><img src="../../static/images/exit.png"  class="exit_icon"></a>
             </div>
         </div>
@@ -32,8 +43,6 @@
         </div>
 
     </div>
-
-
 
      {% block content %}
      {% endblock %}

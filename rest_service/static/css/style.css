@@ -259,10 +259,13 @@ li:hover > .submenu {
     text-transform: none !important;
     letter-spacing: normal !important;
     margin-bottom: 5px;
+    cursor: pointer;
 }
 
 .mo_group_result{
     margin: 0 0 5px 20px;
+    color: darkslategray;
+    display: none;
 }
 
 .mo_block{
