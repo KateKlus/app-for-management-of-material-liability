@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b4675de5-9584-4cf4-b56f-ca8b39d99819" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/rest_service/templates/knastu/auditorias1.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/rest_service/templates/knastu/base1.html" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rest_service/templates/knastu/auditorias.html" afterPath="$PROJECT_DIR$/rest_service/templates/knastu/auditorias.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rest_service/templates/knastu/entities.html" afterPath="$PROJECT_DIR$/rest_service/templates/knastu/entities.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rest_service/templates/knastu/login.html" afterPath="$PROJECT_DIR$/rest_service/templates/knastu/login.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rest_service/templates/knastu/mo_detail.html" afterPath="$PROJECT_DIR$/rest_service/templates/knastu/mo_detail.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rest_service/templates/knastu/mo_result.html" afterPath="$PROJECT_DIR$/rest_service/templates/knastu/mo_result.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rest_service/templates/knastu/responsible_person.html" afterPath="$PROJECT_DIR$/rest_service/templates/knastu/responsible_person.html" />
     </list>
     <ignored path="my_diplom.iws" />
@@ -35,58 +32,7 @@
     <favorites_list name="my_diplom" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="login.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/rest_service/templates/knastu/login.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="logout.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/rest_service/templates/knastu/logout.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="mo_detail.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/rest_service/templates/knastu/mo_detail.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-115">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="mo_result.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/rest_service/templates/knastu/mo_result.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="465">
-              <caret line="31" column="62" selection-start-line="31" selection-start-column="62" selection-end-line="31" selection-end-column="62" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="responsible_person.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/rest_service/templates/knastu/responsible_person.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="27" column="4" selection-start-line="27" selection-start-column="4" selection-end-line="27" selection-end-column="4" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -110,7 +56,6 @@
         <option value="$PROJECT_DIR$/clientapp/templates/knastu/auditorias_base.html" />
         <option value="$PROJECT_DIR$/clientapp/static/css/style.css" />
         <option value="$PROJECT_DIR$/clientapp/urls.py" />
-        <option value="$PROJECT_DIR$/rest_service/templates/knastu/mo_detail.html" />
         <option value="$PROJECT_DIR$/knastu_glpi/urls.py" />
         <option value="$PROJECT_DIR$/rest_service/static/app.js" />
         <option value="$PROJECT_DIR$/clientapp/views.py" />
@@ -147,7 +92,6 @@
         <option value="$PROJECT_DIR$/rest_service/urls.py" />
         <option value="$PROJECT_DIR$/rest_service/templates/knastu/entities_base.html" />
         <option value="$PROJECT_DIR$/rest_service/views.py" />
-        <option value="$PROJECT_DIR$/rest_service/templates/knastu/mo_result.html" />
         <option value="$PROJECT_DIR$/rest_service/models.py" />
         <option value="$PROJECT_DIR$/rest_service/static/css/style.css" />
         <option value="$PROJECT_DIR$/rest_service/static/js/script.js" />
@@ -155,6 +99,8 @@
         <option value="$PROJECT_DIR$/rest_service/templates/knastu/entities.html" />
         <option value="$PROJECT_DIR$/rest_service/templates/knastu/login.html" />
         <option value="$PROJECT_DIR$/rest_service/templates/knastu/responsible_person.html" />
+        <option value="$PROJECT_DIR$/rest_service/templates/knastu/mo_detail.html" />
+        <option value="$PROJECT_DIR$/rest_service/templates/knastu/mo_result.html" />
       </list>
     </option>
   </component>
@@ -794,9 +740,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="1535" height="876" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24311619" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24311619" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32876712" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1166,38 +1112,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/rest_service/templates/knastu/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/rest_service/templates/knastu/logout.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/rest_service/templates/knastu/mo_detail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-115">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/rest_service/templates/knastu/mo_result.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="31" column="62" selection-start-line="31" selection-start-column="62" selection-end-line="31" selection-end-column="62" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/rest_service/templates/knastu/responsible_spec_moList.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -1214,10 +1128,42 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/rest_service/templates/knastu/mo_detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="27" column="23" selection-start-line="27" selection-start-column="23" selection-end-line="27" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rest_service/templates/knastu/logout.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rest_service/templates/knastu/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rest_service/templates/knastu/mo_result.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="71" column="48" selection-start-line="71" selection-start-column="48" selection-end-line="71" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/rest_service/templates/knastu/responsible_person.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="405">
-          <caret line="27" column="4" selection-start-line="27" selection-start-column="4" selection-end-line="27" selection-end-column="4" />
+          <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
           <folding />
         </state>
       </provider>
