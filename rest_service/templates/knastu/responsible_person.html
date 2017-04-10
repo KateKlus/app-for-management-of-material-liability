@@ -25,22 +25,5 @@
             </div>
         </div>
     </div>
-
-    <script type="text/javascript">
-
-
-    function get_mo_list(user) {
-        var user_id = user.getAttribute("name");
-
-        $.ajax({
-            url: 'get_mo_list/'+user_id,
-            dataType: 'html',
-            success: function (data) {
-              $('#mo_list_res').html(data);
-            }
-          });
-    }
-
-    </script>
-
+    
 {% endblock content %}
