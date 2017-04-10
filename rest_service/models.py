@@ -67,7 +67,15 @@ class GLPI_user(models.Model):
 class Entities(models.Model):
     name = models.CharField("Название", max_length=255)
     entities_id = models.ForeignKey('self', verbose_name="Родитель", db_column = 'entities_id')
+    level = models.IntegerField()
 
+    class Meta:
+        db_table = 'glpi_entities'
+        app_label = 'clientapp'
+        ordering = ['entities_id_id']
+
+    def __unicode__(self):
+        return self.name
 
 # описание моделей БД GLPI
 class Location(models.Model):
@@ -91,6 +99,10 @@ class MO_abstract(models.Model):
     name = models.CharField("Название", max_length=255)
     serial = models.CharField("Серия", max_length=255, default='Не назначено')
     otherserial = models.CharField("Инвентарный номер", max_length=255, default='Не назначено')
+    entities = models.ForeignKey(
+        Entities,
+        verbose_name="Подразделение",
+    )
 
     users_id_tech = models.ForeignKey(
         GLPI_user,

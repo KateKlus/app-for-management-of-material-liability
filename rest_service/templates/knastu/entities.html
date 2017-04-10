@@ -1,0 +1,40 @@
+{% extends 'knastu/base.html' %}
+{% block content %}
+    <div class="content">
+        <div class="person_list">
+            <p>Подразделения</p>
+            <div>
+                <ul class="list">
+                {% for ent in entities_list %}
+                    {% if ent.level == 2 %}
+                        <ul>
+                            <li class="root_ent" style="display: block" name="{{ ent.pk }}" onclick="get_mo_list(this)"><a href="#"> {{ ent.name }} </a></li>
+                            {% for ent1 in entities_list %}
+                                {% if ent1.level == 3 and ent1.entities_id_id == ent.id%}
+                                    <ul class="parent_ent" name="{{ ent1.pk }}" onclick="get_mo_list(this)"><a href="#"> {{ ent1.name }} </a>
+                                    {% for ent2 in entities_list %}
+                                        {% if ent2.level == 4 and ent2.entities_id_id == ent1.id%}
+                                            <li class="children_ent" name="{{ ent2.pk }}" onclick="get_mo_list(this)"><a href="#"> {{ ent2.name }} </a></li>
+                                        {% endif %}
+                                    {% endfor %}
+                                    </ul>
+
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+        <div class="mo_list_box">
+            <div class="mo_list">
+                <p class="mo_list_header"> Подотчетное оборудование</p>
+                <div id="mo_list_res"></div>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock content %}

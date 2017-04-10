@@ -13,8 +13,10 @@ urlpatterns = [
 
     # Regular Django Views
     url(r'^$', views.index, name='index'),
-    url(r'^auditorias/$', views.auditorias.as_view(), name='auditorias'),
-    url(r'^auditorias/get_mo_list/(?P<pk>[0-9]+)/$', views.auditorias_base, name='auditorias_base'),
+    url(r'^auditorias/$', views.auditorias.as_view(), name='auditorias'),#список аудиторий
+    url(r'^auditorias/get_mo_list/(?P<pk>[0-9]+)/$', views.auditorias_base, name='auditorias_base'),#оборудование по аудиториям
+    url(r'^entities/$', views.entities.as_view(), name='entities'),#архитектура подразделений
+    url(r'^entities/get_mo_list/(?P<pk>[0-9]+)/$', views.entities_base, name='entities_base'),#архитектура подразделений
 
     #получить список ответственных специалистов
     url(r'^responsible_specialist/$', views.responsible_specialist.as_view(), name='responsible_specialist'),

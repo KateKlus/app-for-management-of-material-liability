@@ -1,4 +1,4 @@
-{% if comps.count > 0 %}
+        {% if comps.count > 0 %}
             <div class="mo_block">
             <p class="mo_group_name">Компьютеры</p>
             {% for comp in comps %}
@@ -8,8 +8,9 @@
                         <p> Серия: {{ comp.serial }}</p>
                         <p>Инвентарный номер: {{ comp.otherserial }}</p>
                         <p>Аудитория: {{ comp.locations }}</p>
+                        <p>Ответственный: {{ comp.users_id_tech }}</p>
 
-                        {% if groups == 'Материально ответственные' %}
+                        {% if user.groups.all.0.name == 'Материально ответственные' %}
                             <p>
                                 <a class="mo_action" href="{% url 'update_comp' pk=comp.pk %}">Редактировать</a>
                                 <a class="mo_action" href="{% url 'del_comp' pk=comp.pk %}">Удалить объект</a>
@@ -31,8 +32,9 @@
                             <p>Серия: {{ monitor.serial }}</p>
                             <p>Инвентарный номер: {{ monitor.otherserial }}</p>
                             <p>Аудитория: {{ monitor.locations }}</p>
+                            <p>Ответственный: {{ comp.users_id_tech }}</p>
 
-                            {% if groups == 'Материально ответственные' %}
+                            {% if user.groups.all.0.name == 'Материально ответственные' %}
                                 <p>
                                     <a class="mo_action" href="{% url 'update_monitor' pk=monitor.pk %}">Редактировать</a>
                                     <a class="mo_action" href="{% url 'del_monitor' pk=monitor.pk %}">Удалить объект</a>
@@ -53,6 +55,7 @@
                         <div class="mo_detail" style="display: none;">
                             <p>ИН: {{ mo.serial }}</p>
                             <p>Аудитория: {{ mo.location }}</p>
+                            <p>Ответственный: {{ comp.users_id_tech }}</p>
                             <p>Тип объекта: {{ mo.mo_type }}</p>
 
                             <div>
@@ -60,7 +63,7 @@
                                     {% for attr in mo_attr %}
                                         {% if attr.MO_id == mo.MO_id %}
                                             <p class="attribute">{{ attr.attr_name }} : {{ attr.attr_value }}
-                                                {% if groups == 'Материально ответственные' %}
+                                                {% if user.groups.all.0.name == 'Материально ответственные' %}
                                                     <a href="{% url 'update_attr' pk=attr.pk %}"><img class="attr_del_but" src="../../static/images/edit.png"></a>
                                                     <a href="{% url 'del_attr' pk=attr.pk %}"><img class="attr_del_but" src="../../static/images/del.png"></a>
                                                 {% endif %}
@@ -69,7 +72,7 @@
                                     {% endfor %}
                                 {% endfor %}
                             </div>
-                            {% if groups == 'Материально ответственные' %}
+                            {% if user.groups.all.0.name == 'Материально ответственные' %}
                                 <p>
                                     <a class="mo_action" href="{% url 'update_mo' pk=mo.pk %}">Редактировать</a>
                                     <a class="mo_action" href="{% url 'del_mo' pk=mo.pk %}">Удалить объект</a>

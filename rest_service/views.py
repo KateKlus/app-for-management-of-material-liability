@@ -26,6 +26,11 @@ class auditorias(generic.ListView):
     model = Location
     template_name = 'knastu/auditorias.html'
 
+#для вывода списка аудиторий из базы glpi
+class entities(generic.ListView):
+    model = Entities
+    template_name = 'knastu/entities.html'
+
 #для вывода списка ответственных из базы glpi
 class responsible_specialist(generic.ListView):
     model = GLPI_user
@@ -55,6 +60,31 @@ def auditorias_base(request, pk):
         'mo_attr_dict': mo_attr_dict,
         'user': request.user,
         'location': location.name,
+    })
+
+#для вывода списка оборудования из обеих баз по подразделениям
+def entities_base(request, pk):
+    if not request.user.is_authenticated():
+       return redirect('%s?next=%s' % (settings.LOGIN_URL, request.path))
+
+
+    comps = Computer.objects.filter(entities_id=pk)
+    monitors = Monitor.objects.filter(entities_id=pk)
+    #mo_list = MO.objects.filter(location=loc.name)
+
+    #mo_attr_dict = []
+
+    #for mo in mo_list:
+    #    attr = AttributeModel.objects.filter(MO=mo.MO_id)
+    #    mo_attr_dict.append(attr)
+
+    return render(request, 'knastu/entities_base.html', {
+        'comps': comps,
+        'monitors': monitors,
+        #'mo_list':mo_list,
+        #'mo_attr_dict': mo_attr_dict,
+        'user': request.user,
+        #'location': location.name,
     })
 
 #для вывода списка оборудования из обеих баз по id специалиста

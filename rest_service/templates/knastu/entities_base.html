@@ -1,0 +1,20 @@
+<div class="mo_list_div">
+    <p class="location_name">Всего: {{ comps.count }} компьютеров, {{ monitors.count }} мониторов, {{ mo_list.count }} малоценных объекта(ов)</p>
+        <ul class="mo_result_list">
+            {% include "./mo_result.html" %}
+        </ul>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.mo_name').click(function () {
+            $(this).parent().children('div.mo_detail').toggle('normal');
+            return false;
+        });
+
+        $('.mo_group_name').click(function(){
+            $(this).parent().children('.mo_group_result').toggle();
+            return false;
+        });
+    });
+</script>

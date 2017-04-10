@@ -287,14 +287,42 @@ li:hover > .submenu {
 .children_loc{
     display: none;
     cursor: pointer;
+    margin-left: 15px;
 }
 
-.children_loc a{
+.children_ent{
+    display: none;
+    cursor: pointer;
+    margin-left: 15px;
+}
+
+.parent_ent{
+    display: none;
+    cursor: pointer;
+    margin-left: 15px;
+}
+
+.children_loc a {
+    text-decoration: none;
+    color: black;
+}
+
+.children_ent a{
     text-decoration: none;
     color: black;
 }
 
 .parent_loc a{
+    text-decoration: none;
+    color: black;
+}
+
+.parent_ent a{
+    text-decoration: none;
+    color: black;
+}
+
+.root_ent a{
     text-decoration: none;
     color: black;
 }
