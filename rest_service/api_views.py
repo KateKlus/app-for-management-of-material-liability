@@ -8,9 +8,6 @@ from rest_framework.views import APIView
 from rest_service.models import Attribute as AttributeModel
 from rest_service.serializers import *
 
-import json
-
-
 class MOList(mixins.ListModelMixin,mixins.CreateModelMixin,generics.GenericAPIView):
 
     queryset = MO.objects.all()
@@ -65,7 +62,6 @@ class CompDetail(mixins.RetrieveModelMixin,
         return self.destroy(request, *args, **kwargs)
 
 #auditorias
-
 class Auditoria(mixins.ListModelMixin,
                     mixins.CreateModelMixin,
                     generics.GenericAPIView):

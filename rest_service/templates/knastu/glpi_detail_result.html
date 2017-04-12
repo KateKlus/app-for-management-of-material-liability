@@ -1,11 +1,4 @@
-{% for mo_attr in mo_attr_dict %}
-    {% for attr in mo_attr %}
-            <p class="attribute">{{ attr.attr_name }} : {{ attr.attr_value }}
-                {% if user.groups.all.0.name == 'Материально ответственные' %}
-                    <a href="{% url 'update_attr' pk=attr.pk %}"><img class="attr_del_but" src="../../static/images/edit.png"></a>
-                    <a href="{% url 'del_attr' pk=attr.pk %}"><img class="attr_del_but" src="../../static/images/del.png"></a>
-                {% endif %}
-            </p>
-    {% endfor %}
-{% endfor %}
-
+<p> Серия: {{ mo.serial }}</p>
+<p>Инвентарный номер: {{ mo.otherserial }}</p>
+<p>Аудитория: {{ mo.locations }}</p>
+<p>Ответственный: {{ mo.users_id_tech }}</p>

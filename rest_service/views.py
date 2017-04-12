@@ -15,6 +15,7 @@ from django.http import HttpResponseRedirect
 from django.views.generic.base import View
 from django.urls import reverse_lazy
 
+
 def index(request):
     if not request.user.is_authenticated():
        return redirect('%s?next=%s' % (settings.LOGIN_URL, request.path))
@@ -114,7 +115,7 @@ def specialist_mo_list(request, pk):
     })
 
 #для вывода списка оборудования из обеих баз по id пользователя
-def specialist_mo_list_userid(request, pk):
+def specialist_mo_list_userid(request):
     if not request.user.is_authenticated():
        return redirect('%s?next=%s' % (settings.LOGIN_URL, request.path))
 
@@ -126,22 +127,51 @@ def specialist_mo_list_userid(request, pk):
     spec_id = specialist.id
     comps = Computer.objects.filter(users_id_tech_id=spec_id)
     monitors = Monitor.objects.filter(users_id_tech_id=spec_id)
+
     mo_list = MO.objects.filter(contact=specialist.name)
-
-    mo_attr_dict = []
-
-    for mo in mo_list:
-        attr = AttributeModel.objects.filter(MO=mo.MO_id)
-        mo_attr_dict.append(attr)
 
     return render(request, 'knastu/responsible_user_moList.html', {
         'spec_name': specialist_fullname[3:],
         'comps': comps,
         'monitors': monitors,
         'mo_list':mo_list,
-        'mo_attr_dict': mo_attr_dict,
         'user': request.user,
     })
+
+def get_comp_detail(request, pk):
+    if not request.user.is_authenticated():
+       return redirect('%s?next=%s' % (settings.LOGIN_URL, request.path))
+
+    comp = Computer.objects.get(id=pk)
+
+    return render(request, 'knastu/glpi_detail_result.html', {
+        'mo': comp,
+    })
+
+def get_monitor_detail(request, pk):
+    if not request.user.is_authenticated():
+       return redirect('%s?next=%s' % (settings.LOGIN_URL, request.path))
+
+    monitor = Computer.objects.get(id=pk)
+
+    return render(request, 'knastu/glpi_detail_result.html', {
+        'mo': monitor,
+    })
+
+def get_mo_detail(request, pk):
+    if not request.user.is_authenticated():
+       return redirect('%s?next=%s' % (settings.LOGIN_URL, request.path))
+
+    mo_attr_dict = []
+
+    attr = AttributeModel.objects.filter(MO=pk)
+    mo_attr_dict.append(attr)
+
+    return render(request, 'knastu/mo_detail_result.html', {
+        'mo_attr_dict': mo_attr_dict,
+    })
+
+
 
 #для удаления объектов
 class computersDelete(generic.DeleteView):

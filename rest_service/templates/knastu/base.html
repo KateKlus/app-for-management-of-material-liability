@@ -16,7 +16,7 @@
             <div class="menu">
             {% if user.groups.all.0.name == 'Материально ответственные' %}
                     <ul>
-                        <li><a href="{% url 'specialist_mo_list' pk=user.id %}">Подотчетное оборудование</a></li>
+                        <li><a href="{% url 'user_specialist_mo_list'%}">Подотчетное оборудование</a></li>
                         <li><a href="{% url 'create_comp' %}">Добавление компьютера</a></li>
                         <li><a href="{% url 'create_monitor' %}">Добавление монитора</a></li>
                         <li><a href="{% url 'create_mo' %}">Добавление малоценного оборудования</a></li>
@@ -35,8 +35,6 @@
                 <a href="{% url 'logout' %}"><img src="../../static/images/exit.png"  class="exit_icon"></a>
             </div>
         </div>
-
-
 
         <div class="banner">
             <p>Материальная база</p>

@@ -40,3 +40,38 @@ function get_mo_list(location) {
           });
     }
 
+function get_mo_detail(mo) {
+    var mo_id = mo.getAttribute("name");
+
+    $.ajax({
+        url: 'get_mo_detail/'+mo_id,
+        dataType: 'html',
+        success: function (data) {
+            $('#mo_detail_res').html(data);
+            }
+          });
+    }
+
+function get_comp_detail(mo) {
+    var mo_id = mo.getAttribute("name");
+
+    $.ajax({
+        url: 'get_comp_detail/'+mo_id,
+        dataType: 'html',
+        success: function (data) {
+            $('#'+mo_id+'_detail').html(data);
+            }
+          });
+    }
+
+function get_monitor_detail(mo) {
+    var mo_id = mo.getAttribute("name");
+
+    $.ajax({
+        url: 'get_monitor_detail/'+mo_id,
+        dataType: 'html',
+        success: function (data) {
+            $('#'+mo_id+'mon_detail').html(data);
+            }
+          });
+    }

@@ -3,8 +3,6 @@ from django.conf.urls import  url
 from django.conf import settings
 from django.conf.urls.static import static
 from . import views, api_views
-from rest_framework.authtoken import views as rest_framework_views
-
 
 urlpatterns = [
     # Session Login
@@ -23,7 +21,10 @@ urlpatterns = [
     #получить подотчетное оборудование по id специалиста
     url(r'^responsible_specialist/get_mo_list/(?P<pk>[0-9]+)/$', views.specialist_mo_list, name='specialist_mo_list'),
     #получить подотчетное оборудование по id пользователя
-    url(r'^responsible_specialist_mo_list/(?P<pk>[0-9]+)/$', views.specialist_mo_list_userid, name='specialist_mo_list'),
+    url(r'^responsible_specialist_mo_list/$', views.specialist_mo_list_userid, name='user_specialist_mo_list'),
+    url(r'^responsible_specialist_mo_list/get_mo_detail/(?P<pk>[0-9]+)/$', views.get_mo_detail, name='get_mo_detail'),
+    url(r'^responsible_specialist_mo_list/get_comp_detail/(?P<pk>[0-9]+)/$', views.get_comp_detail, name='get_comp_detail'),
+    url(r'^responsible_specialist_mo_list/get_monitor_detail/(?P<pk>[0-9]+)/$', views.get_monitor_detail, name='get_comp_detail'),
 
 
     url(r'^del_comp/(?P<pk>[0-9]+)$', views.computersDelete.as_view(), name='del_comp'),
@@ -54,3 +55,4 @@ urlpatterns = [
     url(r'^api/specialist_moList/(?P<pk>[0-9]+)/$', api_views.Specialist_moList.as_view()),
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
