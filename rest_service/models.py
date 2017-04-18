@@ -83,6 +83,7 @@ class Location(models.Model):
     entities = models.ForeignKey(
         Entities,
         verbose_name="Подразделение",
+        default='Не назначено'
     )
     locations_id = models.IntegerField()
 
@@ -102,6 +103,7 @@ class MO_abstract(models.Model):
     entities = models.ForeignKey(
         Entities,
         verbose_name="Подразделение",
+        default='Не назначено'
     )
 
     users_id_tech = models.ForeignKey(
@@ -113,7 +115,6 @@ class MO_abstract(models.Model):
     locations = models.ForeignKey(
         Location,
         verbose_name="Аудитория",
-        on_delete=models.CASCADE,
     )
 
     class Meta:

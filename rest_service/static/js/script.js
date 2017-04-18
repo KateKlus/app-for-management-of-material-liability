@@ -26,6 +26,16 @@ $(document).ready(function() {
         $(this).children('.children_ent').toggle('normal');
         return false;
     });
+
+    $('.first_letter').click(function () {
+        $(this).parent().children('.types').toggle('normal');
+        return false;
+    });
+
+     $('.types').click(function () {
+        $(this).next('.types_result').toggle('normal');
+        return false;
+    });
 });
 
 function get_mo_list(location) {
@@ -75,3 +85,18 @@ function get_monitor_detail(mo) {
             }
           });
     }
+
+
+function set_alphabet() {
+    $('#alph').css('color',  'black');
+    $('#loc').css('color',  'cadetblue');
+    $('.location_lists').css('display', 'none');
+    $('.alphabet_lists').css('display', 'block');
+}
+
+function set_locations() {
+    $('#loc').css('color',  'black');
+    $('#alph').css('color',  'cadetblue');
+    $('.alphabet_lists').css('display', 'none');
+    $('.location_lists').css('display', 'block');
+}

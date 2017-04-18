@@ -468,3 +468,40 @@ li:hover > .submenu {
   text-align: center;
   font-size: 12px;
 }
+
+.type_of_list{
+    display: inline-block;
+    margin: -10px 0 30px 50px;
+    font-size: 15px;
+    color: cadetblue;
+}
+
+.alphabet_lists{
+    display: none;
+    margin: -10px 0 30px 60px;
+}
+
+.location_lists{
+    display: none;
+    margin: -10px 0 30px 60px;
+}
+
+.types{
+    font-size: 15px;
+    margin: 2px;
+    display: none;
+    cursor: pointer;
+}
+
+.types_result{
+    display: none;
+}
+
+.types_mo_group_result{
+    margin: 0 0 5px 20px;
+    color: darkslategray;
+}
+
+.first_letter{
+    cursor: pointer;
+}

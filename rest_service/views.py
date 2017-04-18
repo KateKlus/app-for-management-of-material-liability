@@ -14,7 +14,7 @@ from django.contrib.auth import login, logout
 from django.http import HttpResponseRedirect
 from django.views.generic.base import View
 from django.urls import reverse_lazy
-
+from django.db.models import Avg, Max, Min, Count
 
 def index(request):
     if not request.user.is_authenticated():
@@ -130,12 +130,18 @@ def specialist_mo_list_userid(request):
 
     mo_list = MO.objects.filter(contact=specialist.name)
 
+    #Author.objects.values('name').annotate(average_rating=Avg('book__rating'))
+    types = mo_list.values('mo_type').annotate(count=Count('name')).order_by('mo_type')
+    locations = mo_list.values('location').annotate(count=Count('name')).order_by('location')
+
     return render(request, 'knastu/responsible_user_moList.html', {
         'spec_name': specialist_fullname[3:],
         'comps': comps,
         'monitors': monitors,
         'mo_list':mo_list,
         'user': request.user,
+        'types': types,
+        'locations': locations,
     })
 
 def get_comp_detail(request, pk):

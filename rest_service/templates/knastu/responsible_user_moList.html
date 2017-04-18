@@ -4,9 +4,56 @@
 <div class="user_mo_list_box">
     <p class="location_name">{{ spec_name }}</p>
     <p class="location_name">Всего: {{ comps.count }} компьютеров, {{ monitors.count }} мониторов, {{ mo_list.count }} малоценных объекта(ов)</p>
-    <ul class="mo_result_list">
+
+    <p class="type_of_list" id="alph" onclick="set_alphabet()"> По алфавиту </p> <p class="type_of_list" id="loc" onclick="set_locations()"> По аудиториям</p>
+
+    <div class="alphabet_lists">
+    <div>
+        {% for type in types %}
+            {% ifchanged %}  </div> <div class="letter_list"> <p class="first_letter">{{ type.mo_type.0 }}</p>   {% endifchanged %}
+
+            <p class="types">{{ type.mo_type }}: {{ type.count }} шт </p>
+                <div class="types_result">
+                    {% for mo in mo_list %}
+                    {% if mo.mo_type == type.mo_type %}
+                        <div class="types_mo_group_result">
+                            <li class="mo_name"><a name="{{ mo.MO_id }}" onclick="get_mo_detail(this)"> {{ mo.name }} </a></li>
+
+                            <div class="mo_detail" style="display: none;">
+                                <p>ИН: {{ mo.serial }}</p>
+                                <p>Аудитория: {{ mo.location }}</p>
+                                <p>Ответственный: {{ mo.contact }}</p>
+                                <p>Тип объекта: {{ mo.mo_type }}</p>
+
+                                <div id="mo_detail_res"></div>
+
+                                <p>
+                                    <a class="mo_action" href="{% url 'update_mo' pk=mo.pk %}">Редактировать</a>
+                                    <a class="mo_action" href="{% url 'del_mo' pk=mo.pk %}">Удалить объект</a>
+                                </p>
+
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                </div>
+
+        {% endfor %}
+    </div>
+    </div>
+
+    <div class="location_lists">
+        {% for location in locations %}
+            <p>{{ location.location }}: {{ location.count }} </p>
+        {% endfor %}
+    </div>
+
+
+    <!-- <ul class="mo_result_list">
+        {% comment %}
         {% include "./mo_result.html" %}
-    </ul>
+        {% endcomment %}
+    </ul> -->
 </div>
 
 {% endblock content %}
