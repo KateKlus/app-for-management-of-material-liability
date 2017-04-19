@@ -1,0 +1,7 @@
+<form action="" method="post" id="mo_form">{% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Обновить" onclick="push_update_mo({{ mo.pk }})" />
+</form>
+
+
+

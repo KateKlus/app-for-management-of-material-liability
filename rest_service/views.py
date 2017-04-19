@@ -2,6 +2,7 @@
 
 from django.shortcuts import get_object_or_404, render
 from django.views import generic
+from django.http import JsonResponse
 from .models import Attribute as AttributeModel
 from api_views import *
 
@@ -119,19 +120,31 @@ def specialist_mo_list_userid(request):
     if not request.user.is_authenticated():
        return redirect('%s?next=%s' % (settings.LOGIN_URL, request.path))
 
+    #получаем имя и фамилию пользователя
     real_name = request.user.last_name
     second_name = request.user.first_name
 
+    #находим ответственного
     specialist = GLPI_user.objects.get(realname=real_name, firstname=second_name)
+
+    #получаем его полное имя и id
     specialist_fullname = specialist.user_dn.split(',')[0]
     spec_id = specialist.id
+
+    #получаем технику и МО специалиста
     comps = Computer.objects.filter(users_id_tech_id=spec_id)
     monitors = Monitor.objects.filter(users_id_tech_id=spec_id)
-
     mo_list = MO.objects.filter(contact=specialist.name)
 
-    #Author.objects.values('name').annotate(average_rating=Avg('book__rating'))
+    #определяем какие типы МО имеются
     types = mo_list.values('mo_type').annotate(count=Count('name')).order_by('mo_type')
+    #создаем словарь тип_мо: список_мо
+    types_of_mo_dict = {}
+    for type in types:
+        type_name = type.values()
+        mo_by_types_list = mo_list.filter(mo_type=type_name[0])
+        types_of_mo_dict.update({type_name[0]: mo_by_types_list})
+
     locations = mo_list.values('location').annotate(count=Count('name')).order_by('location')
 
     return render(request, 'knastu/responsible_user_moList.html', {
@@ -142,6 +155,7 @@ def specialist_mo_list_userid(request):
         'user': request.user,
         'types': types,
         'locations': locations,
+        'mo_dict': types_of_mo_dict
     })
 
 def get_comp_detail(request, pk):
@@ -179,29 +193,29 @@ def get_mo_detail(request, pk):
 
 
 
-#для удаления объектов
-class computersDelete(generic.DeleteView):
+#CRUD компьютеры
+class computersCreate(generic.CreateView):
     model = Computer
-    success_url = reverse_lazy('auditorias')
+    fields = ['name', 'serial', 'users_id_tech', 'locations']
+    template_name_suffix = '_create_form'
+    success_url = "/"
 
-class monitorsDelete(generic.DeleteView):
-    model = Monitor
-    success_url = reverse_lazy('auditorias')
-
-class moDelete(generic.DeleteView):
-    model = MO
-    success_url = reverse_lazy('auditorias')
-
-class attrDelete(generic.DeleteView):
-    model = AttributeModel
-    success_url = reverse_lazy('auditorias')
-
-#для редактирования объектов
 class computersUpdate(generic.UpdateView):
     model = Computer
     fields = ['name', 'serial', 'users_id_tech', 'locations']
     template_name_suffix = '_update_form'
     success_url = reverse_lazy('auditorias')
+
+class computersDelete(generic.DeleteView):
+    model = Computer
+    success_url = reverse_lazy('auditorias')
+
+#CRUD мониторы
+class monitorsCreate(generic.CreateView):
+    model = Monitor
+    fields = ['name', 'serial', 'users_id_tech', 'locations']
+    template_name_suffix = '_create_form'
+    success_url = "/"
 
 class monitorsUpdate(generic.UpdateView):
     model = Monitor
@@ -209,31 +223,11 @@ class monitorsUpdate(generic.UpdateView):
     template_name_suffix = '_update_form'
     success_url = reverse_lazy('auditorias')
 
-class moUpdate(generic.UpdateView):
-    model = MO
-    fields = ['name', 'serial', 'contact', 'location', 'mo_type']
-    template_name_suffix = '_update_form'
-    success_url = reverse_lazy('auditorias')
-
-class attrUpdate(generic.UpdateView):
-    model = AttributeModel
-    fields = ['attr_name', 'attr_value']
-    template_name_suffix = '_update_form'
-    success_url = reverse_lazy('auditorias')
-
-#для добавления объектов
-class computersCreate(generic.CreateView):
-    model = Computer
-    fields = ['name', 'serial', 'users_id_tech', 'locations']
-    template_name_suffix = '_create_form'
-    success_url = "/"
-
-class monitorsCreate(generic.CreateView):
+class monitorsDelete(generic.DeleteView):
     model = Monitor
-    fields = ['name', 'serial', 'users_id_tech', 'locations']
-    template_name_suffix = '_create_form'
-    success_url = "/"
+    success_url = reverse_lazy('auditorias')
 
+#CRUD материальные объекты и аттрибуты
 class mobjCreate(generic.CreateView):
     model = MO
     fields = ['name',  'serial', 'contact', 'location', 'mo_type']
@@ -245,6 +239,27 @@ class attrCreate(generic.CreateView):
     fields = ['attr_name',  'attr_value', 'MO']
     template_name_suffix = '_create_form'
     success_url = "/"
+
+class moUpdate(generic.UpdateView):
+    model = MO
+    fields = ['name', 'serial', 'contact', 'location', 'mo_type']
+    template_name_suffix = '_update_form'
+    success_url = "/"
+
+class attrUpdate(generic.UpdateView):
+    model = AttributeModel
+    fields = ['attr_name', 'attr_value']
+    template_name_suffix = '_update_form'
+    success_url = "/"
+
+class moDelete(generic.DeleteView):
+    model = MO
+    success_url = "/"
+
+class attrDelete(generic.DeleteView):
+    model = AttributeModel
+    success_url = "/"
+
 
 #вход
 class LoginFormView(FormView):
@@ -262,3 +277,43 @@ class LogoutView(View):
     def get(self, request):
         logout(request)
         return HttpResponseRedirect("/")
+
+
+import json
+
+from django.http import HttpResponse
+from django.views.generic.edit import UpdateView
+
+class AjaxableResponseMixin(object):
+    """
+    Mixin to add AJAX support to a form.
+    Must be used with an object-based FormView (e.g. CreateView)
+    """
+    def render_to_json_response(self, context, **response_kwargs):
+        data = json.dumps(context)
+        response_kwargs['content_type'] = 'application/json'
+        return HttpResponse(data, **response_kwargs)
+
+    def form_invalid(self, form):
+        response = super(AjaxableResponseMixin, self).form_invalid(form)
+        if self.request.is_ajax():
+            return self.render_to_json_response(form.errors, status=400)
+        else:
+            return response
+
+    def form_valid(self, form):
+        # We make sure to call the parent's form_valid() method because
+        # it might do some processing (in the case of CreateView, it will
+        # call form.save() for example).
+        response = super(AjaxableResponseMixin, self).form_valid(form)
+        if self.request.is_ajax():
+            data = {
+                'pk': self.object.pk,
+            }
+            return self.render_to_json_response(data)
+        else:
+            return response
+
+class moUpdate1(AjaxableResponseMixin, UpdateView):
+    model = MO
+    fields = ['name', 'serial', 'contact', 'location', 'mo_type']

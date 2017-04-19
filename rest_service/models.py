@@ -103,7 +103,6 @@ class MO_abstract(models.Model):
     entities = models.ForeignKey(
         Entities,
         verbose_name="Подразделение",
-        default='Не назначено'
     )
 
     users_id_tech = models.ForeignKey(

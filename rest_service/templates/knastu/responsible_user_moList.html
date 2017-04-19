@@ -13,29 +13,33 @@
             {% ifchanged %}  </div> <div class="letter_list"> <p class="first_letter">{{ type.mo_type.0 }}</p>   {% endifchanged %}
 
             <p class="types">{{ type.mo_type }}: {{ type.count }} шт </p>
-                <div class="types_result">
-                    {% for mo in mo_list %}
-                    {% if mo.mo_type == type.mo_type %}
-                        <div class="types_mo_group_result">
-                            <li class="mo_name"><a name="{{ mo.MO_id }}" onclick="get_mo_detail(this)"> {{ mo.name }} </a></li>
 
-                            <div class="mo_detail" style="display: none;">
-                                <p>ИН: {{ mo.serial }}</p>
-                                <p>Аудитория: {{ mo.location }}</p>
-                                <p>Ответственный: {{ mo.contact }}</p>
-                                <p>Тип объекта: {{ mo.mo_type }}</p>
 
-                                <div id="mo_detail_res"></div>
 
-                                <p>
-                                    <a class="mo_action" href="{% url 'update_mo' pk=mo.pk %}">Редактировать</a>
-                                    <a class="mo_action" href="{% url 'del_mo' pk=mo.pk %}">Удалить объект</a>
-                                </p>
+            <div class="types_result">
+                    {% for k, v in mo_dict.items %}
+                        {% if  k == type.mo_type %}
+                            {% for mo in v %}
+                                <div class="types_mo_group_result">
+                                    <li class="mo_name"><a name="{{ mo.MO_id }}" onclick="get_mo_detail(this)"> {{ mo.name }} - {{ mo.serial }} </a></li>
+                                    <div class="mo_detail" style="display: none;">
+                                        <p>ИН: {{ mo.serial }}</p>
+                                        <p>Аудитория: {{ mo.location }}</p>
+                                        <p>Ответственный: {{ mo.contact }}</p>
+                                        <p>Тип объекта: {{ mo.mo_type }}</p>
 
+                                        <div id="mo_detail_res"></div>
+                                        <p>
+                                            <a class="mo_action" onclick="update_mo({{ mo.pk }})" id="myBtn">Редактировать</a>
+                                            <a class="mo_action" href="{% url 'del_mo' pk=mo.pk %}">Удалить объект</a>
+                                        </p>
                             </div>
                         </div>
-                    {% endif %}
-                {% endfor %}
+                            {% endfor %}
+                        {% endif %}
+
+                    {% endfor %}
+
                 </div>
 
         {% endfor %}
@@ -48,6 +52,18 @@
         {% endfor %}
     </div>
 
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>Обновление информации</p>
+            <div class="edit_mo">
+            </div>
+        </div>
+
+    </div>
 
     <!-- <ul class="mo_result_list">
         {% comment %}
