@@ -4,4 +4,7 @@ myvenv
 db.sqlite3
 .DS_Store
 .idea
-my_diplom/
+my_diplom
+*.xml
+.gitignore
+
