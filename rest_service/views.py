@@ -16,6 +16,7 @@ from django.http import HttpResponseRedirect
 from django.views.generic.base import View
 from django.urls import reverse_lazy
 from django.db.models import Avg, Max, Min, Count
+from .forms import *
 
 def index(request):
     if not request.user.is_authenticated():
@@ -138,14 +139,27 @@ def specialist_mo_list_userid(request):
 
     #определяем какие типы МО имеются
     types = mo_list.values('mo_type').annotate(count=Count('name')).order_by('mo_type')
-    #создаем словарь тип_мо: список_мо
+    types_list = types.values_list('mo_type', 'count')
+
+    #создаем словарь {тип_мо: список_мо}
     types_of_mo_dict = {}
     for type in types:
         type_name = type.values()
         mo_by_types_list = mo_list.filter(mo_type=type_name[0])
-        types_of_mo_dict.update({type_name[0]: mo_by_types_list})
+        types_of_mo_dict.update({type_name[0]: mo_by_types_list.values('MO_id', 'name', 'serial', 'contact', 'location', 'note', 'mo_type')})
 
     locations = mo_list.values('location').annotate(count=Count('name')).order_by('location')
+
+    glpi_comps_locations = comps.values('locations').annotate(count=Count('name')).order_by('locations')
+    glpi_monitors_locations = monitors.values('locations').annotate(count=Count('name')).order_by('locations')
+
+    # создаем словарь {тип_мо: список_мо}
+    locations_of_mo_dict = {}
+    for loc in locations:
+        location = loc.values()
+        mo_by_location_list = mo_list.filter(location=location[0])
+        locations_of_mo_dict.update({location[0]: mo_by_location_list.values('MO_id', 'name', 'serial', 'contact', 'location',
+                                                                       'note', 'mo_type')})
 
     return render(request, 'knastu/responsible_user_moList.html', {
         'spec_name': specialist_fullname[3:],
@@ -153,8 +167,9 @@ def specialist_mo_list_userid(request):
         'monitors': monitors,
         'mo_list':mo_list,
         'user': request.user,
-        'types': types,
+        'types': types_list,
         'locations': locations,
+        'mo_dict_loc':locations_of_mo_dict,
         'mo_dict': types_of_mo_dict
     })
 
@@ -172,7 +187,7 @@ def get_monitor_detail(request, pk):
     if not request.user.is_authenticated():
        return redirect('%s?next=%s' % (settings.LOGIN_URL, request.path))
 
-    monitor = Computer.objects.get(id=pk)
+    monitor = Monitor.objects.get(id=pk)
 
     return render(request, 'knastu/glpi_detail_result.html', {
         'mo': monitor,
@@ -183,7 +198,6 @@ def get_mo_detail(request, pk):
        return redirect('%s?next=%s' % (settings.LOGIN_URL, request.path))
 
     mo_attr_dict = []
-
     attr = AttributeModel.objects.filter(MO=pk)
     mo_attr_dict.append(attr)
 
@@ -196,7 +210,7 @@ def get_mo_detail(request, pk):
 #CRUD компьютеры
 class computersCreate(generic.CreateView):
     model = Computer
-    fields = ['name', 'serial', 'users_id_tech', 'locations']
+    fields = ['name', 'serial', 'otherserial','users_id_tech', 'locations']
     template_name_suffix = '_create_form'
     success_url = "/"
 
@@ -219,7 +233,7 @@ class monitorsCreate(generic.CreateView):
 
 class monitorsUpdate(generic.UpdateView):
     model = Monitor
-    fields = ['name', 'serial', 'users_id_tech', 'locations']
+    fields = ['name', 'serial', 'otherserial','users_id_tech', 'locations']
     template_name_suffix = '_update_form'
     success_url = reverse_lazy('auditorias')
 
@@ -242,9 +256,10 @@ class attrCreate(generic.CreateView):
 
 class moUpdate(generic.UpdateView):
     model = MO
-    fields = ['name', 'serial', 'contact', 'location', 'mo_type']
+    fields = ['name', 'serial', 'contact', 'location', 'mo_type', 'note',]
     template_name_suffix = '_update_form'
     success_url = "/"
+
 
 class attrUpdate(generic.UpdateView):
     model = AttributeModel
@@ -264,7 +279,6 @@ class attrDelete(generic.DeleteView):
 #вход
 class LoginFormView(FormView):
     form_class = AuthenticationForm
-
     template_name = "knastu/login.html"
     success_url = "/"
 
@@ -278,42 +292,3 @@ class LogoutView(View):
         logout(request)
         return HttpResponseRedirect("/")
 
-
-import json
-
-from django.http import HttpResponse
-from django.views.generic.edit import UpdateView
-
-class AjaxableResponseMixin(object):
-    """
-    Mixin to add AJAX support to a form.
-    Must be used with an object-based FormView (e.g. CreateView)
-    """
-    def render_to_json_response(self, context, **response_kwargs):
-        data = json.dumps(context)
-        response_kwargs['content_type'] = 'application/json'
-        return HttpResponse(data, **response_kwargs)
-
-    def form_invalid(self, form):
-        response = super(AjaxableResponseMixin, self).form_invalid(form)
-        if self.request.is_ajax():
-            return self.render_to_json_response(form.errors, status=400)
-        else:
-            return response
-
-    def form_valid(self, form):
-        # We make sure to call the parent's form_valid() method because
-        # it might do some processing (in the case of CreateView, it will
-        # call form.save() for example).
-        response = super(AjaxableResponseMixin, self).form_valid(form)
-        if self.request.is_ajax():
-            data = {
-                'pk': self.object.pk,
-            }
-            return self.render_to_json_response(data)
-        else:
-            return response
-
-class moUpdate1(AjaxableResponseMixin, UpdateView):
-    model = MO
-    fields = ['name', 'serial', 'contact', 'location', 'mo_type']

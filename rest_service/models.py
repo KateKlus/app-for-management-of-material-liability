@@ -8,8 +8,9 @@ class MO(models.Model):
     name = models.CharField("Название", max_length=45)
     serial = models.CharField("Инвентарный номер", max_length=20)
     contact = models.CharField("Ответственное лицо", max_length=45)
-    location = models.CharField("Аудитория", max_length=45)
-    mo_type = models.CharField("Тип", max_length=45)
+    location = models.CharField("Аудитория", max_length=45, default='', blank=True, null=True)
+    mo_type = models.CharField("Тип", max_length=45, default='', blank=True, null=True)
+    note = models.TextField("Примечание", default='', blank=True, null=True)
 
     class Meta:
         app_label = 'rest_service'
@@ -98,8 +99,8 @@ class Location(models.Model):
 #абстрактный родитель МО
 class MO_abstract(models.Model):
     name = models.CharField("Название", max_length=255)
-    serial = models.CharField("Серия", max_length=255, default='Не назначено')
-    otherserial = models.CharField("Инвентарный номер", max_length=255, default='Не назначено')
+    serial = models.CharField("Серия", max_length=255, default='Не назначено',  blank=True, null=True)
+    otherserial = models.CharField("Инвентарный номер", max_length=255, default='Не назначено',  blank=True, null=True)
     entities = models.ForeignKey(
         Entities,
         verbose_name="Подразделение",

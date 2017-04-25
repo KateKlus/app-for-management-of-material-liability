@@ -7,7 +7,7 @@ class MOSerializer(serializers.ModelSerializer):
     label = 'MO'
     class Meta:
         model = MO
-        fields = ('MO_id', 'name',  'serial', 'contact', 'location', 'mo_type')
+        fields = ('MO_id', 'name',  'serial', 'contact', 'location', 'mo_type', 'note')
 
 class AttributeSerializer(serializers.ModelSerializer):
     label = 'Attribute'

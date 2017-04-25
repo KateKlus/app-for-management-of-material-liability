@@ -34,7 +34,7 @@ urlpatterns = [
 
     url(r'^update_comp/(?P<pk>[0-9]+)$', views.computersUpdate.as_view(), name='update_comp'),
     url(r'^update_monitor/(?P<pk>[0-9]+)$', views.monitorsUpdate.as_view(), name='update_monitor'),
-    url(r'^update_mo/(?P<pk>[0-9]+)$', views.moUpdate1.as_view(), name='update_mo'),
+    url(r'^update_mo/(?P<pk>[0-9]+)$', views.moUpdate.as_view(), name='update_mo'),
     url(r'^update_attr/(?P<pk>[0-9]+)$', views.attrUpdate.as_view(), name='update_attr'),
 
     url(r'^create_comp/$', views.computersCreate.as_view(), name='create_comp'),

@@ -9,16 +9,54 @@
 
     <div class="alphabet_lists">
     <div>
-        {% for type in types %}
-            {% ifchanged %}  </div> <div class="letter_list"> <p class="first_letter">{{ type.mo_type.0 }}</p>   {% endifchanged %}
+        {% for mo_type, count in types %}
+            {% ifchanged %}
+                </div> <div class="letter_list"> <p class="first_letter">{{ mo_type.0 }}</p>
+                {% if mo_type.0 == 'К' %}
+                    <p class="types">Компьютеры в сети: {{ comps.count }}</p>
+                    <div class="types_result">
+                        {% for comp in comps %}
+                            <div class="types_mo_group_result">
+                                <li class="mo_name"><a name="{{ comp.id }}" onclick="get_comp_detail(this)"> {{ comp.name }} </a></li>
+                                <div class="mo_detail" style="display: none;">
+                                    <div id="{{ comp.id }}_detail"></div>
 
-            <p class="types">{{ type.mo_type }}: {{ type.count }} шт </p>
+                                    <p>
+                                        <a class="mo_action" onclick="update_comp({{ comp.id }})" id="myBtn">Редактировать</a>
+                                        <a class="mo_action" href="{% url 'del_comp' pk=comp.pk %}">Удалить объект</a>
+                                    </p>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                {% if mo_type.0 == 'М' %}
+                    <p class="types">Мониторы в сети: {{ monitors.count }}</p>
+                    <div class="types_result">
+                        {% for monitor in monitors %}
+                            <div class="types_mo_group_result">
+                                <li class="mo_name"><a name="{{ monitor.id }}" onclick="get_monitor_detail(this)"> {{ monitor.name }}: {{ monitor.otherserial }} </a></li>
+                                <div class="mo_detail" style="display: none;">
+                                    <div id="{{ monitor.id }}mon_detail"></div>
+                                    <p>
+                                        <a class="mo_action" onclick="update_monitor({{ monitor.id }})" id="myBtn">Редактировать</a>
+                                        <a class="mo_action" href="{% url 'del_monitor' pk=monitor.pk %}">Удалить объект</a>
+                                    </p>
+
+                                </div>
+                             </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endifchanged %}
 
 
+            <p class="types">{{ mo_type }}: {{ count }} шт </p>
 
             <div class="types_result">
                     {% for k, v in mo_dict.items %}
-                        {% if  k == type.mo_type %}
+                        {% if  k == mo_type %}
                             {% for mo in v %}
                                 <div class="types_mo_group_result">
                                     <li class="mo_name"><a name="{{ mo.MO_id }}" onclick="get_mo_detail(this)"> {{ mo.name }} - {{ mo.serial }} </a></li>
@@ -30,25 +68,22 @@
 
                                         <div id="mo_detail_res"></div>
                                         <p>
-                                            <a class="mo_action" onclick="update_mo({{ mo.pk }})" id="myBtn">Редактировать</a>
-                                            <a class="mo_action" href="{% url 'del_mo' pk=mo.pk %}">Удалить объект</a>
+                                            <a class="mo_action" onclick="update_mo({{ mo.MO_id }})" id="myBtn">Редактировать</a>
+                                            <a class="mo_action" href="{% url 'del_mo'  pk=mo.MO_id %}">Удалить объект</a>
                                         </p>
-                            </div>
-                        </div>
+                                    </div>
+                                </div>
                             {% endfor %}
                         {% endif %}
-
                     {% endfor %}
-
                 </div>
-
         {% endfor %}
     </div>
     </div>
 
     <div class="location_lists">
-        {% for location in locations %}
-            <p>{{ location.location }}: {{ location.count }} </p>
+        {% for item in locations %}
+            <p>{{ item.location }}: {{ item.count }} </p>
         {% endfor %}
     </div>
 
@@ -58,18 +93,12 @@
         <!-- Modal content -->
         <div class="modal-content">
             <span class="close">&times;</span>
-            <p>Обновление информации</p>
             <div class="edit_mo">
             </div>
         </div>
 
     </div>
 
-    <!-- <ul class="mo_result_list">
-        {% comment %}
-        {% include "./mo_result.html" %}
-        {% endcomment %}
-    </ul> -->
 </div>
 
 {% endblock content %}
