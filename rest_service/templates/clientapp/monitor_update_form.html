@@ -1,14 +1,10 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>Редактиирование</title>
-</head>
-<body>
-    <form action="" method="post">{% csrf_token %}
+<h1>Редактирование</h1>
+{% csrf_token %}
+<form id="mo_update_form" name="mo_update_form" action="" method="post">
     {{ form.as_p }}
-    <input type="submit" value="Обновить" />
+    <input type="button" onclick="push_update_mo()" value="Обновить" class="login login-submit" />
 </form>
 
-</body>
-</html>
+
+
+

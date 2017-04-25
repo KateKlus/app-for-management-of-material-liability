@@ -1,13 +1,10 @@
-{% extends 'knastu/base.html' %}
-{% block content %}
+<h1>Редактирование</h1>
+{% csrf_token %}
+<form id="mo_update_form" name="mo_update_form" action="" method="post">
+    {{ form.as_p }}
+    <input type="button" onclick="push_update_mo()" value="Обновить" class="login login-submit" />
+</form>
 
-    <div class="login-card">
-        <h1>Редактирование</h1>
-        <form action="" method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" name="login" class="login login-submit"> Обновить </button>
-        </form>
-    </div>
 
-{% endblock content %}
+
+
