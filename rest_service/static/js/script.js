@@ -39,6 +39,23 @@ $(document).ready(function() {
         return false;
     });
 
+    $('.types_mo_group_result').hover(
+        function(){
+             $(this).children('.check').css('visibility', 'visible');
+        },
+        function(){
+            if ($(this).children('.check').prop("checked")) {
+                $(this).children('.check').css('visibility', 'visible');
+            }
+            else{
+                 $(this).children('.check').css('visibility', 'hidden');
+            }
+        });
+
+    $('.check').click(function () {
+        $(this).css('visibility', 'visible !important');
+
+    });
 });
 
 function set_alphabet() {
@@ -57,5 +74,5 @@ function set_locations() {
 
 
 function mo_transfer() {
-    $('.check').css('display', 'inline-block');
+
 }

@@ -5,9 +5,6 @@
     <p class="location_name">{{ spec_name }}</p>
     <p class="location_name">Всего: {{ comps.count }} компьютеров, {{ monitors.count }} мониторов, {{ mo_list.count }} малоценных объекта(ов)</p>
 
-    <!-- Кнопка переноса оборудования -->
-    <div class="transfer_but" onclick="mo_transfer()"> Перенос группы МО </div>
-
     <p class="type_of_list" id="alph" onclick="set_alphabet()"> По алфавиту </p> <p class="type_of_list" id="loc" onclick="set_locations()"> По аудиториям</p>
 
     <div class="alphabet_lists">
@@ -20,7 +17,7 @@
                     <div class="types_result">
                         {% for comp in comps %}
                             <div class="types_mo_group_result">
-                                <input class="check" type="checkbox"/> <p class="mo_name"><a name="{{ comp.id }}" onclick="get_comp_detail(this)"> {{ comp.name }} </a></p>
+                                <input class="check" type="checkbox" /> <p class="mo_name with_box"><a name="{{ comp.id }}" onclick="get_comp_detail(this)"> {{ comp.name }} </a></p>
                                 <div class="mo_detail" style="display: none;">
                                     <div id="{{ comp.id }}_detail"></div>
 
@@ -88,6 +85,18 @@
         {% for item in locations %}
             <p>{{ item.location }}: {{ item.count }} </p>
         {% endfor %}
+    </div>
+
+    <div class="bottom_menu">
+        <!-- Кнопка переноса оборудования -->
+        <div class="transfer_box">
+            <div class="transfer_but"> Перенос группы МО </div>
+            <div class="loc_input">
+                <input type="text" placeholder="Укажите аудиторию">
+                <!-- <div class="transfer_but" onclick="mo_transfer()"> Перенести </div>
+                <div class="transfer_but" onclick="mo_transfer()"> Отмена </div> -->
+            </div>
+        </div>
     </div>
 
     <!-- The Modal -->
