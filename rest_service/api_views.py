@@ -8,32 +8,38 @@ from rest_framework.views import APIView
 from rest_service.models import Attribute as AttributeModel
 from rest_service.serializers import *
 
-class MOList(mixins.ListModelMixin,mixins.CreateModelMixin,generics.GenericAPIView):
+
+class MOList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
 
     queryset = MO.objects.all()
     serializer_class = MOSerializer
 
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
+
     def post(self, request, *args, **kwargs):
         return self.create(request, *args, **kwargs)
+
 
 class MODetail(mixins.RetrieveModelMixin, mixins.UpdateModelMixin,
-                mixins.DestroyModelMixin,generics.GenericAPIView):
+                 mixins.DestroyModelMixin, generics.GenericAPIView):
 
     queryset = MO.objects.all()
     serializer_class = MOSerializer
+
     def get(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)
+
     def put(self, request, *args, **kwargs):
         return self.update(request, *args, **kwargs)
+
     def delete(self, request, *args, **kwargs):
         return self.destroy(request, *args, **kwargs)
 
-#computers
-class CompList(mixins.ListModelMixin,
-                    mixins.CreateModelMixin,
-                    generics.GenericAPIView):
+
+# computers
+class CompList(mixins.ListModelMixin, mixins.CreateModelMixin,
+               generics.GenericAPIView):
 
     queryset = Computer.objects.all()
     serializer_class = ComputerSerializer
@@ -44,10 +50,9 @@ class CompList(mixins.ListModelMixin,
     def post(self, request, *args, **kwargs):
         return self.create(request, *args, **kwargs)
 
-class CompDetail(mixins.RetrieveModelMixin,
-                    mixins.UpdateModelMixin,
-                    mixins.DestroyModelMixin,
-                    generics.GenericAPIView):
+
+class CompDetail(mixins.RetrieveModelMixin, mixins.UpdateModelMixin,
+                 mixins.DestroyModelMixin, generics.GenericAPIView):
 
     queryset = Computer.objects.all()
     serializer_class = ComputerSerializer
@@ -61,10 +66,10 @@ class CompDetail(mixins.RetrieveModelMixin,
     def delete(self, request, *args, **kwargs):
         return self.destroy(request, *args, **kwargs)
 
-#auditorias
-class Auditoria(mixins.ListModelMixin,
-                    mixins.CreateModelMixin,
-                    generics.GenericAPIView):
+
+# auditorias
+class Auditoria(mixins.ListModelMixin, mixins.CreateModelMixin,
+                generics.GenericAPIView):
 
     queryset = Location.objects.all()
     serializer_class = LocationSerializer
@@ -76,6 +81,7 @@ class Auditoria(mixins.ListModelMixin,
     @csrf_exempt
     def post(self, request, *args, **kwargs):
         return self.create(request, *args, **kwargs)
+
 
 class Auditorias_base(APIView):
     def get_object(self, pk):
@@ -106,7 +112,9 @@ class Auditorias_base(APIView):
         content = serializer.data
         return Response(content)
 
+
 class Specialist_moList(APIView):
+
     def get(self, request, pk, format=None):
         specialist = GLPI_user.objects.get(pk=pk)
         specialist_ser = GLPI_userSerializer(specialist)
@@ -131,7 +139,6 @@ class Specialist_moList(APIView):
             'mo_list': mo_ser.data,
             'mo_attr_dict': mo_attr_dict,
         })
-
 
     def get_auditorium(self):
         locations = Location.objects.all()

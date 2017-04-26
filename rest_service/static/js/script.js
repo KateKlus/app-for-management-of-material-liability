@@ -55,3 +55,7 @@ function set_locations() {
     $('.location_lists').css('display', 'block');
 }
 
+
+function mo_transfer() {
+    $('.check').css('display', 'inline-block');
+}

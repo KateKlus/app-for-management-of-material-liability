@@ -88,7 +88,8 @@ function push_comp() {
             locations: form.elements["id_locations"].options[form.elements["id_locations"].selectedIndex].value,
             name: form.elements["id_name"].value,
             serial: form.elements["id_serial"].value,
-            user_id_tech: form.elements["id_user_id_tech"].options[form.elements["id_user_id_tech"].selectedIndex].value,
+            otherserial: form.elements["id_otherserial"].value,
+            users_id_tech: form.elements["id_users_id_tech"].options[form.elements["id_users_id_tech"].selectedIndex].value
         };
 
     ajax_push_update_mo(data, url);
@@ -102,10 +103,9 @@ function push_monitor() {
             locations: form.elements["id_locations"].options[form.elements["id_locations"].selectedIndex].value,
             name: form.elements["id_name"].value,
             serial: form.elements["id_serial"].value,
-            user_id_tech: form.elements["id_user_id_tech"].options[form.elements["id_user_id_tech"].selectedIndex].value,
+            users_id_tech: form.elements["id_users_id_tech"].options[form.elements["id_users_id_tech"].selectedIndex].value
         };
 
-    alert(data.locations + ' ' + data.name + ' ' + data.serial + ' ' + data.user_id_tech);
     ajax_push_update_mo(data, url);
 }
 

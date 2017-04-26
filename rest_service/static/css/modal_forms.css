@@ -36,6 +36,7 @@
   display: block;
   margin-bottom: 10px;
   position: relative;
+  cursor: pointer;
 }
 
 .modal-content input[type=text], textarea {

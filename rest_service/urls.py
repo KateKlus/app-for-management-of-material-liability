@@ -11,21 +11,20 @@ urlpatterns = [
 
     # Regular Django Views
     url(r'^$', views.index, name='index'),
-    url(r'^auditorias/$', views.auditorias.as_view(), name='auditorias'),#список аудиторий
-    url(r'^auditorias/get_mo_list/(?P<pk>[0-9]+)/$', views.auditorias_base, name='auditorias_base'),#оборудование по аудиториям
-    url(r'^entities/$', views.entities.as_view(), name='entities'),#архитектура подразделений
-    url(r'^entities/get_mo_list/(?P<pk>[0-9]+)/$', views.entities_base, name='entities_base'),#архитектура подразделений
+    url(r'^auditorias/$', views.auditorias.as_view(), name='auditorias'),  # список аудиторий
+    url(r'^auditorias/get_mo_list/(?P<pk>[0-9]+)/$', views.auditorias_base, name='auditorias_base'),  # оборудование по аудиториям
+    url(r'^entities/$', views.entities.as_view(), name='entities'),  # архитектура подразделений
+    url(r'^entities/get_mo_list/(?P<pk>[0-9]+)/$', views.entities_base, name='entities_base'),  # архитектура подразделений
 
-    #получить список ответственных специалистов
+    # получить список ответственных специалистов
     url(r'^responsible_specialist/$', views.responsible_specialist.as_view(), name='responsible_specialist'),
-    #получить подотчетное оборудование по id специалиста
+    # получить подотчетное оборудование по id специалиста
     url(r'^responsible_specialist/get_mo_list/(?P<pk>[0-9]+)/$', views.specialist_mo_list, name='specialist_mo_list'),
-    #получить подотчетное оборудование по id пользователя
+    # получить подотчетное оборудование по id пользователя
     url(r'^responsible_specialist_mo_list/$', views.specialist_mo_list_userid, name='user_specialist_mo_list'),
     url(r'^responsible_specialist_mo_list/get_mo_detail/(?P<pk>[0-9]+)/$', views.get_mo_detail, name='get_mo_detail'),
     url(r'^responsible_specialist_mo_list/get_comp_detail/(?P<pk>[0-9]+)/$', views.get_comp_detail, name='get_comp_detail'),
     url(r'^responsible_specialist_mo_list/get_monitor_detail/(?P<pk>[0-9]+)/$', views.get_monitor_detail, name='get_comp_detail'),
-
 
     url(r'^del_comp/(?P<pk>[0-9]+)$', views.computersDelete.as_view(), name='del_comp'),
     url(r'^del_monitor/(?P<pk>[0-9]+)$', views.monitorsDelete.as_view(), name='del_monitor'),
@@ -42,9 +41,6 @@ urlpatterns = [
     url(r'^create_mo/$', views.mobjCreate.as_view(), name='create_mo'),
     url(r'^create_mo/create_attribute/$', views.attrCreate.as_view(), name='create_attribute'),
 
-    #url(r'^mo_detail/(?P<pk>[0-9]+)/$', views.mo_detail, name='mo_detail'),
-    #url(r'^mo_detail/(?P<location_pk>[0-9]+)/(?P<mo_pk>[0-9]+)/$', views.mo_detail, name='mo_detail'),
-
     # API views
     url(r'^api/comp/$', api_views.CompList.as_view()),
     url(r'^api/comp/(?P<pk>[0-9]+)/$', api_views.CompDetail.as_view()),
@@ -55,4 +51,3 @@ urlpatterns = [
     url(r'^api/specialist_moList/(?P<pk>[0-9]+)/$', api_views.Specialist_moList.as_view()),
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-

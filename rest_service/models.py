@@ -2,7 +2,8 @@
 from __future__ import unicode_literals
 from django.db import models
 
-#модель материального объекта
+
+# модель материального объекта
 class MO(models.Model):
     MO_id = models.AutoField(primary_key=True)
     name = models.CharField("Название", max_length=45)
@@ -21,7 +22,8 @@ class MO(models.Model):
     def __unicode__(self):
         return self.name
 
-#модель аттрибута
+
+# модель аттрибута
 class Attribute(models.Model):
     Attribute_id = models.AutoField(primary_key=True)
     attr_name = models.CharField("Аттрибут", max_length=45)
@@ -42,13 +44,13 @@ class Attribute(models.Model):
         return self.attr_name
 
 
-#модель пользователя GLPI
+# модель пользователя GLPI
 class GLPI_user(models.Model):
     name = models.CharField("Логин", max_length=255)
     realname = models.CharField("Фамилия", max_length=255)
     firstname = models.CharField("Имя", max_length=255)
     user_dn = models.TextField("Информация о пользователе")
-    auths_id = models.IntegerField( default=0)
+    auths_id = models.IntegerField(default=0)
 
     class Meta:
         db_table = 'glpi_users'
@@ -64,10 +66,11 @@ class GLPI_user(models.Model):
         else:
             return user_data[3:]
 
+
 # рекурсивная модель подразделений
 class Entities(models.Model):
     name = models.CharField("Название", max_length=255)
-    entities_id = models.ForeignKey('self', verbose_name="Родитель", db_column = 'entities_id')
+    entities_id = models.ForeignKey('self', verbose_name="Родитель", db_column='entities_id')
     level = models.IntegerField()
 
     class Meta:
@@ -77,6 +80,7 @@ class Entities(models.Model):
 
     def __unicode__(self):
         return self.name
+
 
 # описание моделей БД GLPI
 class Location(models.Model):
@@ -96,7 +100,8 @@ class Location(models.Model):
     def __unicode__(self):
         return self.name
 
-#абстрактный родитель МО
+
+# абстрактный родитель МО
 class MO_abstract(models.Model):
     name = models.CharField("Название", max_length=255)
     serial = models.CharField("Серия", max_length=255, default='Не назначено',  blank=True, null=True)
@@ -109,7 +114,9 @@ class MO_abstract(models.Model):
     users_id_tech = models.ForeignKey(
         GLPI_user,
         verbose_name="Ответственное лицо",
-        db_column = 'users_id_tech'
+        db_column='users_id_tech',
+        blank=True,
+        null=True
     )
 
     locations = models.ForeignKey(
@@ -118,10 +125,10 @@ class MO_abstract(models.Model):
     )
 
     class Meta:
-       abstract = True
+       abstract=True
 
 
-#модель компьютера
+# модель компьютера
 class Computer(MO_abstract):
     class Meta:
         db_table = 'glpi_computers'
@@ -131,10 +138,9 @@ class Computer(MO_abstract):
     def __unicode__(self):
         return self.name
 
-#модель монитора
-class Monitor(MO_abstract):
 
+# модель монитора
+class Monitor(MO_abstract):
     class Meta:
         db_table = 'glpi_monitors'
         app_label = 'clientapp'
-
