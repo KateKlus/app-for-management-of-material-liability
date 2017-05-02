@@ -41,6 +41,10 @@ urlpatterns = [
     url(r'^create_mo/$', views.mobjCreate.as_view(), name='create_mo'),
     url(r'^create_mo/create_attribute/$', views.attrCreate.as_view(), name='create_attribute'),
 
+    # Перенос группы оборудования
+    url(r'^responsible_specialist_mo_list/mo_transfer/json/$', views.transfer, name='transfer_json'),
+    url(r'^responsible_specialist_mo_list/mo_transfer/json/(?P<loc>\w+)/(?P<mo_list>\w+)$', views.transfer, name='transfer_json_with_key'),
+
     # API views
     url(r'^api/comp/$', api_views.CompList.as_view()),
     url(r'^api/comp/(?P<pk>[0-9]+)/$', api_views.CompDetail.as_view()),

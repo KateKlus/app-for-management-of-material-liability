@@ -3,6 +3,7 @@ from django.views.generic.edit import FormView
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout
 from django.http import HttpResponseRedirect
+from django.http import HttpResponse
 from django.views import generic
 from django.views.generic.base import View
 from django.urls import reverse_lazy
@@ -10,6 +11,8 @@ from django.db.models import Count
 from django.shortcuts import redirect, render
 from django.conf import settings
 from api_views import *
+from django.http import JsonResponse
+import json
 
 
 def index(request):
@@ -218,7 +221,7 @@ class computersCreate(generic.CreateView):
 
 class computersUpdate(generic.UpdateView):
     model = Computer
-    fields = ['name', 'serial', 'otherserial', 'users_id_tech', 'locations']
+    fields = ['name', 'serial', 'otherserial', 'users_id_tech']
     template_name_suffix = '_update_form'
     success_url = reverse_lazy('auditorias')
 
@@ -231,14 +234,14 @@ class computersDelete(generic.DeleteView):
 # CRUD мониторы
 class monitorsCreate(generic.CreateView):
     model = Monitor
-    fields = ['name', 'serial', 'users_id_tech', 'locations']
+    fields = ['name', 'serial', 'otherserial', 'users_id_tech', 'locations']
     template_name_suffix = '_create_form'
     success_url = "/"
 
 
 class monitorsUpdate(generic.UpdateView):
     model = Monitor
-    fields = ['name', 'serial', 'otherserial','users_id_tech', 'locations']
+    fields = ['name', 'serial', 'otherserial', 'users_id_tech', ]
     template_name_suffix = '_update_form'
     success_url = reverse_lazy('auditorias')
 
@@ -286,6 +289,45 @@ class attrDelete(generic.DeleteView):
     model = AttributeModel
     success_url = "/"
 
+
+def transfer(request, loc=None, mo_list=None,):
+    loc = request.GET.get('loc')
+    mo_list = json.loads(request.GET.get('mo_list'))
+
+    comps = []
+    monitors = []
+    other = []
+
+    for mo in mo_list:
+        mo_type_id = mo.split(' ')
+        if mo_type_id[0] == u'comp':
+            comps.append(int(mo_type_id[1]))
+        if mo_type_id[0] == u'monitor':
+            monitors.append(int(mo_type_id[1]))
+        if mo_type_id[0] == u'mo':
+            other.append(int(mo_type_id[1]))
+
+    if other:
+        for mo in other:
+            mo_obj = MO.objects.get(MO_id=mo)
+            mo_obj.location = loc
+            mo_obj.save()
+
+    # Выбираются все записи из таблици Location с указанным именем, упорядоченные по уровню вложенности
+    # подразделений и берется ПОСЛЕДНЯЯ запись. В эту аудиторию будет перенесено оборудование.
+    if comps or monitors:
+        location = Location.objects.filter(name=loc).order_by('-entities__level')[0]
+        for comp in comps:
+            comp_obj = Computer.objects.get(id=comp)
+            comp_obj.locations = location
+            comp_obj.save()
+
+        for monitor in monitors:
+            monitor_obj = Monitor.objects.get(id=monitor)
+            monitor_obj.locations = location
+            monitor_obj.save()
+
+    return JsonResponse({})
 
 # вход
 class LoginFormView(FormView):

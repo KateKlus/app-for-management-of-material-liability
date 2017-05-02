@@ -17,10 +17,9 @@
                     <div class="types_result">
                         {% for comp in comps %}
                             <div class="types_mo_group_result">
-                                <input class="check" type="checkbox" /> <p class="mo_name with_box"><a name="{{ comp.id }}" onclick="get_comp_detail(this)"> {{ comp.name }} </a></p>
+                                <input class="check" type="checkbox" name="comp {{ comp.id }}" /> <p class="mo_name"><a  class="get_id" name="{{ comp.id }}" onclick="get_comp_detail(this)"> {{ comp.name }} </a></p>
                                 <div class="mo_detail" style="display: none;">
                                     <div id="{{ comp.id }}_detail"></div>
-
                                     <p>
                                         <a class="mo_action" onclick="update_comp({{ comp.id }})" id="myBtn">Редактировать</a>
                                         <a class="mo_action" href="{% url 'del_comp' pk=comp.pk %}">Удалить объект</a>
@@ -36,7 +35,7 @@
                     <div class="types_result">
                         {% for monitor in monitors %}
                             <div class="types_mo_group_result">
-                                <input class="check" type="checkbox"/> <p class="mo_name"><a name="{{ monitor.id }}" onclick="get_monitor_detail(this)"> {{ monitor.name }}: {{ monitor.otherserial }} </a></p>
+                                <input class="check" type="checkbox" name="monitor {{ monitor.id }}"/> <p class="mo_name"><a name="{{ monitor.id }}" onclick="get_monitor_detail(this)"> {{ monitor.name }}: {{ monitor.otherserial }} </a></p>
                                 <div class="mo_detail" style="display: none;">
                                     <div id="{{ monitor.id }}mon_detail"></div>
                                     <p>
@@ -59,7 +58,7 @@
                         {% if  k == mo_type %}
                             {% for mo in v %}
                                 <div class="types_mo_group_result">
-                                    <input class="check" type="checkbox"/> <p class="mo_name"><a name="{{ mo.MO_id }}" onclick="get_mo_detail(this)"> {{ mo.name }} - {{ mo.serial }} </a></p>
+                                    <input class="check" type="checkbox" name="mo {{ mo.MO_id }}"/> <p class="mo_name"><a name="{{ mo.MO_id }}" onclick="get_mo_detail(this)"> {{ mo.name }} - {{ mo.serial }} </a></p>
                                     <div class="mo_detail" style="display: none;">
                                         <p>ИН: {{ mo.serial }}</p>
                                         <p>Аудитория: {{ mo.location }}</p>
@@ -90,12 +89,11 @@
     <div class="bottom_menu">
         <!-- Кнопка переноса оборудования -->
         <div class="transfer_box">
-            <div class="transfer_but"> Перенос группы МО </div>
             <div class="loc_input">
-                <input type="text" placeholder="Укажите аудиторию">
-                <!-- <div class="transfer_but" onclick="mo_transfer()"> Перенести </div>
-                <div class="transfer_but" onclick="mo_transfer()"> Отмена </div> -->
+                <input type="text" placeholder="Укажите аудиторию" id="location_name">
             </div>
+            <div class="transfer_but" onclick="mo_transfer()"> Перенести </div>
+
         </div>
     </div>
 

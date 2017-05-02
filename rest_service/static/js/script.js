@@ -1,7 +1,9 @@
 /**
  * Created by catherine on 06.04.17.
  */
+
 var update_mo_id;
+var mo_list = [];
 
 $(document).ready(function() {
     $('.mo_name').click(function () {
@@ -56,6 +58,36 @@ $(document).ready(function() {
         $(this).css('visibility', 'visible !important');
 
     });
+
+    var checkboxes = document.getElementsByTagName('input');
+
+    for (var n=0; n<checkboxes.length; n++)  {
+        if (checkboxes[n].type == 'checkbox')   {
+            checkboxes[n].checked = false;
+        }
+    }
+
+
+    var i = 0;
+    $(":checkbox").change(function(){
+        if(this.checked){
+            mo_list[i] = this.name;
+            i++;
+            if (i == 1){
+                $('.bottom_menu').animate({'margin-bottom': 0}, 300)
+            }
+        }else{
+            var val = this.name;
+            var index = mo_list.indexOf(val);
+            mo_list.splice(index, 1);
+            i--;
+            if (i == 0){
+                $('.bottom_menu').animate({'margin-bottom': -80}, 300)
+            }
+        }
+
+    });
+
 });
 
 function set_alphabet() {
@@ -72,7 +104,83 @@ function set_locations() {
     $('.location_lists').css('display', 'block');
 }
 
+//ajax post запрос на обновление оборудования
+function ajax_push_update_mo(data, url) {
+
+    $.ajaxSetup({
+        beforeSend: function (xhr, settings) {
+            function getCookie(name) {
+                var cookieValue = null;
+                if (document.cookie && document.cookie != '') {
+                    var cookies = document.cookie.split(';');
+                    for (var i = 0; i < cookies.length; i++) {
+                        var cookie = jQuery.trim(cookies[i]);
+                        // Does this cookie string begin with the name we want?
+                        if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                            break;
+                        }
+                    }
+                }
+                return cookieValue;
+            }
+
+            if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
+                // Only send the token to relative URLs i.e. locally.
+                xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+            }
+        }
+    });
+
+    $.ajax({
+        method: "POST",
+        url: url,
+        data: data,
+        beforeSend: function (xhr, settings) {
+            $.ajaxSettings.beforeSend(xhr, settings);
+        },
+
+        success: function (json) {
+            alert("Данные успешно обновлены");
+        },
+
+        error: function (xhr, errmsg, err) {
+            alert("Ошибка");
+        }
+
+    });
+
+}
+
+//ajax get запрос на обновление оборудования
+function ajax_transfer_mo(loc) {
+
+    var data = {
+            loc: loc,
+            mo_list: JSON.stringify(mo_list)
+        };
+
+    $.ajax({
+        url: './mo_transfer/json/',
+        data: data,
+        dataType: 'json',
+         success : function(json) {
+            alert("Данные изменены. Обновите страницу");
+        },
+
+        error : function(xhr,errmsg,err) {
+            alert("Ошибка");
+        }
+    });
+}
+
 
 function mo_transfer() {
-
+    var loc = document.getElementById("location_name").value;
+    if(loc == ''){
+        alert("Укажите аудиторию!");
+    }
+    else{
+        ajax_transfer_mo(loc);
+    }
 }
