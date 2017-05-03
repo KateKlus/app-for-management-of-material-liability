@@ -82,7 +82,12 @@
 
     <div class="location_lists">
         {% for item in locations %}
-            <p>{{ item.location }}: {{ item.count }} </p>
+            {% if item.location == None or item.location == '' %}
+                <p name="{{ item.location }}" onclick="get_mo_list(this)">Не указано - {{ item.count }} </p>
+            {%else%}
+                <p name="{{ item.location }}" onclick="get_mo_list(this)">{{ item.location }} - {{ item.count }} </p>
+            {% endif%}
+
         {% endfor %}
     </div>
 

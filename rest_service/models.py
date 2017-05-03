@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 from django.db import models
 
 
-# модель материального объекта
+# Модель материального объекта
 class MO(models.Model):
     MO_id = models.AutoField(primary_key=True)
     name = models.CharField("Название", max_length=45)
@@ -23,7 +23,7 @@ class MO(models.Model):
         return self.name
 
 
-# модель аттрибута
+# Модель аттрибута
 class Attribute(models.Model):
     Attribute_id = models.AutoField(primary_key=True)
     attr_name = models.CharField("Аттрибут", max_length=45)
@@ -44,7 +44,9 @@ class Attribute(models.Model):
         return self.attr_name
 
 
-# модель пользователя GLPI
+# Все, что относится к базе GLPI:
+
+# Модель пользователя GLPI
 class GLPI_user(models.Model):
     name = models.CharField("Логин", max_length=255)
     realname = models.CharField("Фамилия", max_length=255)
@@ -67,7 +69,7 @@ class GLPI_user(models.Model):
             return user_data[3:]
 
 
-# рекурсивная модель подразделений
+# Рекурсивная модель подразделений
 class Entities(models.Model):
     name = models.CharField("Название", max_length=255)
     entities_id = models.ForeignKey('self', verbose_name="Родитель", db_column='entities_id')
@@ -82,7 +84,7 @@ class Entities(models.Model):
         return self.name
 
 
-# описание моделей БД GLPI
+# Модель аудитории
 class Location(models.Model):
     name = models.CharField("Аудитория", max_length=200)
     entities = models.ForeignKey(
@@ -101,7 +103,7 @@ class Location(models.Model):
         return self.name
 
 
-# абстрактный родитель МО
+# Абстрактный родитель МО
 class MO_abstract(models.Model):
     name = models.CharField("Название", max_length=255)
     serial = models.CharField("Серия", max_length=255, default='Не назначено',  blank=True, null=True)
@@ -128,7 +130,7 @@ class MO_abstract(models.Model):
        abstract=True
 
 
-# модель компьютера
+# Модель компьютера
 class Computer(MO_abstract):
     class Meta:
         db_table = 'glpi_computers'
@@ -139,8 +141,154 @@ class Computer(MO_abstract):
         return self.name
 
 
-# модель монитора
+# Модель монитора
 class Monitor(MO_abstract):
     class Meta:
         db_table = 'glpi_monitors'
+        app_label = 'clientapp'
+
+    def __unicode__(self):
+        return self.name
+
+
+# Модель принтера
+class Printer(MO_abstract):
+    class Meta:
+        db_table = 'glpi_pronters'
+        app_label = 'clientapp'
+
+    def __unicode__(self):
+        return self.name
+
+
+# Модель состоявной части компьютера
+class ComputersItems(models.Model):
+    items_id = models.IntegerField()
+    computers_id = models.ForeignKey(Computer, db_column='computers_id')
+    itemtype = models.CharField(max_length=255)
+
+    class Meta:
+        db_table = 'glpi_computers_items'
+        app_label = 'clientapp'
+        ordering = ['computers_id']
+
+
+# Модель звуковой карты
+class DeviceSoundCards(models.Model):
+    designation = models.CharField(max_length=255)
+
+    class Meta:
+        db_table = 'glpi_devicesoundcards'
+        app_label = 'clientapp'
+
+
+# Модель элемента - звуковой карты
+class ItemsDeviceSoundCards(models.Model):
+    items_id = models.IntegerField()
+    devicesoundcards_id = models.ForeignKey(DeviceSoundCards, db_column='devicesoundcards_id')
+
+    class Meta:
+        db_table = 'glpi_items_devicesoundcards'
+        app_label = 'clientapp'
+
+
+# Модель видео карты
+class DeviceGraphicCards(models.Model):
+    designation = models.CharField(max_length=255)
+
+    class Meta:
+        db_table = 'glpi_devicesoundcards'
+        app_label = 'clientapp'
+
+
+# Модель элемента - видео карты
+class ItemsDeviceGraphicCards(models.Model):
+    items_id = models.IntegerField()
+    devicegraphiccards_id = models.ForeignKey(DeviceGraphicCards, db_column='devicegraphiccards_id')
+
+    class Meta:
+        db_table = 'glpi_items_devicegraphiccards'
+        app_label = 'clientapp'
+
+
+# Модель памяти
+class DeviceMemories(models.Model):
+    designation = models.CharField(max_length=255)
+    frequence = models.CharField(max_length=255)
+
+    class Meta:
+        db_table = 'glpi_devicememories'
+        app_label = 'clientapp'
+
+
+# Модель элемента - памяти
+class ItemsDeviceMemories(models.Model):
+    items_id = models.IntegerField()
+    devicememories_id = models.ForeignKey(DeviceMemories, db_column='devicememories_id')
+    size = models.IntegerField()
+
+    class Meta:
+        db_table = 'glpi_items_devicememories'
+        app_label = 'clientapp'
+
+
+# Модель жесткого диска
+class DeviceHardDrives(models.Model):
+    designation = models.CharField(max_length=255)
+
+    class Meta:
+        db_table = 'glpi_deviceharddrives'
+        app_label = 'clientapp'
+
+
+# Модель элемента - жесткого лиска
+class ItemsDeviceHardDrives(models.Model):
+    items_id = models.IntegerField()
+    deviceharddrives_id = models.ForeignKey(DeviceHardDrives, db_column='deviceharddrives_id')
+    capacity = models.IntegerField()
+
+    class Meta:
+        db_table = 'glpi_items_deviceharddrives'
+        app_label = 'clientapp'
+
+
+# Модель процессора
+class DeviceProcessors(models.Model):
+    designation = models.CharField(max_length=255)
+    frequence = models.IntegerField()
+
+    class Meta:
+        db_table = 'glpi_deviceprocessors'
+        app_label = 'clientapp'
+
+
+# Модель элемента - процессора
+class ItemsDeviceProcessors(models.Model):
+    items_id = models.IntegerField()
+    deviceprocessors_id = models.ForeignKey(DeviceProcessors, db_column='deviceprocessors_id')
+    frequency = models.IntegerField()
+
+    class Meta:
+        db_table = 'glpi_items_deviceprocessors'
+        app_label = 'clientapp'
+
+
+# Модель сетевой карты
+class DeviceNetworkCards(models.Model):
+    designation = models.CharField(max_length=255)
+    frequence = models.IntegerField()
+
+    class Meta:
+        db_table = 'glpi_devicenetworkcards'
+        app_label = 'clientapp'
+
+
+# Модель элемента - сетевой карты
+class ItemsDeviceNetworkCards(models.Model):
+    items_id = models.IntegerField()
+    devicenetworkcards_id = models.ForeignKey(DeviceNetworkCards, db_column='devicenetworkcards_id')
+    mac = models.CharField(max_length=255)
+
+    class Meta:
+        db_table = 'glpi_items_devicenetworkcards'
         app_label = 'clientapp'

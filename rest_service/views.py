@@ -40,7 +40,7 @@ class responsible_specialist(generic.ListView):
     template_name = 'knastu/responsible_person.html'
 
 
-# для вывода списка оборудования из обеих баз
+# для вывода списка оборудования из обеих баз по id аудитории
 def auditorias_base(request, pk):
     if not request.user.is_authenticated():
        return redirect('%s?next=%s' % (settings.LOGIN_URL, request.path))
@@ -64,6 +64,8 @@ def auditorias_base(request, pk):
         'user': request.user,
         'location': location.name,
     })
+
+
 
 
 # для вывода списка оборудования из обеих баз по подразделениям
@@ -164,15 +166,19 @@ def specialist_mo_list_userid(request):
                                                                        'note', 'mo_type')})
 
     return render(request, 'knastu/responsible_user_moList.html', {
+        'user': request.user,
         'spec_name': specialist_fullname[3:],
+
         'comps': comps,
         'monitors': monitors,
         'mo_list':mo_list,
-        'user': request.user,
+
         'types': types_list,
+        'mo_dict': types_of_mo_dict,
+
         'locations': locations,
         'mo_dict_loc':locations_of_mo_dict,
-        'mo_dict': types_of_mo_dict
+
     })
 
 
