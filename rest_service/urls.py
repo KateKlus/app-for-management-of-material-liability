@@ -20,22 +20,28 @@ urlpatterns = [
     url(r'^responsible_specialist/$', views.responsible_specialist.as_view(), name='responsible_specialist'),
     # получить подотчетное оборудование по id специалиста
     url(r'^responsible_specialist/get_mo_list/(?P<pk>[0-9]+)/$', views.specialist_mo_list, name='specialist_mo_list'),
+    # Получить детальную информацию о компьютере
+    url(r'^responsible_specialist/get_comp_detail_info/(?P<pk>[0-9]+)/$', views.comp_detail_info, name='comp_detail_info'),
+
     # получить подотчетное оборудование по id пользователя
     url(r'^responsible_specialist_mo_list/$', views.specialist_mo_list_userid, name='user_specialist_mo_list'),
     url(r'^responsible_specialist_mo_list/get_mo_detail/(?P<pk>[0-9]+)/$', views.get_mo_detail, name='get_mo_detail'),
     url(r'^responsible_specialist_mo_list/get_comp_detail/(?P<pk>[0-9]+)/$', views.get_comp_detail, name='get_comp_detail'),
     url(r'^responsible_specialist_mo_list/get_monitor_detail/(?P<pk>[0-9]+)/$', views.get_monitor_detail, name='get_comp_detail'),
 
+    # Удаление объектов
     url(r'^del_comp/(?P<pk>[0-9]+)$', views.computersDelete.as_view(), name='del_comp'),
     url(r'^del_monitor/(?P<pk>[0-9]+)$', views.monitorsDelete.as_view(), name='del_monitor'),
     url(r'^del_mo/(?P<pk>[0-9]+)$', views.moDelete.as_view(), name='del_mo'),
     url(r'^del_attr/(?P<pk>[0-9]+)$', views.attrDelete.as_view(), name='del_attr'),
 
+    # Обновление объектов
     url(r'^update_comp/(?P<pk>[0-9]+)$', views.computersUpdate.as_view(), name='update_comp'),
     url(r'^update_monitor/(?P<pk>[0-9]+)$', views.monitorsUpdate.as_view(), name='update_monitor'),
     url(r'^update_mo/(?P<pk>[0-9]+)$', views.moUpdate.as_view(), name='update_mo'),
     url(r'^update_attr/(?P<pk>[0-9]+)$', views.attrUpdate.as_view(), name='update_attr'),
 
+    #Создание объектов
     url(r'^create_comp/$', views.computersCreate.as_view(), name='create_comp'),
     url(r'^create_monitor/$', views.monitorsCreate.as_view(), name='create_monitor'),
     url(r'^create_mo/$', views.mobjCreate.as_view(), name='create_mo'),

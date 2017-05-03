@@ -154,7 +154,7 @@ class Monitor(MO_abstract):
 # Модель принтера
 class Printer(MO_abstract):
     class Meta:
-        db_table = 'glpi_pronters'
+        db_table = 'glpi_printers'
         app_label = 'clientapp'
 
     def __unicode__(self):
@@ -181,6 +181,9 @@ class DeviceSoundCards(models.Model):
         db_table = 'glpi_devicesoundcards'
         app_label = 'clientapp'
 
+    def __unicode__(self):
+        return self.designation
+
 
 # Модель элемента - звуковой карты
 class ItemsDeviceSoundCards(models.Model):
@@ -199,6 +202,9 @@ class DeviceGraphicCards(models.Model):
     class Meta:
         db_table = 'glpi_devicesoundcards'
         app_label = 'clientapp'
+
+    def __unicode__(self):
+        return self.designation
 
 
 # Модель элемента - видео карты
@@ -220,6 +226,9 @@ class DeviceMemories(models.Model):
         db_table = 'glpi_devicememories'
         app_label = 'clientapp'
 
+    def __unicode__(self):
+        return self.designation
+
 
 # Модель элемента - памяти
 class ItemsDeviceMemories(models.Model):
@@ -239,6 +248,9 @@ class DeviceHardDrives(models.Model):
     class Meta:
         db_table = 'glpi_deviceharddrives'
         app_label = 'clientapp'
+
+    def __unicode__(self):
+        return self.designation
 
 
 # Модель элемента - жесткого лиска
@@ -261,6 +273,9 @@ class DeviceProcessors(models.Model):
         db_table = 'glpi_deviceprocessors'
         app_label = 'clientapp'
 
+    def __unicode__(self):
+        return self.designation
+
 
 # Модель элемента - процессора
 class ItemsDeviceProcessors(models.Model):
@@ -276,11 +291,13 @@ class ItemsDeviceProcessors(models.Model):
 # Модель сетевой карты
 class DeviceNetworkCards(models.Model):
     designation = models.CharField(max_length=255)
-    frequence = models.IntegerField()
 
     class Meta:
         db_table = 'glpi_devicenetworkcards'
         app_label = 'clientapp'
+
+    def __unicode__(self):
+        return self.designation
 
 
 # Модель элемента - сетевой карты

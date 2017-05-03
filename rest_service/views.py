@@ -66,8 +66,6 @@ def auditorias_base(request, pk):
     })
 
 
-
-
 # для вывода списка оборудования из обеих баз по подразделениям
 def entities_base(request, pk):
     if not request.user.is_authenticated():
@@ -180,6 +178,51 @@ def specialist_mo_list_userid(request):
         'mo_dict_loc':locations_of_mo_dict,
 
     })
+
+
+def comp_detail_info(request, pk):
+    printers = ComputersItems.objects.filter(computers_id=pk, itemtype='Printer')
+    monitors = ComputersItems.objects.filter(computers_id=pk, itemtype='Monitor')
+    peripherals = ComputersItems.objects.filter(computers_id=pk, itemtype='Peripheral')
+
+    printers_list = []
+    monitors_list = []
+
+    for printer in printers:
+        printers_list.append(Printer.objects.get(pk=printer.items_id))
+
+    for monitor in monitors:
+        monitors_list.append(Monitor.objects.get(pk=monitor.items_id))
+
+    if peripherals:
+        for peripheral in peripherals:
+            network_cards = ItemsDeviceNetworkCards.objects.filter(items_id=peripheral.items_id)
+            processors = ItemsDeviceProcessors.objects.filter(items_id=peripheral.items_id)
+            hard_drives = ItemsDeviceHardDrives.objects.filter(items_id=peripheral.items_id)
+            memories = ItemsDeviceMemories.objects.filter(items_id=peripheral.items_id)
+            graphic_cards = ItemsDeviceGraphicCards.objects.filter(items_id=peripheral.items_id)
+            sound_cards = ItemsDeviceSoundCards.objects.filter(items_id=peripheral.items_id)
+    else:
+        network_cards = []
+        processors = []
+        hard_drives = []
+        memories = []
+        graphic_cards = []
+        sound_cards = []
+
+
+    return render(request, 'knastu/comp_detail_info.html', {
+        'NetworkCards': network_cards,
+        'Processors': processors,
+        'HardDrives': hard_drives,
+        'Memories': memories,
+        'GraphicCards': graphic_cards,
+        'SoundCards': sound_cards,
+        'Printers': printers_list,
+        'Monitors': monitors_list,
+    })
+
+
 
 
 def get_comp_detail(request, pk):

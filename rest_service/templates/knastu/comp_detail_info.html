@@ -1,0 +1,45 @@
+{% for elem in Processors%}
+    <p> Процессор: {{ elem.deviceprocessors_id }} </p>
+    <p> Частота: {{ elem.frequency }} Гц</p>
+
+{% endfor%}
+<br>
+{% for elem in HardDrives%}
+    <p> Жесткий диск: {{ elem.deviceharddrives_id }} </p>
+    <p> Объем: {{ elem.capacity }} Кб</p>
+
+{% endfor%}
+<br>
+{% for elem in Memories%}
+    <p> Оперативная память: {{ elem.devicememories_id }} </p>
+    <p> Объем: {{ elem.size }} Мб </p>
+
+{% endfor%}
+<br>
+{% for elem in GraphicCards%}
+    <p> Видео карта: {{ elem.devicegraphiccards_id }} </p>
+
+{% endfor%}
+<br>
+{% for elem in SoundCards%}
+    <p> Звуковая карта: {{ elem.devicesoundcards_id }} </p>
+
+{% endfor%}
+<br>
+{% for elem in NetworkCards%}
+    <p> Сетевая карта: {{ elem.devicenetworkcards_id }} </p>
+    <p> Mac-адрес: {{ elem.mac }}</p>
+
+{% endfor%}
+
+<br>
+<h2>Подключенные принтеры</h2>
+{% for elem in Printers%}
+    <p>{{ elem }} </p>
+{% endfor%}
+
+<br>
+<h2>Подключенные мониторы</h2>
+{% for elem in Monitors%}
+    <p>{{ elem }} </p>
+{% endfor%}
