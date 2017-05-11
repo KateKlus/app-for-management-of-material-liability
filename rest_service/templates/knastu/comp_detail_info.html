@@ -1,45 +1,68 @@
-{% for elem in Processors%}
-    <p> Процессор: {{ elem.deviceprocessors_id }} </p>
-    <p> Частота: {{ elem.frequency }} Гц</p>
+{% if not Processors and not HardDrives and not Memories and not GraphicCards and not SoundCards and not NetworkCards and not Printers and not Monitors %}
+    <br>
+    <p class=""> Нет дополнительной информации </p>
+    <br>
+{% else %}
 
-{% endfor%}
-<br>
-{% for elem in HardDrives%}
-    <p> Жесткий диск: {{ elem.deviceharddrives_id }} </p>
-    <p> Объем: {{ elem.capacity }} Кб</p>
+    {% if Processors %}
+        {% for elem in Processors%}
+            <p> Процессор: {{ elem.deviceprocessors_id }} </p>
+            <p> Частота: {{ elem.frequency }} Гц</p>
+        {% endfor%}
+        <br>
+    {% endif %}
 
-{% endfor%}
-<br>
-{% for elem in Memories%}
-    <p> Оперативная память: {{ elem.devicememories_id }} </p>
-    <p> Объем: {{ elem.size }} Мб </p>
+    {% if HardDrives %}
+        {% for elem in HardDrives%}
+            <p> Жесткий диск: {{ elem.deviceharddrives_id }} </p>
+            <p> Объем: {{ elem.capacity }} Кб</p>
+        {% endfor%}
+        <br>
+    {% endif %}
 
-{% endfor%}
-<br>
-{% for elem in GraphicCards%}
-    <p> Видео карта: {{ elem.devicegraphiccards_id }} </p>
+    {% if Memories %}
+        {% for elem in Memories%}
+            <p> Оперативная память: {{ elem.devicememories_id }} </p>
+            <p> Объем: {{ elem.size }} Мб </p>
+        {% endfor%}
+        <br>
+    {% endif %}
 
-{% endfor%}
-<br>
-{% for elem in SoundCards%}
-    <p> Звуковая карта: {{ elem.devicesoundcards_id }} </p>
+    {% if GraphicCards %}
+        {% for elem in GraphicCards%}
+            <p> Видео карта: {{ elem.devicegraphiccards_id }} </p>
+        {% endfor%}
+        <br>
+    {% endif %}
 
-{% endfor%}
-<br>
-{% for elem in NetworkCards%}
-    <p> Сетевая карта: {{ elem.devicenetworkcards_id }} </p>
-    <p> Mac-адрес: {{ elem.mac }}</p>
+    {% if SoundCards %}
+        {% for elem in SoundCards%}
+            <p> Звуковая карта: {{ elem.devicesoundcards_id }} </p>
+        {% endfor%}
+        <br>
+    {% endif %}
 
-{% endfor%}
+    {% if NetworkCards %}
+        {% for elem in NetworkCards%}
+            <p> Сетевая карта: {{ elem.devicenetworkcards_id }} </p>
+            <p> Mac-адрес: {{ elem.mac }}</p>
+        {% endfor%}
+        <br>
+    {% endif %}
 
-<br>
-<h2>Подключенные принтеры</h2>
-{% for elem in Printers%}
-    <p>{{ elem }} </p>
-{% endfor%}
+    {% if Printers %}
+        <h3>Подключенные принтеры</h3>
+        {% for elem in Printers%}
+            <p>{{ elem }} </p>
+        {% endfor%}
+        <br>
+    {% endif %}
 
-<br>
-<h2>Подключенные мониторы</h2>
-{% for elem in Monitors%}
-    <p>{{ elem }} </p>
-{% endfor%}
+    {% if Monitors %}
+        <h3>Подключенные мониторы</h3>
+        {% for elem in Monitors%}
+            <p>{{ elem }} - Серия: {{elem.serial}} {% if elem.otherserial %} Номер: {{ elem.otherserial}} {% endif %}</p>
+        {% endfor%}
+    {% endif %}
+
+{% endif %}

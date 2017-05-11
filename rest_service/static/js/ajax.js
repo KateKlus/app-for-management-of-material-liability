@@ -176,7 +176,8 @@ function ajax_update_mo(mo_id, url) {
     var modal = document.getElementById('myModal');
     var btn = document.getElementById("myBtn");
     var span = document.getElementsByClassName("close")[0];
-        modal.style.display = "block";
+
+    modal.style.display = "block";
 
     btn.onclick = function() {
         modal.style.display = "block";
@@ -192,3 +193,29 @@ function ajax_update_mo(mo_id, url) {
         }
     }
 }
+
+function comp_detail_info(comp) {
+
+    $.ajax({
+        url: '../get_comp_detail_info/'+ comp,
+        dataType: 'html',
+        success: function (data) {
+            $('.comp_detail_info').html(data);
+            }
+          });
+
+        var modal = document.getElementById('myModal');
+        var span = document.getElementsByClassName("close")[0];
+
+        modal.style.display = "block";
+
+        span.onclick = function() {
+            modal.style.display = "none";
+        };
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    }

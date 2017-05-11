@@ -164,8 +164,8 @@ li:hover > .submenu {
 }
 
 .content p{
-    letter-spacing: 2px;
-    text-transform: uppercase;
+    /*letter-spacing: 2px;
+    text-transform: uppercase;*/
 }
 
 .person_list {
@@ -223,7 +223,7 @@ li:hover > .submenu {
 .mo_detail{
     border:none;
     list-style-type: none;
-    margin: 0 0 40px -10px;
+    margin: 0 0 40px 15px;
     line-height: 75%;
 }
 
@@ -498,7 +498,7 @@ li:hover > .submenu {
 }
 
 .types_mo_group_result{
-    margin: 0 0 5px 20px;
+    margin: 0 0 5px 0;
     color: darkslategray;
 }
 

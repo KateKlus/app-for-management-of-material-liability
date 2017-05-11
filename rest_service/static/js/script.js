@@ -90,6 +90,23 @@ $(document).ready(function() {
 
 });
 
+function show_modal(){
+    var modal = document.getElementById('myModal');
+        var span = document.getElementsByClassName("close")[0];
+
+        modal.style.display = "block";
+
+        span.onclick = function() {
+            modal.style.display = "none";
+        };
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+}
+
 function set_alphabet() {
     $('#alph').css('color',  'black');
     $('#loc').css('color',  'cadetblue');
@@ -165,20 +182,23 @@ function ajax_transfer_mo(loc) {
         data: data,
         dataType: 'json',
          success : function(json) {
-            alert("Данные изменены. Обновите страницу");
+             $('.edit_mo').html('<p>Изменения успешно внесены </p>');
         },
 
         error : function(xhr,errmsg,err) {
-            alert("Ошибка");
+            $('.edit_mo').html('<p>Аудитория введена не верно. Изменения не были внесены</p>');
         }
     });
+    show_modal();
 }
 
 
 function mo_transfer() {
     var loc = document.getElementById("location_name").value;
     if(loc == ''){
-        alert("Укажите аудиторию!");
+        $('.edit_mo').html('<p>Укажите аудиторию!</p>');
+        show_modal();
+
     }
     else{
         ajax_transfer_mo(loc);

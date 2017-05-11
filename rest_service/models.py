@@ -98,6 +98,8 @@ class Location(models.Model):
         db_table = 'glpi_locations'
         app_label = 'clientapp'
         ordering = ['name']
+        verbose_name = 'Аудитория'
+        verbose_name_plural = 'Аудитории'
 
     def __unicode__(self):
         return self.name
@@ -136,6 +138,8 @@ class Computer(MO_abstract):
         db_table = 'glpi_computers'
         app_label = 'clientapp'
         ordering = ['name']
+        verbose_name = 'Компьютер'
+        verbose_name_plural = 'Компьютеры'
 
     def __unicode__(self):
         return self.name
@@ -146,6 +150,8 @@ class Monitor(MO_abstract):
     class Meta:
         db_table = 'glpi_monitors'
         app_label = 'clientapp'
+        verbose_name = 'Монитор'
+        verbose_name_plural = 'Мониторы'
 
     def __unicode__(self):
         return self.name

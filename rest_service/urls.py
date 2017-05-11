@@ -21,7 +21,7 @@ urlpatterns = [
     # получить подотчетное оборудование по id специалиста
     url(r'^responsible_specialist/get_mo_list/(?P<pk>[0-9]+)/$', views.specialist_mo_list, name='specialist_mo_list'),
     # Получить детальную информацию о компьютере
-    url(r'^responsible_specialist/get_comp_detail_info/(?P<pk>[0-9]+)/$', views.comp_detail_info, name='comp_detail_info'),
+    url(r'^get_comp_detail_info/(?P<pk>[0-9]+)/$', views.comp_detail_info, name='comp_detail_info'),
 
     # получить подотчетное оборудование по id пользователя
     url(r'^responsible_specialist_mo_list/$', views.specialist_mo_list_userid, name='user_specialist_mo_list'),

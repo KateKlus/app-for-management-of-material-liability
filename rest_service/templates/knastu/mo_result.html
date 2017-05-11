@@ -75,7 +75,7 @@
                         <p>Инвентарный номер: {{ comp.otherserial }}</p>
                         <p>Аудитория: {{ comp.locations }}</p>
                         <p>Ответственный: {{ comp.users_id_tech }}</p>
-                        <p><a class="mo_action" href="{% url 'comp_detail_info' pk=comp.pk  %}">Детально</a></p>
+                        <p><a class="mo_action" onclick="comp_detail_info( {{ comp.pk }} ) ">Детально</a></p>
                     </div>
 
                 </div>
@@ -121,3 +121,15 @@
             </div>
         {% endif %}
 {% endif %}
+
+<!-- The Modal -->
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="comp_detail_info">
+            </div>
+        </div>
+
+    </div>

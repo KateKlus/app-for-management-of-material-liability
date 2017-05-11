@@ -6,3 +6,4 @@ admin.site.register(Attribute)
 admin.site.register(GLPI_user)
 
 admin.site.register(Computer)
+admin.site.register(Location)

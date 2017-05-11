@@ -343,6 +343,13 @@ def transfer(request, loc=None, mo_list=None,):
     loc = request.GET.get('loc')
     mo_list = json.loads(request.GET.get('mo_list'))
 
+    # Выбираются все записи из таблици Location с указанным именем, упорядоченные по уровню вложенности
+    # подразделений и берется ПОСЛЕДНЯЯ запись. В эту аудиторию будет перенесено оборудование.
+    try:
+        location = Location.objects.filter(name=loc).order_by('-entities__level')[0]
+    except Location.DoesNotExist:
+        return JsonResponse({'Error': 'Location does not exist'})
+
     comps = []
     monitors = []
     other = []
@@ -362,10 +369,7 @@ def transfer(request, loc=None, mo_list=None,):
             mo_obj.location = loc
             mo_obj.save()
 
-    # Выбираются все записи из таблици Location с указанным именем, упорядоченные по уровню вложенности
-    # подразделений и берется ПОСЛЕДНЯЯ запись. В эту аудиторию будет перенесено оборудование.
     if comps or monitors:
-        location = Location.objects.filter(name=loc).order_by('-entities__level')[0]
         for comp in comps:
             comp_obj = Computer.objects.get(id=comp)
             comp_obj.locations = location
@@ -376,7 +380,8 @@ def transfer(request, loc=None, mo_list=None,):
             monitor_obj.locations = location
             monitor_obj.save()
 
-    return JsonResponse({})
+    return JsonResponse({'Success': 'OK'})
+
 
 # вход
 class LoginFormView(FormView):
