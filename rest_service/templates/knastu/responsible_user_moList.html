@@ -17,7 +17,12 @@
                     <div class="types_result">
                         {% for comp in comps %}
                             <div class="types_mo_group_result">
-                                <input class="check" type="checkbox" name="comp {{ comp.id }}" /> <p class="mo_name"><a  class="get_id" name="{{ comp.id }}" onclick="get_comp_detail(this)"> {{ comp.name }} </a></p>
+                                <label>
+                                    <input class="check checkbox" type="checkbox" name="comp {{ comp.id }}" />
+                                    <span class="checkbox-custom"></span>
+                                </label>
+
+                                <p class="mo_name"><a  class="get_id" name="{{ comp.id }}" onclick="get_comp_detail(this)"> {{ comp.name }} </a></p>
                                 <div class="mo_detail" style="display: none;">
                                     <div id="{{ comp.id }}_detail"></div>
                                     <p>
@@ -35,7 +40,12 @@
                     <div class="types_result">
                         {% for monitor in monitors %}
                             <div class="types_mo_group_result">
-                                <input class="check" type="checkbox" name="monitor {{ monitor.id }}"/> <p class="mo_name"><a name="{{ monitor.id }}" onclick="get_monitor_detail(this)"> {{ monitor.name }}: {{ monitor.otherserial }} </a></p>
+                                <label>
+                                    <input class="check checkbox" type="checkbox" name="monitor {{ monitor.id }}"/>
+                                    <span class="checkbox-custom"></span>
+                                </label>
+
+                                <p class="mo_name"><a name="{{ monitor.id }}" onclick="get_monitor_detail(this)"> {{ monitor.name }}: {{ monitor.otherserial }} </a></p>
                                 <div class="mo_detail" style="display: none;">
                                     <div id="{{ monitor.id }}mon_detail"></div>
                                     <p>
@@ -58,7 +68,13 @@
                         {% if  k == mo_type %}
                             {% for mo in v %}
                                 <div class="types_mo_group_result">
-                                    <input class="check" type="checkbox" name="mo {{ mo.MO_id }}"/> <p class="mo_name"><a name="{{ mo.MO_id }}" onclick="get_mo_detail(this)"> {{ mo.name }} - {{ mo.serial }} </a></p>
+                                    <label>
+                                        <input class="check checkbox" type="checkbox" name="mo {{ mo.MO_id }}"/>
+                                        <span class="checkbox-custom"></span>
+                                    </label>
+
+                                    <p class="mo_name"><a name="{{ mo.MO_id }}" onclick="get_mo_detail(this)"> {{ mo.name }} - {{ mo.serial }} </a></p>
+
                                     <div class="mo_detail" style="display: none;">
                                         <p>ИН: {{ mo.serial }}</p>
                                         <p>Аудитория: {{ mo.location }}</p>
@@ -92,7 +108,10 @@
             <div class="types_result">
             {% for mo in v %}
                 <div class="types_mo_group_result">
-                    <input class="check" type="checkbox" name="mo {{ mo.MO_id }}"/>
+                    <label>
+                        <input class="check checkbox" type="checkbox" name="mo {{ mo.MO_id }}"/>
+                        <span class="checkbox-custom"></span>
+                    </label>
                     <p class="mo_name"><a name="{{ mo.MO_id }}" onclick="get_mo_detail(this)"> {{ mo.name }} - {{ mo.serial }} {{ mo.otherserial }}</a></p>
 
                 </div>

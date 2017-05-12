@@ -215,6 +215,7 @@ def specialist_mo_list_userid(request):
 
 
 def comp_detail_info(request, pk):
+    comp = Computer.objects.get(pk=pk)
     printers = ComputersItems.objects.filter(computers_id=pk, itemtype='Printer')
     monitors = ComputersItems.objects.filter(computers_id=pk, itemtype='Monitor')
     peripherals = ComputersItems.objects.filter(computers_id=pk, itemtype='Peripheral')
@@ -254,6 +255,7 @@ def comp_detail_info(request, pk):
         'SoundCards': sound_cards,
         'Printers': printers_list,
         'Monitors': monitors_list,
+        'Comp': comp,
     })
 
 
