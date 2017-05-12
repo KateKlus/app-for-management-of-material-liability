@@ -1,14 +1,10 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>Добавление</title>
-</head>
-<body>
-    <form action="" method="post">{% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Добавить" />
-</form>
-
-</body>
-</html>
+{% extends 'knastu/base.html' %}
+{% block content %}
+    <div class="modal-content" id="add_new_mo_box">
+        <h1>Добавление монитора</h1>
+        <form action="" method="post">{% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Добавить" class="login login-submit"/>
+        </form>
+    </div>
+{% endblock content %}
