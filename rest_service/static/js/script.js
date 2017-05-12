@@ -48,21 +48,16 @@ $(document).ready(function() {
 
     $('.types_mo_group_result').hover(
         function(){
-             $(this).children('.check').css('visibility', 'visible');
+             $(this).children('label').children('.checkbox-custom').css('visibility', 'visible');
         },
         function(){
-            if ($(this).children('.check').prop("checked")) {
-                $(this).children('.check').css('visibility', 'visible');
+            if ($(this).children('label').children('input').prop("checked")) {
+                $(this).children('label').children('.checkbox-custom').css('visibility', 'visible');
             }
             else{
-                 $(this).children('.check').css('visibility', 'hidden');
+                 $(this).children('label').children('.checkbox-custom').css('visibility', 'hidden');
             }
         });
-
-    $('.check').click(function () {
-        $(this).css('visibility', 'visible !important');
-
-    });
 
     var checkboxes = document.getElementsByTagName('input');
 
