@@ -13,7 +13,7 @@
             {% ifchanged %}
                 </div> <div class="letter_list"> <p class="first_letter">{{ mo_type.0 }}</p>
                 {% if mo_type.0 == 'К' %}
-                    <p class="types">Компьютеры в сети: {{ comps.count }}</p>
+                    <p class="types">Компьютеры в сети: {{ comps.count }} шт</p>
                     <div class="types_result">
                         {% for comp in comps %}
                             <div class="types_mo_group_result">
@@ -31,7 +31,7 @@
                 {% endif %}
 
                 {% if mo_type.0 == 'М' %}
-                    <p class="types">Мониторы в сети: {{ monitors.count }}</p>
+                    <p class="types">Мониторы в сети: {{ monitors.count }} шт</p>
                     <div class="types_result">
                         {% for monitor in monitors %}
                             <div class="types_mo_group_result">
@@ -81,13 +81,23 @@
     </div>
 
     <div class="location_lists">
-        {% for item in locations %}
-            {% if item.location == None or item.location == '' %}
-                <p name="{{ item.location }}" onclick="get_mo_list(this)">Не указано - {{ item.count }} </p>
-            {%else%}
-                <p name="{{ item.location }}" onclick="get_mo_list(this)">{{ item.location }} - {{ item.count }} </p>
-            {% endif%}
+        {% for k, v in mo_dict_loc.items %}
+            <p class="first_letter mo_by_loc">
+                {% if k == None or k == '' %}
+                    Не определено - {{ v|length }} шт
+                {% else %}
+                    {{ k }} - {{ v|length }} шт
+                {% endif %}
+            </p>
+            <div class="types_result">
+            {% for mo in v %}
+                <div class="types_mo_group_result">
+                    <input class="check" type="checkbox" name="mo {{ mo.MO_id }}"/>
+                    <p class="mo_name"><a name="{{ mo.MO_id }}" onclick="get_mo_detail(this)"> {{ mo.name }} - {{ mo.serial }} {{ mo.otherserial }}</a></p>
 
+                </div>
+            {% endfor %}
+            </div>
         {% endfor %}
     </div>
 

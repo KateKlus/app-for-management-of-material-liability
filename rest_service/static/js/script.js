@@ -41,6 +41,11 @@ $(document).ready(function() {
         return false;
     });
 
+     $('.mo_by_loc').click(function () {
+        $(this).next('.types_result').toggle('normal');
+        return false;
+    });
+
     $('.types_mo_group_result').hover(
         function(){
              $(this).children('.check').css('visibility', 'visible');
