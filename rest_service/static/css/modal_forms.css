@@ -25,6 +25,25 @@
     margin-top: 100px;
 }
 
+#add_new_mo_box {
+    margin: 3% ;
+    width: 50%; /* Could be more or less, depending on screen size */
+    overflow: hidden;
+    margin-top: 100px;
+    border: none;
+    box-shadow: none;
+    background-color: inherit;
+    padding: 0;
+    margin-top: 50px;
+}
+
+#add_new_mo_box h1 {
+    font-weight: 100;
+    text-align: left;
+    font-size: 1.5em;
+}
+
+
 .modal-content h1 {
   font-weight: 100;
   text-align: center;
@@ -76,4 +95,45 @@
     color: black;
     text-decoration: none;
     cursor: pointer;
+}
+
+
+/*Кастомный чекбокс*/
+
+/* Скрываем реальный чекбокс */
+.checkbox {
+    display: none;
+}
+
+/* Задаем внешний вид для нашего кастомного чекбокса. Все обязательные свойства прокомментированы, остальные же свойства меняйте по вашему усмотрению */
+.checkbox-custom {
+    position: relative;      /* Обязательно задаем, чтобы мы могли абсолютным образом позиционировать псевдоэлемент внютри нашего кастомного чекбокса */
+    width: 20px;             /* Обязательно задаем ширину */
+    height: 20px;            /* Обязательно задаем высоту */
+    border: 2px solid #ccc;
+    border-radius: 3px;
+    visibility: hidden;
+}
+
+/* Кастомный чекбокс и лейбл центрируем по вертикали. Если вам это не требуется, то вы можете убрать свойство vertical-align: middle из данного правила, но свойство display: inline-block обязательно должно быть */
+.checkbox-custom,
+.label {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/* Если реальный чекбокс у нас отмечен, то тогда добавляем данный признак и к нашему кастомному чекбоксу  */
+.checkbox:checked + .checkbox-custom::before {
+    content: "";             /* Добавляем наш псевдоэлемент */
+    display: block;          /* Делаем его блочным элементом */
+    position: absolute;      /* Позиционируем его абсолютным образом */
+
+    /* Задаем расстояние от верхней, правой, нижней и левой границы */
+    top: 2px;
+    right: 2px;
+    bottom: 2px;
+    left: 2px;
+
+    background: #2B8C67;     /* Добавляем фон. Если требуется, можете поставить сюда картинку в виде "галочки", которая будет символизировать, что чекбокс отмечен */
+    border-radius: 2px;
 }
