@@ -3,7 +3,6 @@ from django.views.generic.edit import FormView
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout
 from django.http import HttpResponseRedirect
-from django.http import HttpResponse
 from django.views import generic
 from django.views.generic.base import View
 from django.urls import reverse_lazy
@@ -12,6 +11,8 @@ from django.shortcuts import redirect, render
 from django.conf import settings
 from api_views import *
 from django.http import JsonResponse
+from itertools import chain
+from collections import OrderedDict
 import json
 
 
@@ -118,50 +119,84 @@ def specialist_mo_list(request, pk):
     })
 
 
-# для вывода списка оборудования из обеих баз по id пользователя
+# Для вывода списка оборудования из обеих баз по id пользователя
 def specialist_mo_list_userid(request):
     if not request.user.is_authenticated():
        return redirect('%s?next=%s' % (settings.LOGIN_URL, request.path))
 
-    # получаем имя и фамилию пользователя
+    # Получаем имя и фамилию пользователя
     real_name = request.user.last_name
     second_name = request.user.first_name
 
-    # находим ответственного
+    # Находим ответственного
     specialist = GLPI_user.objects.get(realname=real_name, firstname=second_name)
 
-    # получаем его полное имя и id
+    # Получаем его полное имя и id
     specialist_fullname = specialist.user_dn.split(',')[0]
     spec_id = specialist.id
 
-    # получаем технику и МО специалиста
+    # Получаем технику и МО специалиста
     comps = Computer.objects.filter(users_id_tech_id=spec_id)
     monitors = Monitor.objects.filter(users_id_tech_id=spec_id)
     mo_list = MO.objects.filter(contact=specialist.name)
 
-    # определяем какие типы МО имеются
+    # Определяем какие типы МО имеются
     types = mo_list.values('mo_type').annotate(count=Count('name')).order_by('mo_type')
     types_list = types.values_list('mo_type', 'count')
 
-    # создаем словарь {тип_мо: список_мо}
+    # Создаем словарь {тип_мо: список_мо}
     types_of_mo_dict = {}
     for type in types:
         type_name = type.values()
         mo_by_types_list = mo_list.filter(mo_type=type_name[0])
         types_of_mo_dict.update({type_name[0]: mo_by_types_list.values('MO_id', 'name', 'serial', 'contact', 'location', 'note', 'mo_type')})
 
+    # Определяем какие аудитории имеются
     locations = mo_list.values('location').annotate(count=Count('name')).order_by('location')
+    glpi_comps_locations = comps.values('locations__name').annotate(count=Count('name')).order_by('locations__name')
+    glpi_monitors_locations = monitors.values('locations__name').annotate(count=Count('name')).order_by('locations__name')
 
-    glpi_comps_locations = comps.values('locations').annotate(count=Count('name')).order_by('locations')
-    glpi_monitors_locations = monitors.values('locations').annotate(count=Count('name')).order_by('locations')
-
-    # создаем словарь {тип_мо: список_мо}
+    # Создаем словарь {аудитория: список_мо}
     locations_of_mo_dict = {}
+
+    # Добавляем некомпьютерное оборудование
     for loc in locations:
         location = loc.values()
-        mo_by_location_list = mo_list.filter(location=location[0])
-        locations_of_mo_dict.update({location[0]: mo_by_location_list.values('MO_id', 'name', 'serial', 'contact', 'location',
-                                                                       'note', 'mo_type')})
+        mo_by_location_list = mo_list.filter(location=location[1])
+        locations_of_mo_dict.update({location[1]: mo_by_location_list.values('MO_id', 'name', 'serial', 'contact',
+                                                                             'location', 'note', 'mo_type')})
+
+    # Добавляем компьютеры
+    for loc in glpi_comps_locations:
+        location = loc.values()
+        mo_by_location_list = comps.filter(locations__name=location[1])
+
+        if locations_of_mo_dict.get(location[1]):
+            value = list(chain(mo_by_location_list.values('name', 'otherserial', 'users_id_tech__name',
+                                                          'locations__name', ), locations_of_mo_dict.get(location[1])))
+            locations_of_mo_dict.update({location[1]: value})
+        else:
+            locations_of_mo_dict.update({location[1]: mo_by_location_list.values('name', 'otherserial', 'users_id_tech__name',
+                                                                                 'locations__name', )})
+
+    # Добавляем мониторы
+    for loc in glpi_monitors_locations:
+        location = loc.values()
+        mo_by_location_list = monitors.filter(locations__name=location[1])
+
+        if locations_of_mo_dict.get(location[1]):
+            value = list(chain(mo_by_location_list.values('name', 'otherserial', 'users_id_tech__name',
+                                                          'locations__name', ), locations_of_mo_dict.get(location[1])))
+            locations_of_mo_dict.update({location[1]: value})
+        else:
+            locations_of_mo_dict.update({location[1]: mo_by_location_list.values('name', 'otherserial', 'users_id_tech__name',
+                                                                                 'locations__name', )})
+
+    # Сортируем словарь по ключам
+    ord_dict = OrderedDict()
+    for k in sorted(locations_of_mo_dict.keys()):
+        ord_dict[k] = locations_of_mo_dict[k]
+
 
     return render(request, 'knastu/responsible_user_moList.html', {
         'user': request.user,
@@ -174,8 +209,7 @@ def specialist_mo_list_userid(request):
         'types': types_list,
         'mo_dict': types_of_mo_dict,
 
-        'locations': locations,
-        'mo_dict_loc':locations_of_mo_dict,
+        'mo_dict_loc': ord_dict,
 
     })
 
