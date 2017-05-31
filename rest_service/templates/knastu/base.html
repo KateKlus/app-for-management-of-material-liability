@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="utf-8">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/modal_forms.css' %}">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -19,8 +20,6 @@
             {% if user.groups.all.0.name == 'Материально ответственные' %}
                     <ul>
                         <li><a href="{% url 'user_specialist_mo_list'%}">Подотчетное оборудование</a></li>
-                        <li><a href="{% url 'create_comp' %}">Добавление компьютера</a></li>
-                        <li><a href="{% url 'create_monitor' %}">Добавление монитора</a></li>
                         <li><a href="{% url 'create_mo' %}">Добавление малоценного оборудования</a></li>
                     </ul>
                 {% endif %}
