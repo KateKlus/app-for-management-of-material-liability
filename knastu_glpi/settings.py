@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
 import os
-#import mysql
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -24,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '-zoff9kfyog$8dc&azz)xf91w(s7nbhw840waqs%x(r--+qifv'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '192.168.1.42']
 
 
 # Application definition
@@ -42,11 +41,6 @@ INSTALLED_APPS = [
     'clientapp',
     'rest_framework',
     'rest_framework.authtoken',
-    #'rest_auth',
-    #'django.contrib.sites',
-    #'allauth',
-    #'allauth.account',
-    #'rest_auth.registration',
 ]
 
 MIDDLEWARE = [
@@ -58,7 +52,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-    #'django.contrib.auth.middleware.RemoteUserMiddleware',
 ]
 
 ROOT_URLCONF = 'knastu_glpi.urls'
@@ -81,10 +74,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'knastu_glpi.wsgi.application'
 
-#AUTHENTICATION_BACKENDS = (
-#  'django.contrib.auth.backends.RemoteUserBackend',
-#)
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -94,7 +83,7 @@ DATABASES = {
     },
         
     'MO_base': {
-       'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'django.db.backends.mysql',
         'NAME': 'MO_base',
         'USER': 'root',
         'PASSWORD': 'chibi1995',
@@ -108,8 +97,8 @@ DATABASES = {
     },
 }
 
-DATABASE_APPS_MAPPING = {'rest_service':'MO_base',
-                         'glpi': 'glpi1',}
+DATABASE_APPS_MAPPING = {'rest_service': 'MO_base',
+                         'glpi': 'glpi1'}
 
 DATABASE_ROUTERS = ['rest_service.MyBaseRouter.MyBaseRouter']
 
@@ -138,13 +127,12 @@ USE_L10N = True
 USE_TZ = True
 
 LOGIN_URL = '/login/'
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+#STATIC_URL = ''
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-#debug_toolbar settings
+# Debug_toolbar settings
 if DEBUG:
     INTERNAL_IPS = ('127.0.0.1',)
     MIDDLEWARE += (

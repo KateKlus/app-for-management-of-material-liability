@@ -229,6 +229,7 @@ def specialist_mo_list_userid(request):
 
     })
 
+
 # Получение детальной информации о компонентах компьютера
 def comp_detail_info(request, pk):
     comp = Computer.objects.get(pk=pk)

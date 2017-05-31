@@ -2,12 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b4675de5-9584-4cf4-b56f-ca8b39d99819" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/rest_service/static/images/fuel-404-logo.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/rest_service/templates/404.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/knastu_glpi/settings.py" afterPath="$PROJECT_DIR$/knastu_glpi/settings.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rest_service/static/css/style.css" afterPath="$PROJECT_DIR$/rest_service/static/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rest_service/templates/knastu/auditorias.html" afterPath="$PROJECT_DIR$/rest_service/templates/knastu/auditorias.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rest_service/templates/knastu/entities.html" afterPath="$PROJECT_DIR$/rest_service/templates/knastu/entities.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rest_service/templates/knastu/responsible_person.html" afterPath="$PROJECT_DIR$/rest_service/templates/knastu/responsible_person.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rest_service/urls.py" afterPath="$PROJECT_DIR$/rest_service/urls.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rest_service/views.py" afterPath="$PROJECT_DIR$/rest_service/views.py" />
     </list>
     <ignored path="my_diplom.iws" />
@@ -37,11 +36,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/rest_service/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1775">
-              <caret line="414" column="31" selection-start-line="414" selection-start-column="31" selection-end-line="414" selection-end-column="31" />
+            <state relative-caret-position="1560">
+              <caret line="104" column="0" selection-start-line="104" selection-start-column="0" selection-end-line="104" selection-end-column="0" />
               <folding>
                 <element signature="e#24#70#0" expanded="true" />
               </folding>
@@ -49,51 +48,41 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="responsible_person.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/rest_service/templates/knastu/responsible_person.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="45" selection-start-line="5" selection-start-column="45" selection-end-line="5" selection-end-column="45" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/rest_service/static/css/style.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1015">
-              <caret line="569" column="9" selection-start-line="569" selection-start-column="9" selection-end-line="569" selection-end-column="9" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="auditorias.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/rest_service/templates/knastu/auditorias.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="27" column="12" selection-start-line="27" selection-start-column="12" selection-end-line="27" selection-end-column="12" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="auditorias_base.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/rest_service/templates/knastu/auditorias_base.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" column="33" selection-start-line="4" selection-start-column="33" selection-end-line="4" selection-end-column="33" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="entities.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/rest_service/templates/knastu/entities.html">
+      <file leaf-file-name="404.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/rest_service/templates/404.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="330">
-              <caret line="31" column="40" selection-start-line="31" selection-start-column="20" selection-end-line="31" selection-end-column="40" />
+              <caret line="22" column="37" selection-start-line="22" selection-start-column="37" selection-end-line="22" selection-end-column="37" />
+              <folding>
+                <element signature="n#style#0;n#a#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="responsible_user_moList.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/rest_service/templates/knastu/responsible_user_moList.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="365">
+              <caret line="130" column="14" selection-start-line="123" selection-start-column="8" selection-end-line="130" selection-end-column="14" />
+              <folding>
+                <marker date="1496127996858" expanded="true" signature="663:1999" ph="{% if mo_type.0 == 'К' ... %}" />
+                <marker date="1496127996858" expanded="true" signature="841:1944" ph="{% for comp in comps ... %}" />
+                <marker date="1496127996858" expanded="true" signature="2017:3407" ph="{% if mo_type.0 == 'М' ... %}" />
+                <marker date="1496127996858" expanded="true" signature="2196:3352" ph="{% for monitor in monitors ... %}" />
+                <marker date="1496127996858" expanded="true" signature="3565:5178" ph="{% for k, v in mo_dict.items ... %}" />
+                <marker date="1496127996858" expanded="true" signature="3621:5145" ph="{% if  k == mo_type ... %}" />
+                <marker date="1496127996858" expanded="true" signature="3672:5109" ph="{% for mo in v ... %}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="base.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/rest_service/templates/knastu/base.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="195">
+              <caret line="21" column="71" selection-start-line="21" selection-start-column="37" selection-end-line="21" selection-end-column="71" />
               <folding />
             </state>
           </provider>
@@ -102,10 +91,30 @@
       <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/rest_service/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="28" column="42" selection-start-line="28" selection-start-column="11" selection-end-line="28" selection-end-column="42" />
+            <state relative-caret-position="60">
+              <caret line="14" column="39" selection-start-line="14" selection-start-column="34" selection-end-line="14" selection-end-column="39" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/knastu_glpi/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/clientapp/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding>
-                <element signature="e#24#57#0" expanded="true" />
+                <element signature="e#0#41#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -114,8 +123,18 @@
       <file leaf-file-name="login.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/rest_service/templates/knastu/login.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="18" column="59" selection-start-line="18" selection-start-column="59" selection-end-line="18" selection-end-column="59" />
+            <state relative-caret-position="341">
+              <caret line="32" column="79" selection-start-line="32" selection-start-column="4" selection-end-line="32" selection-end-column="79" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/rest_service/static/css/style.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="360">
+              <caret line="96" column="0" selection-start-line="96" selection-start-column="0" selection-end-line="96" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -127,9 +146,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
-        <option value="HTML File" />
         <option value="Python Script" />
         <option value="JavaScript File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -139,9 +158,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/rest_service/templates/rest_service/mo_confirm_delete.html" />
-        <option value="$PROJECT_DIR$/rest_service/templates/rest_service/attribute_confirm_delete.html" />
-        <option value="$PROJECT_DIR$/rest_service/MyBaseRouter.py" />
         <option value="$PROJECT_DIR$/rest_service/templates/knastu/base1.html" />
         <option value="$PROJECT_DIR$/rest_service/templates/knastu/auditorias1.html" />
         <option value="$PROJECT_DIR$/rest_service/templates/knastu/responsible_user_moList_.html" />
@@ -164,7 +180,6 @@
         <option value="$PROJECT_DIR$/rest_service/templates/rest_service/mo_update_form.html" />
         <option value="$PROJECT_DIR$/rest_service/templates/clientapp/computer_update_form.html" />
         <option value="$PROJECT_DIR$/rest_service/templates/clientapp/monitor_update_form.html" />
-        <option value="$PROJECT_DIR$/knastu_glpi/settings.py" />
         <option value="$PROJECT_DIR$/rest_service/renderers.py" />
         <option value="$PROJECT_DIR$/rest_service/api_views.py" />
         <option value="$PROJECT_DIR$/rest_service/serializers.py" />
@@ -185,11 +200,15 @@
         <option value="$PROJECT_DIR$/rest_service/templates/knastu/responsible_user_moList.html" />
         <option value="$PROJECT_DIR$/knastu_glpi/wsgi.py" />
         <option value="$PROJECT_DIR$/rest_service/urls.py" />
-        <option value="$PROJECT_DIR$/rest_service/views.py" />
         <option value="$PROJECT_DIR$/rest_service/templates/knastu/responsible_person.html" />
         <option value="$PROJECT_DIR$/rest_service/templates/knastu/auditorias.html" />
         <option value="$PROJECT_DIR$/rest_service/templates/knastu/entities.html" />
+        <option value="$PROJECT_DIR$/rest_service/views.py" />
+        <option value="$PROJECT_DIR$/rest_service/templates/knastu/404.html" />
+        <option value="$PROJECT_DIR$/knastu_glpi/settings.py" />
+        <option value="$PROJECT_DIR$/rest_service/static/css/404_style.css" />
         <option value="$PROJECT_DIR$/rest_service/static/css/style.css" />
+        <option value="$PROJECT_DIR$/rest_service/templates/404.html" />
       </list>
     </option>
   </component>
@@ -277,55 +296,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="rest_service" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="my_diplom" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="my_diplom" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="rest_service" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="knastu" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="my_diplom" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="my_diplom" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="rest_service" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="clientapp" />
+              <option name="myItemId" value="static" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -347,25 +318,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="my_diplom" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="my_diplom" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="rest_service" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
+              <option name="myItemId" value="images" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -419,19 +372,19 @@
     <property name="list.type.of.created.stylesheet" value="CSS" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/rest_service/middleware" />
-      <recent name="$PROJECT_DIR$/rest_service/static" />
-      <recent name="$PROJECT_DIR$/rest_service/templates" />
-      <recent name="$PROJECT_DIR$/rest_service/static/images" />
-      <recent name="$PROJECT_DIR$/rest_service/static/css" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/rest_service/static/css" />
       <recent name="$PROJECT_DIR$/rest_service/templates/knastu" />
       <recent name="$PROJECT_DIR$/rest_service/templates/clientapp" />
       <recent name="$PROJECT_DIR$/rest_service/templates/rest_service" />
       <recent name="$PROJECT_DIR$/rest_service/templates/glpi" />
-      <recent name="$PROJECT_DIR$/clientapp/static" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/rest_service/templates" />
+      <recent name="$PROJECT_DIR$/rest_service/templates/knastu" />
+      <recent name="$PROJECT_DIR$/rest_service/middleware" />
+      <recent name="$PROJECT_DIR$/rest_service/static" />
+      <recent name="$PROJECT_DIR$/rest_service/static/images" />
     </key>
   </component>
   <component name="RunManager" selected="Django server.my_diplom">
@@ -717,9 +670,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="1535" height="876" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26997986" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26997986" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32876712" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32876712" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -807,34 +760,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/.local/lib/python2.7/site-packages/django/template/response.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="108" column="0" selection-start-line="108" selection-start-column="0" selection-end-line="108" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/rest_service/templates/rest_service/mo_form.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/rest_service/migrations/0002_auto_20170315_0336.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/rest_service/migrations/0004_auto_20170321_1457.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/rest_service/migrations/0003_auto_20170315_0347.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1017,13 +942,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/rest_service/templates/knastu/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="21" column="106" selection-start-line="21" selection-start-column="106" selection-end-line="21" selection-end-column="106" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/rest_service/static/js/script.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -1042,24 +960,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/rest_service/templates/knastu/responsible_user_moList.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="780">
-          <caret line="52" column="133" selection-start-line="52" selection-start-column="133" selection-end-line="52" selection-end-column="133" />
-          <folding>
-            <element signature="n#style#0;n#a#0;n#p#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="false" />
-            <element signature="e#6629#6636#0" expanded="false" />
-            <marker date="1496127996858" expanded="true" signature="663:1999" ph="{% if mo_type.0 == 'К' ... %}" />
-            <marker date="1496127996858" expanded="true" signature="841:1944" ph="{% for comp in comps ... %}" />
-            <marker date="1496127996858" expanded="true" signature="2017:3407" ph="{% if mo_type.0 == 'М' ... %}" />
-            <marker date="1496127996858" expanded="true" signature="2196:3352" ph="{% for monitor in monitors ... %}" />
-            <marker date="1496127996858" expanded="true" signature="3565:5178" ph="{% for k, v in mo_dict.items ... %}" />
-            <marker date="1496127996858" expanded="true" signature="3621:5145" ph="{% if  k == mo_type ... %}" />
-            <marker date="1496127996858" expanded="true" signature="3672:5109" ph="{% for mo in v ... %}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/knastu_glpi/wsgi.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
@@ -1067,14 +967,6 @@
           <folding>
             <element signature="e#228#237#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/rest_service/templates/knastu/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="59" selection-start-line="18" selection-start-column="59" selection-end-line="18" selection-end-column="59" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1086,29 +978,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/knastu_glpi/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="132" column="0" selection-start-line="132" selection-start-column="0" selection-end-line="132" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/rest_service/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="505">
           <caret line="100" column="0" selection-start-line="100" selection-start-column="0" selection-end-line="100" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/rest_service/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="28" column="42" selection-start-line="28" selection-start-column="11" selection-end-line="28" selection-end-column="42" />
-          <folding>
-            <element signature="e#24#57#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1144,21 +1018,105 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/rest_service/static/css/style.css">
+    <entry file="file://$PROJECT_DIR$/rest_service/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1015">
-          <caret line="569" column="9" selection-start-line="569" selection-start-column="9" selection-end-line="569" selection-end-column="9" />
+        <state relative-caret-position="1560">
+          <caret line="104" column="0" selection-start-line="104" selection-start-column="0" selection-end-line="104" selection-end-column="0" />
+          <folding>
+            <element signature="e#24#70#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/knastu_glpi/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="25" column="13" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/rest_service/views.py">
+    <entry file="file://$PROJECT_DIR$/rest_service/static/css/404_style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1775">
-          <caret line="414" column="31" selection-start-line="414" selection-start-column="31" selection-end-line="414" selection-end-column="31" />
+        <state relative-caret-position="132">
+          <caret line="49" column="0" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rest_service/templates/knastu/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="341">
+          <caret line="32" column="79" selection-start-line="32" selection-start-column="4" selection-end-line="32" selection-end-column="79" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rest_service/templates/knastu/responsible_user_moList.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="365">
+          <caret line="130" column="14" selection-start-line="123" selection-start-column="8" selection-end-line="130" selection-end-column="14" />
           <folding>
-            <element signature="e#24#70#0" expanded="true" />
+            <marker date="1496127996858" expanded="true" signature="663:1999" ph="{% if mo_type.0 == 'К' ... %}" />
+            <marker date="1496127996858" expanded="true" signature="841:1944" ph="{% for comp in comps ... %}" />
+            <marker date="1496127996858" expanded="true" signature="2017:3407" ph="{% if mo_type.0 == 'М' ... %}" />
+            <marker date="1496127996858" expanded="true" signature="2196:3352" ph="{% for monitor in monitors ... %}" />
+            <marker date="1496127996858" expanded="true" signature="3565:5178" ph="{% for k, v in mo_dict.items ... %}" />
+            <marker date="1496127996858" expanded="true" signature="3621:5145" ph="{% if  k == mo_type ... %}" />
+            <marker date="1496127996858" expanded="true" signature="3672:5109" ph="{% for mo in v ... %}" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rest_service/templates/knastu/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="21" column="71" selection-start-line="21" selection-start-column="37" selection-end-line="21" selection-end-column="71" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rest_service/static/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="96" column="0" selection-start-line="96" selection-start-column="0" selection-end-line="96" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rest_service/templates/404.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" column="37" selection-start-line="22" selection-start-column="37" selection-end-line="22" selection-end-column="37" />
+          <folding>
+            <element signature="n#style#0;n#a#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rest_service/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="14" column="39" selection-start-line="14" selection-start-column="34" selection-end-line="14" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/clientapp/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/knastu_glpi/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
