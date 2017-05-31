@@ -1,0 +1,616 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600&subset=latin,cyrillic);
+@import url('https://fonts.googleapis.com/css?family=Dosis|Fira+Sans+Condensed|Oswald|Poiret+One');
+
+
+*{box-sizing: border-box;}
+
+body {
+  margin: 0;
+  background: #f8f8f8;
+  font-family: 'Roboto', sans-serif;
+}
+
+.banner{
+    background: #2B8C67;
+    height: 70px;
+    padding-left: 50px;
+}
+
+.menu_box{
+    width: 100%;
+    background: #0C3C26;
+    color: white;
+}
+
+.menu{
+    display: inline-block;
+    float: right;
+    width: 86%;
+}
+
+.menu ul{
+    text-align: right;
+    margin-right: 60px;
+}
+
+.menu ul li{
+    display: inline-block;
+    padding: 10px;
+}
+
+.menu ul li a{
+    font-family: 'Oswald', sans-serif;
+    font-size: 17px;
+    text-decoration: none;
+    color: #fff;
+    cursor: pointer;
+}
+
+.logo{
+    display: inline-block;
+    text-align: left;
+}
+
+.banner p{
+    font-family: 'Poiret One', cursive;
+    font-size: 30px;
+    color: #C9F0DD;
+    margin: 0;
+    float: left;
+    padding-top: 15px;
+}
+
+/*---404----*/
+
+.logo_404{
+    display: inline-block;
+    text-align: left;
+    width: 100%;
+    padding-left: 50px;
+}
+
+.banner_404{
+	width: 614px;
+	margin: 100px auto 0 auto ;
+}
+
+.white{
+    background-color: white;
+}
+
+.back_button{
+    width: 350px;
+    height: 40px;
+    background-color: #0C3C26;
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 50px;
+    cursor: pointer;
+}
+
+.back_button:hover{
+    background-color: #2B8C67;
+}
+
+/*----Шапка----*/
+.header {
+  background: white;
+  font-family: 'Dosis', sans-serif;
+  text-align: center;
+}
+.header > h1 {
+    margin: 0;
+    padding: 20px;
+}
+.header > h1 > a {
+    text-decoration: none;
+    color: #003366;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-size: large;
+}
+
+.header > h1 > a:visited {
+    color: #1c1c1c;
+   }
+/*------------*/
+
+/*----Главное меню----*/
+
+nav {
+  text-align: center;
+}
+nav:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.menu > li {
+  display: inline-block;
+  position: relative;
+  margin-right: -4px;
+}
+.menu > li:last-child {
+  border-right: 1px solid #ECF1F2;
+}
+.menu > li > a {
+  display: block;
+  font-weight: bold;
+  padding: 20px 30px;
+  font-size: 12px;
+  text-transform: uppercase;
+  border-left: 1px solid #ECF1F2;
+  letter-spacing: 2px;
+}
+.active:after, .submenu-link:after {
+  color: inherit;
+  margin-left: 10px;
+}
+
+.submenu {
+  width: 240px;
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  left: 0;
+  z-index: 10;
+  transform: translateY(10px);
+  transition: .3s ease-in-out;
+  box-shadow: 0 2px 0 0 #ECF1F2;
+}
+.submenu li {
+  position: relative;
+}
+.submenu li a {
+  background: white;
+  border-top: 1px solid #ECF1F2;
+  border-right: 1px solid #ECF1F2;
+  border-left: 1px solid #ECF1F2;
+  display: block;
+  color: #1c1c1c;
+  text-align: left;
+  font-size: 14px;
+  letter-spacing: 1px;
+  padding: 10px 20px;
+  transition: .3s ease-in-out;
+}
+.submenu .submenu {
+  position: absolute;
+  top: 0;
+  left: calc(100% - 1px);
+  left: -webkit-calc(100% - 1px);
+}
+li:hover > .submenu {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0px);
+}
+/*----------------------------*/
+
+/*----Ответственные лица----*/
+.content {
+    font-family: 'Open Sans', sans-serif;
+    height:1000px;
+}
+
+.content p{
+    /*letter-spacing: 2px;
+    text-transform: uppercase;*/
+}
+
+.person_list {
+    margin: 50px 50px;
+    display: inline-block;
+}
+
+.person_list_box {
+    width: 27%;
+    display: inline-flex;
+}
+
+.entities_list_box {
+    width: 30%;
+    display: inline-flex;
+}
+
+.person_list div{
+}
+
+.entities_mo_list_box{
+    margin: 0;
+    background: #fff;
+    width: 69%;
+    display: inline-block;
+    right: 0;
+    height: 100%;
+}
+
+.mo_list_box{
+    margin: 0;
+    background: #fff;
+    width: 72%;
+    display: inline-block;
+    right: 0;
+    height: 100%;
+}
+
+.user_mo_list_box{
+    background: #f8f8f8;
+    margin-top: 50px;
+}
+
+.mo_list {
+    margin: 50px 0;
+    display: inline-block;
+    width: 100%;
+    background: #fff;
+}
+
+.mo_list_header{
+    margin-left: 50px;
+}
+
+.mo_name{
+    cursor: pointer;
+    list-style-type: none;
+    display: inline-block;
+    margin: 0;
+}
+
+.mo_list_div {
+    width: 66%;
+    background-color: white;
+    position: absolute;
+}
+
+.mo_detail{
+    border:none;
+    list-style-type: none;
+    margin: 0 0 40px 15px;
+    line-height: 75%;
+}
+
+.mo_action{
+    display: inline-block;
+    font-size: small;
+    margin-top: 0;
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+}
+
+.mo_detail p{
+    margin-left: 20px;
+    text-transform: none;
+    letter-spacing: normal;
+    color: darkslategrey;
+}
+
+.location_name{
+    margin: -10px 0 30px 50px;
+    letter-spacing: normal !important;
+    text-transform: none !important;
+    font-size: 17px;
+}
+
+.mo_result_list{
+    margin-left: 10px;
+}
+
+.mo_group_name{
+    font-family: 'Open Sans ', sans-serif;
+    text-transform: none !important;
+    letter-spacing: normal !important;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+
+.mo_group_result{
+    margin: 0 0 5px 20px;
+    color: darkslategray;
+    display: none;
+}
+
+.mo_block{
+    margin-bottom: 30px;
+}
+
+.list{
+    margin: 10px 0 0-80px;
+}
+
+.list ul{
+    list-style-type: none;
+}
+
+.list li{
+    padding: 5px;
+}
+
+.children_loc{
+    display: none;
+    cursor: pointer;
+    margin-left: 15px;
+}
+
+.children_ent{
+    display: none;
+    cursor: pointer;
+    margin-left: 15px;
+}
+
+.parent_ent{
+    display: none;
+    cursor: pointer;
+    margin-left: 15px;
+}
+
+.children_loc a {
+    text-decoration: none;
+    color: black;
+}
+
+.children_ent a{
+    text-decoration: none;
+    color: black;
+}
+
+.parent_loc a{
+    text-decoration: none;
+    color: black;
+}
+
+.parent_ent a{
+    text-decoration: none;
+    color: black;
+}
+
+.root_ent a{
+    text-decoration: none;
+    color: black;
+}
+/*------*/
+/*--------Форма входа--------------*/
+/*.login{
+    margin: 50px auto;
+    border: solid gray 2px;
+    width: 420px;
+    background-color: white;
+    padding: 40px;
+    border-radius: 10px;
+    font-family: 'Open Sans', sans-serif;
+    text-align: center;
+
+}*/
+
+.attr_del_but{
+    width: 15px;
+    height: 15px;
+    margin-left: 10px;
+    background-image: url("../images/del.png");
+    cursor: pointer;
+}
+
+.exit_box{
+    float: right;
+    width: 100%;
+    position: absolute;
+    color: white;
+}
+
+.exit_icon{
+    width: 25px;
+    margin-top: -48px;
+    margin-right: 20px;
+    float: right;
+    cursor: pointer;
+}
+
+.hello_user{
+    width: 100px;
+    font-size: small;
+    display: inline-block;
+    float: right;
+}
+
+
+/*Форма входа*/
+.login-card {
+  padding: 40px;
+  width: 400px;
+  background-color: #F7F7F7;
+  margin: 0 auto 10px;
+  border-radius: 2px;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  margin-top: 100px;
+}
+
+.login-card h1 {
+  font-weight: 100;
+  text-align: center;
+  font-size: 2.3em;
+}
+
+.login-card input[type=submit] {
+  width: 100%;
+  display: block;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.login-card input[type=text], input[type=password] {
+  height: 44px;
+  font-size: 16px;
+  width: 100%;
+  margin-bottom: 10px;
+  -webkit-appearance: none;
+  background: #fff;
+  border: 1px solid #d9d9d9;
+  border-top: 1px solid #c0c0c0;
+  /* border-radius: 2px; */
+  padding: 0 8px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+
+.login-card input[type=text]:hover, input[type=password]:hover {
+  border: 1px solid #b9b9b9;
+  border-top: 1px solid #a0a0a0;
+  -moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+  -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.login {
+  text-align: center;
+  font-size: 14px;
+  font-family: 'Arial', sans-serif;
+  font-weight: 700;
+  height: 36px;
+  padding: 0 8px;
+  width: 320px;
+/* border-radius: 3px; */
+/* -webkit-user-select: none;
+  user-select: none; */
+}
+
+.login-submit {
+  /* border: 1px solid #3079ed; */
+  border: 0;
+  color: #fff;
+  text-shadow: 0 1px rgba(0,0,0,0.1);
+  background-color: #0C3C26;
+  /* background-image: -webkit-gradient(linear, 0 0, 0 100%,   from(#4d90fe), to(#4787ed)); */
+}
+
+.login-submit:hover {
+  /* border: 1px solid #2f5bb7; */
+  border: 0;
+  text-shadow: 0 1px rgba(0,0,0,0.3);
+  background-color: #0C3C26;
+  /* background-image: -webkit-gradient(linear, 0 0, 0 100%,   from(#4d90fe), to(#357ae8)); */
+}
+
+.login-card a {
+  text-decoration: none;
+  color: #666;
+  font-weight: 400;
+  text-align: center;
+  display: inline-block;
+  opacity: 0.6;
+  transition: opacity ease 0.5s;
+}
+
+.login-card a:hover {
+  opacity: 1;
+}
+
+.login-help {
+  width: 100%;
+  text-align: center;
+  font-size: 12px;
+}
+
+.type_of_list{
+    display: inline-block;
+    margin: -10px 0 30px 50px;
+    font-size: 15px;
+    color: cadetblue;
+}
+
+.alphabet_lists{
+    display: none;
+    margin: -10px 0 30px 60px;
+}
+
+.location_lists{
+    display: none;
+    margin: -10px 0 30px 60px;
+}
+
+.types{
+    font-size: 15px;
+    margin: 2px;
+    display: none;
+    cursor: pointer;
+}
+
+.types_result{
+    display: none;
+}
+
+.types_mo_group_result{
+    margin: 0 0 5px 0;
+    color: darkslategray;
+}
+
+.first_letter{
+    cursor: pointer;
+}
+
+.transfer_box{
+    float: right;
+    width: 400px;
+    margin: 20px 50px 0 0;
+    display: inline-flex;
+}
+
+.transfer_but{
+    background: white;
+    color: #2B8C67;
+    border: #2B8C67 dashed 1px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 14px;
+    font-family: 'Arial', sans-serif;
+    font-weight: 200;
+    height: 36px;
+    padding: 0 8px;
+    line-height: 36px;
+    width: 50%;
+}
+
+.transfer_but:hover{
+    background: #2B8C67;
+    color: white;
+    border: #2B8C67 dashed 1px;
+}
+
+.loc_input{
+    width: 50%;
+    text-align: center;
+    display: inline-flex;
+}
+
+.loc_input input{
+    width: 100%;
+    background: #fff;
+    border: 1px solid #d9d9d9;
+    padding: 0 8px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    height: 36px;
+}
+
+.check{
+    margin: 0;
+    visibility: hidden;
+}
+
+#checked{
+    visibility: visible !important;
+}
+
+.bottom_menu{
+    margin-bottom: -80px;
+    position: fixed;
+    bottom:0;
+    width: 100%;
+    height: 80px;
+    background-color: rgba(0, 0, 0, 0.3);
+}

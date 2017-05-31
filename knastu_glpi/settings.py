@@ -129,7 +129,6 @@ USE_TZ = True
 LOGIN_URL = '/login/'
 
 STATIC_URL = '/static/'
-#STATIC_URL = ''
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Debug_toolbar settings
