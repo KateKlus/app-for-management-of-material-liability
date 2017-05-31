@@ -8,9 +8,13 @@ https://docs.djangoproject.com/en/1.10/howto/deployment/wsgi/
 """
 
 import os
+import sys
+
+sys.path.append("/home/catherine/my_diplom/my_diplom/lib/python2.7/site-packages")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "knastu_glpi.settings")
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "knastu_glpi.settings")
-
 application = get_wsgi_application()
+
+
