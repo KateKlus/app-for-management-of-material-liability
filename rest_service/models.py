@@ -3,6 +3,20 @@ from __future__ import unicode_literals
 from django.db import models
 
 
+class Specialist(models.Model):
+    specialist_id = models.AutoField(primary_key=True)
+    specialist_name = models.CharField("Имя", max_length=100)
+
+    class Meta:
+        db_table = 'specialist'
+        app_label = 'rest_service'
+        verbose_name = 'Специалист'
+        verbose_name_plural = 'Специалисты'
+
+    def __unicode__(self):
+        return self.specialist_name
+
+
 # Модель материального объекта
 class MO(models.Model):
     MO_id = models.AutoField(primary_key=True)
@@ -12,6 +26,11 @@ class MO(models.Model):
     location = models.CharField("Аудитория", max_length=45, default='', blank=True, null=True)
     mo_type = models.CharField("Тип", max_length=45, default='', blank=True, null=True)
     note = models.TextField("Примечание", default='', blank=True, null=True)
+    specialist = models.ForeignKey(
+        Specialist,
+        verbose_name="Специалист",
+        blank=True, null=True,
+    )
 
     class Meta:
         app_label = 'rest_service'
@@ -93,6 +112,7 @@ class Location(models.Model):
         default='Не назначено'
     )
     locations_id = models.IntegerField()
+    level = models.IntegerField()
 
     class Meta:
         db_table = 'glpi_locations'

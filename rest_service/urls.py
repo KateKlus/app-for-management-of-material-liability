@@ -42,8 +42,6 @@ urlpatterns = [
     url(r'^update_attr/(?P<pk>[0-9]+)$', views.attrUpdate.as_view(), name='update_attr'),
 
     #Создание объектов
-    url(r'^create_comp/$', views.computersCreate.as_view(), name='create_comp'),
-    url(r'^create_monitor/$', views.monitorsCreate.as_view(), name='create_monitor'),
     url(r'^create_mo/$', views.mobjCreate.as_view(), name='create_mo'),
     url(r'^create_mo/create_attribute/$', views.attrCreate.as_view(), name='create_attribute'),
 

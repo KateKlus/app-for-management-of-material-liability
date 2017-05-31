@@ -13,6 +13,7 @@ from api_views import *
 from django.http import JsonResponse
 from itertools import chain
 from collections import OrderedDict
+from forms import *
 import json
 
 
@@ -101,7 +102,7 @@ def specialist_mo_list(request, pk):
     specialist_fullname = specialist.user_dn.split(',')[0]
     comps = Computer.objects.filter(users_id_tech_id=pk)
     monitors = Monitor.objects.filter(users_id_tech_id=pk)
-    mo_list = MO.objects.filter(contact=specialist.name)
+    mo_list = MO.objects.filter(specialist__specialist_name=specialist)
 
     mo_attr_dict = []
 
@@ -138,7 +139,7 @@ def specialist_mo_list_userid(request):
     # Получаем технику и МО специалиста
     comps = Computer.objects.filter(users_id_tech_id=spec_id)
     monitors = Monitor.objects.filter(users_id_tech_id=spec_id)
-    mo_list = MO.objects.filter(contact=specialist.name)
+    mo_list = MO.objects.filter(specialist__specialist_name=specialist)
 
     # Определяем какие типы МО имеются
     types = mo_list.values('mo_type').annotate(count=Count('name')).order_by('mo_type')
@@ -149,7 +150,8 @@ def specialist_mo_list_userid(request):
     for type in types:
         type_name = type.values()
         mo_by_types_list = mo_list.filter(mo_type=type_name[0])
-        types_of_mo_dict.update({type_name[0]: mo_by_types_list.values('MO_id', 'name', 'serial', 'contact', 'location', 'note', 'mo_type')})
+        types_of_mo_dict.update({type_name[0]: mo_by_types_list.values('MO_id', 'name', 'serial', 'location', 'note',
+                                                                       'mo_type')})
 
     # Определяем какие аудитории имеются
     locations = mo_list.values('location').annotate(count=Count('name')).order_by('location')
@@ -163,8 +165,8 @@ def specialist_mo_list_userid(request):
     for loc in locations:
         location = loc.values()
         mo_by_location_list = mo_list.filter(location=location[1])
-        locations_of_mo_dict.update({location[1]: mo_by_location_list.values('MO_id', 'name', 'serial', 'contact',
-                                                                             'location', 'note', 'mo_type')})
+        locations_of_mo_dict.update({location[1]: mo_by_location_list.values('MO_id', 'name', 'serial', 'location',
+                                                                             'note', 'mo_type')})
 
     # Добавляем компьютеры
     for loc in glpi_comps_locations:
@@ -176,8 +178,8 @@ def specialist_mo_list_userid(request):
                                                           'locations__name', ), locations_of_mo_dict.get(location[1])))
             locations_of_mo_dict.update({location[1]: value})
         else:
-            locations_of_mo_dict.update({location[1]: mo_by_location_list.values('name', 'otherserial', 'users_id_tech__name',
-                                                                                 'locations__name', )})
+            locations_of_mo_dict.update({location[1]: mo_by_location_list.values('name', 'otherserial',
+                                                                                 'users_id_tech__name', 'locations__name' )})
 
     # Добавляем мониторы
     for loc in glpi_monitors_locations:
@@ -189,8 +191,8 @@ def specialist_mo_list_userid(request):
                                                           'locations__name', ), locations_of_mo_dict.get(location[1])))
             locations_of_mo_dict.update({location[1]: value})
         else:
-            locations_of_mo_dict.update({location[1]: mo_by_location_list.values('name', 'otherserial', 'users_id_tech__name',
-                                                                                 'locations__name', )})
+            locations_of_mo_dict.update({location[1]: mo_by_location_list.values('name', 'otherserial',
+                                                                                 'users_id_tech__name', 'locations__name' )})
 
     # Сортируем словарь по ключам
     ord_dict = OrderedDict()
@@ -213,7 +215,7 @@ def specialist_mo_list_userid(request):
 
     })
 
-
+# Получение детальной информации о компонентах компьютера
 def comp_detail_info(request, pk):
     comp = Computer.objects.get(pk=pk)
     printers = ComputersItems.objects.filter(computers_id=pk, itemtype='Printer')
@@ -259,8 +261,6 @@ def comp_detail_info(request, pk):
     })
 
 
-
-
 def get_comp_detail(request, pk):
     if not request.user.is_authenticated():
        return redirect('%s?next=%s' % (settings.LOGIN_URL, request.path))
@@ -296,17 +296,11 @@ def get_mo_detail(request, pk):
     })
 
 
-# CRUD компьютеры
-class computersCreate(generic.CreateView):
-    model = Computer
-    fields = ['name', 'serial', 'otherserial','users_id_tech', 'locations']
-    template_name_suffix = '_create_form'
-    success_url = "/"
-
-
+# RUD компьютеры
 class computersUpdate(generic.UpdateView):
     model = Computer
-    fields = ['name', 'serial', 'otherserial', 'users_id_tech']
+    #fields = ['name', 'serial', 'otherserial', 'users_id_tech', 'locations']
+    form_class = ComputerUpdateForm
     template_name_suffix = '_update_form'
     success_url = reverse_lazy('auditorias')
 
@@ -317,16 +311,10 @@ class computersDelete(generic.DeleteView):
 
 
 # CRUD мониторы
-class monitorsCreate(generic.CreateView):
-    model = Monitor
-    fields = ['name', 'serial', 'otherserial', 'users_id_tech', 'locations']
-    template_name_suffix = '_create_form'
-    success_url = "/"
-
-
 class monitorsUpdate(generic.UpdateView):
     model = Monitor
-    fields = ['name', 'serial', 'otherserial', 'users_id_tech', ]
+    #fields = ['name', 'serial', 'otherserial', 'users_id_tech', 'locations']
+    form_class = MonitorUpdateForm
     template_name_suffix = '_update_form'
     success_url = reverse_lazy('auditorias')
 
@@ -339,7 +327,7 @@ class monitorsDelete(generic.DeleteView):
 # CRUD материальные объекты и аттрибуты
 class mobjCreate(generic.CreateView):
     model = MO
-    fields = ['name',  'serial', 'contact', 'location', 'mo_type']
+    fields = ['name',  'serial', 'location', 'mo_type', 'note', 'specialist',]
     template_name_suffix = '_create_form'
     success_url = "create_attribute"
 
@@ -353,7 +341,7 @@ class attrCreate(generic.CreateView):
 
 class moUpdate(generic.UpdateView):
     model = MO
-    fields = ['name', 'serial', 'contact', 'location', 'mo_type', 'note',]
+    fields = ['name', 'serial', 'location', 'mo_type', 'note', 'specialist',]
     template_name_suffix = '_update_form'
     success_url = "/"
 
