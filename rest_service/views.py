@@ -15,6 +15,8 @@ from itertools import chain
 from collections import OrderedDict
 from forms import *
 import json
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
 
 def index(request):
@@ -29,17 +31,29 @@ class auditorias(generic.ListView):
     model = Location
     template_name = 'knastu/auditorias.html'
 
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(auditorias, self).dispatch(request, *args, **kwargs)
+
 
 # для вывода списка аудиторий из базы glpi
 class entities(generic.ListView):
     model = Entities
     template_name = 'knastu/entities.html'
 
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(entities, self).dispatch(request, *args, **kwargs)
+
 
 # для вывода списка ответственных из базы glpi
 class responsible_specialist(generic.ListView):
     model = GLPI_user
     template_name = 'knastu/responsible_person.html'
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(responsible_specialist, self).dispatch(request, *args, **kwargs)
 
 
 # для вывода списка оборудования из обеих баз по id аудитории
@@ -299,29 +313,43 @@ def get_mo_detail(request, pk):
 # RUD компьютеры
 class computersUpdate(generic.UpdateView):
     model = Computer
-    #fields = ['name', 'serial', 'otherserial', 'users_id_tech', 'locations']
     form_class = ComputerUpdateForm
     template_name_suffix = '_update_form'
     success_url = reverse_lazy('auditorias')
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(computersUpdate, self).dispatch(request, *args, **kwargs)
 
 
 class computersDelete(generic.DeleteView):
     model = Computer
     success_url = reverse_lazy('auditorias')
 
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(computersDelete, self).dispatch(request, *args, **kwargs)
+
 
 # CRUD мониторы
 class monitorsUpdate(generic.UpdateView):
     model = Monitor
-    #fields = ['name', 'serial', 'otherserial', 'users_id_tech', 'locations']
     form_class = MonitorUpdateForm
     template_name_suffix = '_update_form'
     success_url = reverse_lazy('auditorias')
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(monitorsUpdate, self).dispatch(request, *args, **kwargs)
 
 
 class monitorsDelete(generic.DeleteView):
     model = Monitor
     success_url = reverse_lazy('auditorias')
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(monitorsDelete, self).dispatch(request, *args, **kwargs)
 
 
 # CRUD материальные объекты и аттрибуты
@@ -331,12 +359,20 @@ class mobjCreate(generic.CreateView):
     template_name_suffix = '_create_form'
     success_url = "create_attribute"
 
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(mobjCreate, self).dispatch(request, *args, **kwargs)
+
 
 class attrCreate(generic.CreateView):
     model = AttributeModel
     fields = ['attr_name',  'attr_value', 'MO']
     template_name_suffix = '_create_form'
     success_url = "/"
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(attrCreate, self).dispatch(request, *args, **kwargs)
 
 
 class moUpdate(generic.UpdateView):
@@ -345,6 +381,10 @@ class moUpdate(generic.UpdateView):
     template_name_suffix = '_update_form'
     success_url = "/"
 
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(moUpdate, self).dispatch(request, *args, **kwargs)
+
 
 class attrUpdate(generic.UpdateView):
     model = AttributeModel
@@ -352,15 +392,27 @@ class attrUpdate(generic.UpdateView):
     template_name_suffix = '_update_form'
     success_url = "/"
 
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(attrUpdate, self).dispatch(request, *args, **kwargs)
+
 
 class moDelete(generic.DeleteView):
     model = MO
     success_url = "/"
 
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(moDelete, self).dispatch(request, *args, **kwargs)
+
 
 class attrDelete(generic.DeleteView):
     model = AttributeModel
     success_url = "/"
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(attrDelete, self).dispatch(request, *args, **kwargs)
 
 
 def transfer(request, loc=None, mo_list=None,):
