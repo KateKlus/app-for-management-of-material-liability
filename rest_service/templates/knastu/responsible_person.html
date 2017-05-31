@@ -1,22 +1,27 @@
 {% extends 'knastu/base.html' %}
 {% block content %}
     <div class="content">
-        <div class="person_list">
-            <p>
-                Список ответственных лиц
-            </p>
-            <div>
-                <ul class="list">
-                {% for spec in glpi_user_list %}
-                    {% if spec.auths_id != 0 %}
-                        <ul>
-                            <li class="parent_loc" name="{{ spec.pk }}" onclick="get_mo_list(this)"><a href="#"> {{ spec.realname }} {{ spec.firstname }} </a></li>
-                        </ul>
-                    {% endif %}
-                {% endfor %}
-                </ul>
+        <div class="person_list_box">
+            <div class="person_list">
+                <p> Список ответственных лиц </p>
+                <div>
+                    <ul class="list">
+                    {% for spec in glpi_user_list %}
+                        {% if spec.auths_id != 0 %}
+                            <ul>
+                                <li class="parent_loc" name="{{ spec.pk }}" onclick="get_mo_list(this)">
+                                    <a href="#">
+                                        {{ spec.realname }} {{ spec.firstname }}
+                                    </a>
+                                </li>
+                            </ul>
+                        {% endif %}
+                    {% endfor %}
+                    </ul>
+                </div>
             </div>
         </div>
+
 
         <div class="mo_list_box">
             <div class="mo_list">

@@ -59,6 +59,7 @@ body {
     float: left;
     padding-top: 15px;
 }
+
 /*----Шапка----*/
 .header {
   background: white;
@@ -92,8 +93,6 @@ nav:after {
   display: table;
   clear: both;
 }
-
-
 
 .menu > li {
   display: inline-block;
@@ -171,21 +170,34 @@ li:hover > .submenu {
 .person_list {
     margin: 50px 50px;
     display: inline-block;
+}
+
+.person_list_box {
     width: 27%;
+    display: inline-flex;
+}
 
-
+.entities_list_box {
+    width: 30%;
+    display: inline-flex;
 }
 
 .person_list div{
-    /*height: 700px;*/
-    width: 27%;
-    position: absolute;
+}
+
+.entities_mo_list_box{
+    margin: 0;
+    background: #fff;
+    width: 69%;
+    display: inline-block;
+    right: 0;
+    height: 100%;
 }
 
 .mo_list_box{
     margin: 0;
     background: #fff;
-    width: 66%;
+    width: 72%;
     display: inline-block;
     right: 0;
     height: 100%;
